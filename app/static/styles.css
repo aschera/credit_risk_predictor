@@ -1,0 +1,14 @@
+/* static/styles.css */
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .container {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  /* Rest of the CSS styles */
+  /* ... */
+  
