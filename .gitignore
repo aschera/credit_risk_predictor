@@ -36,3 +36,6 @@ saved_models/
 
 # Ignore any virtual environment files
 pip-selfcheck.json
+
+# Ignore Node.js modules
+node_modules/
