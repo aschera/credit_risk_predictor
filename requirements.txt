@@ -1,0 +1,8 @@
+# generate this file using the pip freeze command
+# pip freeze > requirements.txt
+
+
+# examples:
+flask==1.1.2
+tensorflow==2.7.0
+keras==2.6.0

@@ -1,0 +1,38 @@
+# Ignore compiled Python files
+*.pyc
+__pycache__/
+
+# Ignore the virtual environment directory
+venv/
+
+# Ignore any local environment file
+.env
+
+# Ignore log files and other generated logs
+*.log
+
+# Ignore data files or datasets (if not already in .gitignore of data directory)
+data/
+
+# Ignore model checkpoints and saved models (if not in a separate directory)
+saved_models/
+
+# Ignore configuration files
+*.config
+
+# Ignore any generated HTML files
+*.html
+
+# Ignore compiled binary files for the web app
+*.pyc
+
+# Ignore IDE-specific files and directories
+.idea/
+.vscode/
+
+# Ignore compiled files for Tensorflow or Keras
+*.pb
+*.pbtxt
+
+# Ignore any virtual environment files
+pip-selfcheck.json
