@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit Risk Predictor App</title>
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Import local CSS file -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+  <div class="container">
+    <h1 class="blue-text text-darken-2">Credit Risk Predictor App</h1>
+    <div class="row">
+
+      <form id="loanForm">
+
+        <div class="col s4">
+          
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="John" id="first_name" type="text" class="validate">
+                <label for="first_name">First Name</label>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Race" id="race" type="text" class="validate">
+                <label for="race">Race</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Sex" id="sex" type="text" class="validate">
+                <label for="sex">Sex</label>
+              </div>
+            </div>
+
+            <div style="height:3rem"></div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="income" type="number" class="validate">
+                <label for="income">Income</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="750" id="creditScore" type="number" class="validate">
+                <label for="creditScore">Credit Score</label>
+              </div>
+            </div>
+
+            <div style="height:3rem"></div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Interest Rate" id="interestRate" type="number" class="validate">
+                <label for="interestRate">Interest Rate</label>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="loanAmount" type="number" class="validate">
+                <label for="loanAmount">Loan Amount</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Lien Status" id="lienstatus" type="text" class="validate">
+                <label for="lienstatus">Lien Status</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Total Loan Costs" id="totalloancosts" type="text" class="validate">
+                <label for="totalloancosts">Total Loan Costs</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Total Points and Fees" id="totalpointsandfees" type="text" class="validate">
+                <label for="totalpointsandfees">Total Points and Fees</label>
+              </div>
+            </div>
+
+        </div>
+
+        
+
+        <div class="col s4">
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Doe" id="last_name" type="text" class="validate">
+                <label for="last_name">Last Name</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Ethnicity" id="ethnicity" type="text" class="validate">
+                <label for="ethnicity">Ethnicity</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="age" type="number" class="validate">
+                <label for="age">Age</label>
+              </div>
+            </div>
+
+            <div style="height:3rem"></div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="0.25" id="debtToIncomeRatio" type="number" class="validate">
+                <label for="debtToIncomeRatio">Debt-to-Income Ratio</label>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Property Value" id="propertyvalue" type="number" class="validate">
+                <label for="propertyvalue">Property Value</label>
+              </div>
+            </div>
+
+            <div style="height:3rem"></div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Loan Term" id="loanterm" type="text" class="validate">
+                <label for="loanterm">Loan Term</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Loan Type" id="loantype" type="text" class="validate">
+                <label for="loantype">Loan Type</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Loan Purpose" id="loanpurpose" type="text" class="validate">
+                <label for="loanpurpose">Loan Purpose</label>
+              </div>
+            </div>
+
+            
+            <!--
+            Lien Status
+            Total Loan Costs
+            Total Points and Fees
+            Origination Charges
+            Discount Points
+            Lender Credits
+            Prepayment Penalty Term
+            Negative Amortization
+            Interest-Only Payment
+            Balloon Payment
+            Other Nonamortizing Features
+            Occupancy Type
+            Manufactured Home Secured Property Type
+            Manufactured Home Land Property Interest
+            Total Units
+            Multifamily Affordable Units
+            Applicant and Co-applicant Information (such as age, ethnicity, race, and sex)
+            -->
+
+            <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+        
+        </div>
+
+    </form>
+
+      <div class="col s3">
+        <div id="result">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deserunt optio illo quisquam, perferendis voluptates. Sed nesciunt mollitia ex, quisquam amet placeat commodi perspiciatis nisi modi adipisci fugit expedita unde.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Import Materialize JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <script>
+    document.getElementById('loanForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      // Placeholder for the function that handles form submission.
+      console.log('Form submitted.');
+    });
+  </script>
+</body>
+</html>

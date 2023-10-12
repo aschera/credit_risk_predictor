@@ -20,9 +20,6 @@ saved_models/
 # Ignore configuration files
 *.config
 
-# Ignore any generated HTML files
-*.html
-
 # Ignore compiled binary files for the web app
 *.pyc
 
