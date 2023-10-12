@@ -1,0 +1,46 @@
+{ "dummyData1": {
+    "applicantData": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "age": 35,
+      "race": "Race",
+      "sex": "Sex",
+      "ethnicity": "Ethnicity",
+      "income": 100000,
+      "debtToIncomeRatio": 0.25,
+      "creditScore": 750,
+      "lenderCredits": 0
+    },
+    "coApplicantData": {
+      "applicantAge": 30,
+      "applicantRace": "Race",
+      "applicantSex": "Sex",
+      "applicantEthnicity": "Ethnicity"
+    },
+    "propertyInfo": {
+      "propertyValue": 300000,
+      "lienStatus": "Lien Status",
+      "manufacturedHomeLandPropertyInterest": "Manufactured Home Land Property Interest",
+      "multifamilyAffordableUnits": 2,
+      "occupancyType": "Occupancy Type",
+      "manufacturedHomeSecuredPropertyType": "Manufactured Home Secured Property Type",
+      "totalUnits": 10
+    },
+    "loanDetails": {
+      "loanAmount": 200000,
+      "interestRate": 4.5,
+      "totalpointsandfees": 2000,
+      "loanterm": "30 years",
+      "discountPoints": 0.5,
+      "prepaymentPenaltyTerm": 2,
+      "negativeAmortization": "No",
+      "totalloancosts": 3000,
+      "loantype": "Home Loan",
+      "loanpurpose": "Purchase",
+      "originationCharges": 1500,
+      "interestOnlyPayment": "No",
+      "balloonPayment": "No",
+      "otherNonamortizingFeatures": "No"
+    }
+  }} 
+

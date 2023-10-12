@@ -12,10 +12,23 @@
   <!-- Import local CSS file -->
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
 </head>
 
 <body>
   <div class="container">
+
+    <div class="input-field col s12 browser-default">
+      <select id="dummyDataDropdown" onchange="fillFormWithDummyData()">
+        <option value="" disabled selected>Choose your option</option>
+      </select>
+      <label>Select Dummy Data:</label>
+    </div>
+
+
     <h1 class="blue-text text-darken-2">Credit Risk Predictor App</h1>
     <div class="row">
 
@@ -245,14 +258,15 @@
                       <label for="discountPoints">Discount Points</label>
                     </div>
                   </div>
-      
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Prepayment Penalty Term" id="prepaymentPenaltyTerm" type="number" class="validate">
+                      <input placeholder="Prepayment Penalty Term" id="prepaymentPenaltyTerm" type="number"
+                        class="validate">
                       <label for="prepaymentPenaltyTerm">Prepayment Penalty Term</label>
                     </div>
                   </div>
-                  
+
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Negative Amortization" id="negativeAmortization" type="text" class="validate">
@@ -338,13 +352,100 @@
   <!-- Import Materialize JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
+
+
   <script>
-    document.getElementById('loanForm').addEventListener('submit', function (event) {
-      event.preventDefault();
-      // Placeholder for the function that handles form submission.
-      console.log('Form submitted.');
+    let dummyData;
+
+    // Load dummy data from JSON
+    fetch('./static/testdata.json')
+      .then(response => response.json())
+      .then(data => {
+        dummyData = data;
+        console.log('Dummy data loaded:', dummyData);
+        populateDropdown();
+      })
+      .catch(error => console.error('Error loading dummy data:', error));
+
+    function populateDropdown() {
+      const dropdown = document.getElementById('dummyDataDropdown');
+      for (const key in dummyData) {
+        if (dummyData.hasOwnProperty(key)) {
+          const option = document.createElement('option');
+          option.value = key;
+          option.textContent = key;
+          dropdown.appendChild(option);
+        }
+      }
+
+      // Initialize Materialize select elements
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems);
+
+      console.log('Dropdown populated with options:', dropdown.innerHTML);
+    }
+
+
+    function fillFormWithDummyData() {
+  const selectedOption = document.getElementById('dummyDataDropdown').value;
+  const data = dummyData[selectedOption];
+
+  if (data) {
+    // Fill the form fields with dummy data
+    document.getElementById('first_name').value = data.applicantData.first_name;
+    document.getElementById('last_name').value = data.applicantData.last_name;
+    document.getElementById('age').value = data.applicantData.age;
+    document.getElementById('race').value = data.applicantData.race;
+    document.getElementById('sex').value = data.applicantData.sex;
+    document.getElementById('ethnicity').value = data.applicantData.ethnicity;
+    document.getElementById('income').value = data.applicantData.income;
+    document.getElementById('debtToIncomeRatio').value = data.applicantData.debtToIncomeRatio;
+    document.getElementById('creditScore').value = data.applicantData.creditScore;
+    document.getElementById('lenderCredits').value = data.applicantData.lenderCredits;
+
+    document.getElementById('applicantAge').value = data.coApplicantData.applicantAge;
+    document.getElementById('applicantRace').value = data.coApplicantData.applicantRace;
+    document.getElementById('applicantSex').value = data.coApplicantData.applicantSex;
+    document.getElementById('applicantEthnicity').value = data.coApplicantData.applicantEthnicity;
+
+    document.getElementById('propertyvalue').value = data.propertyInfo.propertyValue;
+    document.getElementById('lienstatus').value = data.propertyInfo.lienStatus;
+    document.getElementById('manufacturedHomeLandPropertyInterest').value = data.propertyInfo.manufacturedHomeLandPropertyInterest;
+    document.getElementById('multifamilyAffordableUnits').value = data.propertyInfo.multifamilyAffordableUnits;
+    document.getElementById('occupancyType').value = data.propertyInfo.occupancyType;
+    document.getElementById('manufacturedHomeSecuredPropertyType').value = data.propertyInfo.manufacturedHomeSecuredPropertyType;
+    document.getElementById('totalUnits').value = data.propertyInfo.totalUnits;
+
+    document.getElementById('loanAmount').value = data.loanDetails.loanAmount;
+    document.getElementById('interestRate').value = data.loanDetails.interestRate;
+    document.getElementById('totalpointsandfees').value = data.loanDetails.totalpointsandfees;
+    document.getElementById('loanterm').value = data.loanDetails.loanterm;
+    document.getElementById('discountPoints').value = data.loanDetails.discountPoints;
+    document.getElementById('prepaymentPenaltyTerm').value = data.loanDetails.prepaymentPenaltyTerm;
+    document.getElementById('negativeAmortization').value = data.loanDetails.negativeAmortization;
+    document.getElementById('totalloancosts').value = data.loanDetails.totalloancosts;
+    document.getElementById('loantype').value = data.loanDetails.loantype;
+    document.getElementById('loanpurpose').value = data.loanDetails.loanpurpose;
+    document.getElementById('originationCharges').value = data.loanDetails.originationCharges;
+    document.getElementById('interestOnlyPayment').value = data.loanDetails.interestOnlyPayment;
+    document.getElementById('balloonPayment').value = data.loanDetails.balloonPayment;
+    document.getElementById('otherNonamortizingFeatures').value = data.loanDetails.otherNonamortizingFeatures;
+  } else {
+    console.error('No data found for the selected option.');
+  }
+}
+
+
+    // Initialize Materialize select elements
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems);
     });
   </script>
+
+
+
+
 </body>
 
 </html>
