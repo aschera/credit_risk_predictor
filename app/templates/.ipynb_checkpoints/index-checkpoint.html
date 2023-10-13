@@ -24,7 +24,7 @@
     
     <div class="row" style="background-color: yellow;">
     <div class="input-field col s12 browser-default">
-      <select id="dummyDataDropdown" onchange="fillFormWithDummyDataAndPredict()">
+      <select id="dummyDataDropdown" onchange="fillFormWithDummyData()">
         <option value="" disabled selected>Choose your option</option>
       </select>
       <label>Select Dummy Data:</label>
@@ -387,7 +387,7 @@
       
       
       
-      function fillFormWithDummyDataAndPredict() {
+      function fillFormWithDummyData() {
   const selectedOption = document.getElementById('dummyDataDropdown').value;
   const data = dummyData[selectedOption];
 

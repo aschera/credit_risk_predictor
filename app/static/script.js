@@ -83,33 +83,29 @@ function populateDropdown() {
 }
 
 // Fill form with dummy data based on the selected option
-function fillFormWithDummyDataAndPredict() {
+function fillFormWithDummyData() {
     const selectedOption = document.getElementById('dummyDataDropdown').value;
     const data = dummyData[selectedOption];
 
-    if (data) {
-        // Fill the form fields with dummy data
-        const formFields = [
-            'first_name', 'last_name', 'age', 'race', 'sex', 'ethnicity', 'income',
-            'debtToIncomeRatio', 'creditScore', 'lenderCredits', 'applicantAge',
-            'applicantRace', 'applicantSex', 'applicantEthnicity', 'propertyvalue',
-            'lienstatus', 'manufacturedHomeLandPropertyInterest', 'multifamilyAffordableUnits',
-            'occupancyType', 'manufacturedHomeSecuredPropertyType', 'totalUnits', 'loanAmount',
-            'interestRate', 'totalpointsandfees', 'loanterm', 'discountPoints',
-            'prepaymentPenaltyTerm', 'negativeAmortization', 'totalloancosts', 'loantype',
-            'loanpurpose', 'originationCharges', 'interestOnlyPayment', 'balloonPayment',
-            'otherNonamortizingFeatures'
-        ];
+    console.log('Fill with dummy data', data);
 
-        formFields.forEach(field => {
-            if (data[field] !== undefined) {
-                document.getElementById(field).value = data[field];
+    if (data) {
+        // Iterate through the data object and its nested objects
+        for (const category in data) {
+            const categoryData = data[category];
+            for (const field in categoryData) {
+                const fieldValue = categoryData[field];
+                const element = document.getElementById(field);
+                if (element) {
+                    element.value = fieldValue;
+                }
             }
-        });
+        }
     } else {
         console.error('No data found for the selected option.');
     }
 }
+
 
 // Load dummy data from JSON
 fetch('./static/testdata.json')
