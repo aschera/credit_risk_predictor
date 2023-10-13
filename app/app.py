@@ -1,7 +1,8 @@
-import json
 from flask import Flask, render_template, request, jsonify
+import json
 import joblib
 import numpy as np
+from helpers import extract_features  # Import the extract_features function
 
 app = Flask(__name__)
 
@@ -12,54 +13,26 @@ model = joblib.load('../model/logistic_regression_model.pkl')
 def index():
     return render_template('index.html')
 
-@app.route('/predict', methods=['GET','POST'])
+@app.route('/predict', methods=['POST'])
 def predict():
     # Get the JSON data from the request
     request_data = request.get_json()
 
-    print(request_data)
+    print(request_data )
 
-    # Extract the necessary features for prediction
-    features = [
-        
-        np.int64(request_data['dummyData1']['applicantData']['age']),
-        np.int64(request_data['dummyData1']['applicantData']['income']),
-        np.int64(request_data['dummyData1']['applicantData']['race']),
-        np.int64(request_data['dummyData1']['applicantData']['sex']),
-        np.int64(request_data['dummyData1']['applicantData']['ethnicity']),
-        np.int64(request_data['dummyData1']['applicantData']['lenderCredits']),
-        np.int64(request_data['dummyData1']['applicantData']['debtToIncomeRatio']),
-        np.int64(request_data['dummyData1']['applicantData']['creditScore']),
-        np.int64(request_data['dummyData1']['loanDetails']['loanAmount']),
-        np.int64(request_data['dummyData1']['loanDetails']['interestRate']),
-        np.int64(request_data['dummyData1']['loanDetails']['totalpointsandfees']),
-        np.int64(request_data['dummyData1']['loanDetails']['loanterm']),
-        np.int64(request_data['dummyData1']['loanDetails']['discountPoints']),
-        np.int64(request_data['dummyData1']['loanDetails']['prepaymentPenaltyTerm']),
-        np.int64(request_data['dummyData1']['loanDetails']['negativeAmortization']),
-        np.int64(request_data['dummyData1']['loanDetails']['totalloancosts']),
-        np.int64(request_data['dummyData1']['loanDetails']['loantype']),
-        np.int64(request_data['dummyData1']['loanDetails']['loanpurpose']),
-        np.int64(request_data['dummyData1']['loanDetails']['originationCharges']),
-        np.int64(request_data['dummyData1']['loanDetails']['interestOnlyPayment']),
-        np.int64(request_data['dummyData1']['loanDetails']['balloonPayment']),
-        np.int64(request_data['dummyData1']['loanDetails']['otherNonamortizingFeatures'])
-    ]
-
+    # Extract the necessary features for prediction using the extract_features function
+    #  features = extract_features(request_data)
 
     # Convert features to a 2D array for model prediction
-    features_array = np.array([features])
+    # features_array = np.array([features])
 
     # Make prediction
-    prediction = model.predict(features_array)
-    predicted_class = prediction[0]
-    
-    print(features_array)
-    print(predicted_class)
+    # prediction = model.predict(features_array)
+    # predicted_class = int(prediction[0])
 
     # Return prediction as JSON response
-    response_data = {'prediction': int(predicted_class)}  # Convert to int
-    return json.dumps(response_data), 200, {'Content-Type': 'application/json'}
+    response_data = {'prediction': 'accepted'}
+    # return json.dumps(response_data), 200, {'Content-Type': 'application/json'}
 
 if __name__ == '__main__':
     app.run(debug=True)
