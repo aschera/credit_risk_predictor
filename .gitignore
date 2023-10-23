@@ -39,3 +39,6 @@ node_modules/
 
 # Ignore csv. files (they are very big)
 *.csv
+
+# Ignore db. files (they are very big)
+.db
