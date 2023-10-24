@@ -36,3 +36,6 @@ pip-selfcheck.json
 
 # Ignore Node.js modules
 node_modules/
+
+# Ignore csv. files (they are very big)
+*.csv
