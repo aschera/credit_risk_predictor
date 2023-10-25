@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   <!-- Compiled and minified Materialize JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -28,7 +29,7 @@
       <div class="col s12">
         <div class="row">
           <div class="col s8">
-            <form id="loanForm">
+            <form id="loanForm" action="{{ url_for('predict') }}" method="post">
               <div class="row">
                 <div class="col s12">
                   <h4>Applicant data</h4>
@@ -50,8 +51,20 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Race" id="race" type="text" class="validate">
-                      <label for="race">Race</label>
+                      <label for="race">Race:</label>
+                      <select name="race" id="race">
+                        <option value="5">White</option>
+                        <option value="3">Black</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <label for="race2">Second Race:</label>
+                      <select name="race2" id="race2">
+                        <option value="5">White</option>
+                        <option value="3">Black</option>
+                      </select>
                     </div>
                   </div>
                   <div class="row">
@@ -76,20 +89,38 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Sex" id="sex" type="text" class="validate">
-                      <label for="sex">Sex</label>
+                      <label for="applicantSex">Sex:</label>
+                      <select name="applicantSex" id="applicantSex">
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                        <option value="6">Joint</option>
+                      </select>
                     </div>
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Ethnicity" id="ethnicity" type="text" class="validate">
-                      <label for="ethnicity">Ethnicity</label>
+                      <label for="ethnicity">Ethnicity:</label>
+                      <select name="ethnicity" id="ethnicity">
+                        <option value="2">Not Hispanic or Latino</option>
+                        <option value="1">Hispanic or Latino</option>
+                      </select>                      
                     </div>
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="750" id="creditScore" type="number" class="validate">
-                      <label for="creditScore">Credit Score</label>
+                      <label for="creditScoreType">Credit Score Type:</label>
+                      <select name="creditScoreType" id="creditScoreType">
+                        <option value="1">Equifax Beacon 5.0</option>
+                        <option value="2">Experian Fair Isaac</option>
+                        <option value="3">FICO Risk Score Classic 04</option>
+                        <option value="4">FICO Risk Score Classic 98</option>
+                        <option value="5">VantageScore 2.0</option>
+                        <option value="6">VantageScore 3.0</option>
+                        <option value="7">More than one credit scoring model</option>
+                        <option value="8">Other credit scoring model</option>
+                        <option value="9">Not applicable</option>
+                        <option value="1111">Exempt</option>
+                      </select>   
                     </div>
                   </div>
                   <div class="row">
@@ -109,28 +140,47 @@
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Co-Applicant Age" id="applicantAge" type="number" class="validate">
-                      <label for="applicantAge">Co-Applicant Age</label>
+                      <input placeholder="Co-Applicant Age" id="CoapplicantAge" type="number" class="validate">
+                      <label for="CoapplicantAge">Co-Applicant Age</label>
                     </div>
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Co-Applicant Race" id="applicantRace" type="text" class="validate">
-                      <label for="applicantRace">Co-Applicant Race</label>
+                      <label for="CoapplicantRace">Race:</label>
+                      <select name="race" id="CoapplicantRace">
+                        <option value="5">White</option>
+                        <option value="3">Black</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <label for="CoapplicantRace2">Second Race:</label>
+                      <select name="race" id="CoapplicantRace2">
+                        <option value="5">White</option>
+                        <option value="3">Black</option>
+                      </select>
                     </div>
                   </div>
                 </div>
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Co-Applicant Ethnicity" id="applicantEthnicity" type="text" class="validate">
-                      <label for="applicantEthnicity">Co-Applicant Ethnicity</label>
+                      <label for="CoapplicantEthnicity">Ethnicity:</label>
+                      <select name="CoapplicantEthnicity" id="CoapplicantEthnicity">
+                        <option value="2">Not Hispanic or Latino</option>
+                        <option value="1">Hispanic or Latino</option>
+                      </select>   
                     </div>
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Co-Applicant Sex" id="applicantSex" type="text" class="validate">
-                      <label for="applicantSex">Co-Applicant Sex</label>
+                      <label for="CoapplicantSex">Sex:</label>
+                      <select name="CoapplicantSex" id="CoapplicantSex">
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                        <option value="6">Joint</option>
+                      </select>
                     </div>
                   </div>
                 </div>

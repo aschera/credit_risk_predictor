@@ -5,18 +5,20 @@
         "last_name": "Doe",
         "age": 35,
         "race": "White",
+        "race2": "Black",
         "sex": "Male",
         "ethnicity": "Latino",
         "income": 60000,
         "debtToIncomeRatio": 25,
-        "creditScore": 720,
+        "creditScoreType": 1,
         "lenderCredits": 0
       },
       "coApplicantData": {
-        "applicantAge": 30,
-        "applicantRace": "Latino",
-        "applicantSex": "Male",
-        "applicantEthnicity": "White"
+        "CoapplicantAge": 30,
+        "CoapplicantRace": "Latino",
+        "CoapplicantRace2": "",
+        "CoapplicantSex": "Male",
+        "CoapplicantEthnicity": "White"
       },
       "propertyInfo": {
         "propertyValue": 200000,
@@ -44,6 +46,7 @@
         "otherNonamortizingFeatures": "No"
       }
     },
+
     "dummyData2": {
       "applicantData": {
         "first_name": "Alice",
@@ -89,6 +92,7 @@
         "otherNonamortizingFeatures": "No"
       }
     },
+
     "dummyData3": {
       "applicantData": {
         "first_name": "Mark",
