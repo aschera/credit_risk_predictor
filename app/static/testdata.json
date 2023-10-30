@@ -4,7 +4,7 @@
         "age": 1,
         "race": "White",
         "race2": "Black",
-        "sex": "Male",
+        "sex": 1,
         "ethnicity": "Latino",
         "income": 60000,
         "debtToIncomeRatio": 0.2,
@@ -15,7 +15,7 @@
         "co_age": 0,
         "CoapplicantRace": "Latino",
         "CoapplicantRace2": "0",
-        "CoapplicantSex": "Male",
+        "co_sex": 1,
         "CoapplicantEthnicity": "White"
       },
       "propertyInfo": {
@@ -49,7 +49,7 @@
       "applicantData": {
         "age": 2,
         "race": "Black",
-        "sex": "Female",
+        "sex": 2,
         "ethnicity": "Non-Latino",
         "income": 55000,
         "debtToIncomeRatio": 30,
@@ -59,7 +59,7 @@
       "coApplicantData": {
         "co_age": 0,
         "applicantRace": "Non-Latino",
-        "applicantSex": "Female",
+        "co_sex": 2,
         "applicantEthnicity": "Black"
       },
       "propertyInfo": {
@@ -93,7 +93,7 @@
       "applicantData": {
         "age": 2,
         "race": "Joint",
-        "sex": "Joint",
+        "sex": 6,
         "ethnicity": "Joint",
         "income": 70000,
         "debtToIncomeRatio": 20,
@@ -103,7 +103,7 @@
       "coApplicantData": {
         "co_age": 2,
         "applicantRace": "Joint",
-        "applicantSex": "Joint",
+        "co_sex": 6,
         "applicantEthnicity": "Joint"
       },
       "propertyInfo": {

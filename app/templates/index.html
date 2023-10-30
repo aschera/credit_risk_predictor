@@ -97,7 +97,12 @@
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Sex" id="sex" type="text" class="validate">
+                      <select id="sex" class="validate">
+                        <option value="" disabled selected>Choose a Gender</option>
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                        <option value="6">Both male and female</option>
+                      </select>
                       <label for="sex">Sex</label>
                     </div>
                   </div>
@@ -163,16 +168,24 @@
                       <label for="applicantEthnicity">Co-Applicant Ethnicity</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Co-Applicant Sex" id="applicantSex" type="text" class="validate">
-                      <label for="applicantSex">Co-Applicant Sex</label>
+                        <select id="co_sex" class="validate">
+                            <option value="" disabled selected>Choose a Gender</option>
+                            <option value="1">Male</option>
+                            <option value="2">Female</option>
+                            <option value="5">No co-applicant</option>
+                            <option value="6">Both male and female</option>
+                        </select>
+                        <label for="co_sex">Sex</label>
                     </div>
-                  </div>
                 </div>
 
-              </div>
 
+
+                </div>
+              </div>
               <div class="row">
                 <div class="col s12">
                   <h4>Property info</h4>
@@ -425,7 +438,15 @@ function fillFormWithDummyData() {
         M.FormSelect.init(ageSelect);
 
         document.getElementById('race').value = data.applicantData.race;
+
+        //appllicant sex
         document.getElementById('sex').value = data.applicantData.sex;
+        const sexSelect = document.getElementById('sex');
+        const selectedSexValue = data.applicantData.sex.toString();
+        sexSelect.value = selectedSexValue;
+        M.FormSelect.init(sexSelect);
+
+
         document.getElementById('ethnicity').value = data.applicantData.ethnicity;
         document.getElementById('income').value = data.applicantData.income;
 
@@ -446,11 +467,18 @@ function fillFormWithDummyData() {
         M.FormSelect.init(ageSelect2);
 
 
-
-
-
         document.getElementById('applicantRace').value = data.coApplicantData.applicantRace;
-        document.getElementById('applicantSex').value = data.coApplicantData.applicantSex;
+
+        // co appllicant sex
+        document.getElementById('co_sex').value = data.coApplicantData.co_sex;
+        const sexSelect2 = document.getElementById('co_sex');
+        const selectedSexValue2 = data.coApplicantData.co_sex.toString();
+        sexSelect2.value = selectedSexValue2;
+        M.FormSelect.init(sexSelect2);
+
+        
+
+
         document.getElementById('applicantEthnicity').value = data.coApplicantData.applicantEthnicity;
 
         document.getElementById('propertyvalue').value = data.propertyInfo.propertyValue;
@@ -526,7 +554,7 @@ function PrepareFormData() {
         'negativeAmortization', 'totalloancosts', 'loantype', 'loanpurpose',
         'originationCharges', 'interestOnlyPayment', 'balloonPayment',
         'otherNonamortizingFeatures',
-        'co_age', 'CoapplicantRace', 'CoapplicantSex', 'CoapplicantEthnicity',
+        'co_age', 'CoapplicantRace', 'co_sex', 'CoapplicantEthnicity',
         'propertyValue', 'lienStatus', 'manufacturedHomeLandPropertyInterest',
         'multifamilyAffordableUnits', 'occupancyType', 'manufacturedHomeSecuredPropertyType',
         'totalUnits','race2','CoapplicantRace2'
@@ -558,7 +586,7 @@ function PrepareFormData() {
         'otherNonamortizingFeatures': 'otherNonamortizingFeatures',
         'co_age': 'co_applicant_age',
         'CoapplicantRace': 'co_applicant_race_1',
-        'CoapplicantSex': 'co_applicant_sex',
+        'co_sex': 'co_applicant_sex',
         'CoapplicantEthnicity': 'co_applicant_ethnicity_1',
         'propertyValue': 'propertyValue',
         'lienStatus': 'lien_status',
@@ -591,14 +619,8 @@ function PrepareFormData() {
         if (inputElement) {
             const mappedName = dataMappings[element] || element; // Use the mapped name or the original if no mapping
             let value = inputElement.value;
-
-            // Convert to the appropriate data type
-            if (intDtypes.includes(mappedName)) {
-                value = parseInt(value);
-            } else if (floatDtypes.includes(mappedName)) {
-                value = parseFloat(value);
-            }
-
+            value = parseFloat(value);
+ 
             formData[mappedName] = value;
         }
     });
@@ -647,6 +669,8 @@ async function predictLoan() {
 }
 
   </script>
+
+
 
 </body>
 
