@@ -21,15 +21,15 @@
 <body>
   <div class="container">
 
-    
+
     <div class="row" style="background-color: yellow;">
-    <div class="input-field col s12 browser-default">
-      <select id="dummyDataDropdown" onchange="fillFormWithDummyData()">
-        <option value="" disabled selected>Choose your option</option>
-      </select>
-      <label>Select Dummy Data:</label>
+      <div class="input-field col s12 browser-default">
+        <select id="dummyDataDropdown" onchange="fillFormWithDummyData()">
+          <option value="" disabled selected>Choose your option</option>
+        </select>
+        <label>Select Dummy Data:</label>
+      </div>
     </div>
-  </div>
 
     <h1 class="blue-text text-darken-2">Credit Risk Predictor App</h1>
     <div class="row">
@@ -64,13 +64,25 @@
                       <label for="age">Age Category</label>
                     </div>
                   </div>
-                  
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Race" id="race" type="text" class="validate">
+                      <select id="race" class="validate">
+                        <option value="" disabled selected>Choose a Race</option>
+                        <option value="1">White</option>
+                        <option value="0">Black or African American</option>
+                      </select>
                       <label for="race">Race</label>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Ethnicity" id="ethnicity" type="text" class="validate">
+                      <label for="ethnicity">Ethnicity</label>
+                    </div>
+                  </div>
+
+
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="100000" id="income" type="number" class="validate">
@@ -79,19 +91,19 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                        <select id="debtToIncomeRatio" class="validate">
-                            <option value="" disabled selected>Choose a Debt-to-Income Ratio Category</option>
-                            <option value="0.6">36%-50%</option>
-                            <option value="0.2">20%-&lt;30%</option>
-                            <option value="0.4">30%-&lt;36%</option>
-                            <option value="1.0">&lt;20%</option>
-                            <option value="0.0">&gt;60%</option>
-                            <option value="0.8">50%-60%</option>
-                        </select>
-                        <label for="debtToIncomeRatio">Debt-to-Income Ratio Category</label>
+                      <select id="debtToIncomeRatio" class="validate">
+                        <option value="" disabled selected>Choose a Debt-to-Income Ratio Category</option>
+                        <option value="0.6">36%-50%</option>
+                        <option value="0.2">20%-&lt;30%</option>
+                        <option value="0.4">30%-&lt;36%</option>
+                        <option value="1.0">&lt;20%</option>
+                        <option value="0.0">&gt;60%</option>
+                        <option value="0.8">50%-60%</option>
+                      </select>
+                      <label for="debtToIncomeRatio">Debt-to-Income Ratio Category</label>
                     </div>
-                </div>
-                
+                  </div>
+
                 </div>
 
                 <div class="col s6">
@@ -108,10 +120,24 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Ethnicity" id="ethnicity" type="text" class="validate">
-                      <label for="ethnicity">Ethnicity</label>
+                      <select id="race2" class="validate">
+                        <option value="" disabled selected>Choose a Secondary Race</option>
+                        <option value="0.000000">White</option>
+                        <option value="0.564103">Black or African American</option>
+                        <option value="0.461538">American Indian or Alaska Native</option>
+                        <option value="0.487179">Asian</option>
+                        <option value="0.410256">Asian Indian</option>
+                        <option value="0.512821">Chinese</option>
+                        <option value="0.435897">Filipino</option>
+                        <option value="1.000000">Japanese</option>
+                        <option value="0.538462">Korean</option>
+                        <option value="0.974359">Vietnamese</option>
+                        <option value="0.923077">Other Asian</option>
+                      </select>
+                      <label for="race2">Secondary Race</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="750" id="creditScore" type="number" class="validate">
@@ -152,14 +178,41 @@
                       <label for="co_age">Age Category</label>
                     </div>
                   </div>
-                  
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <input placeholder="Co-Applicant Race" id="applicantRace" type="text" class="validate">
-                      <label for="applicantRace">Co-Applicant Race</label>
-                    </div>
+
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <select id="CoapplicantRace" class="validate">
+                      <option value="" disabled selected>Choose a Race</option>
+                      <option value="1">White</option>
+                      <option value="0">Black or African American</option>
+                    </select>
+                    <label for="CoapplicantRace">Race</label>
                   </div>
                 </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <select id="co_applicant_race_2" class="validate">
+                      <option value="" disabled selected>Choose a Secondary Race</option>
+                      <option value="0.093023">White</option>
+                      <option value="0.511628">Black or African American</option>
+                      <option value="0.534884">American Indian or Alaska Native</option>
+                      <option value="0.465116">Asian</option>
+                      <option value="0.604651">Other Asian</option>
+                      <option value="0.488372">Chinese</option>
+                      <option value="0.581395">Vietnamese</option>
+                      <option value="1.000000">Other Pacific Islander</option>
+                      <option value="0.558140">Korean</option>
+                      <option value="0.930233">Native Hawaiian</option>
+                      <option value="0.000000">American Indian or Alaska Native</option>
+                      <option value="0.069767">Native Hawaiian or Other Pacific Islander</option>
+                      <option value="0.046512">Black or African American</option>
+                    </select>
+                    <label for="co_applicant_race_2">Secondary Race</label>
+                  </div>
+                </div>
+
+
 
                 <div class="col s6">
                   <div class="row">
@@ -171,16 +224,16 @@
 
                   <div class="row">
                     <div class="input-field col s12">
-                        <select id="co_sex" class="validate">
-                            <option value="" disabled selected>Choose a Gender</option>
-                            <option value="1">Male</option>
-                            <option value="2">Female</option>
-                            <option value="5">No co-applicant</option>
-                            <option value="6">Both male and female</option>
-                        </select>
-                        <label for="co_sex">Sex</label>
+                      <select id="co_sex" class="validate">
+                        <option value="" disabled selected>Choose a Gender</option>
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                        <option value="5">No co-applicant</option>
+                        <option value="6">Both male and female</option>
+                      </select>
+                      <label for="co_sex">Sex</label>
                     </div>
-                </div>
+                  </div>
 
 
 
@@ -269,7 +322,7 @@
                       <label for="interestRate">Interest Rate</label>
                     </div>
                   </div>
-                  
+
 
                   <div class="row">
                     <div class="input-field col s12">
@@ -362,7 +415,7 @@
 
               </div>
 
-              
+
 
             </form>
           </div>
@@ -383,7 +436,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 
- <!-- Filling the dummy dropdown -->
+  <!-- Filling the dummy dropdown -->
   <script>
 
     let dummyData;
@@ -399,8 +452,8 @@
       .catch(error => console.error('Error loading dummy data:', error));
 
 
-  // Function to fill form with dummy data
-  function populateDropdown() {
+    // Function to fill form with dummy data
+    function populateDropdown() {
       const dropdown = document.getElementById('dummyDataDropdown');
       for (const key in dummyData) {
         if (dummyData.hasOwnProperty(key)) {
@@ -420,16 +473,16 @@
 
 
 
-//Filling the from with dummy data
-function fillFormWithDummyData() {
-  const selectedOption = document.getElementById('dummyDataDropdown').value;
-  const data = dummyData[selectedOption];
+    //Filling the from with dummy data
+    function fillFormWithDummyData() {
+      const selectedOption = document.getElementById('dummyDataDropdown').value;
+      const data = dummyData[selectedOption];
 
-  console.log('Selected Option:', selectedOption);
-  console.log('Data:', data);
+      console.log('Selected Option:', selectedOption);
+      console.log('Data:', data);
 
-  if (data) {
-    // Fill the form fields with dummy data
+      if (data) {
+        // Fill the form fields with dummy data
 
         // age
         const ageSelect = document.getElementById('age');
@@ -437,7 +490,15 @@ function fillFormWithDummyData() {
         ageSelect.value = selectedAgeValue;
         M.FormSelect.init(ageSelect);
 
-        document.getElementById('race').value = data.applicantData.race;
+        // race / race2
+        const raceSelect = document.getElementById('race');
+        const selectedRaceValue = data.applicantData.race.toString();
+        raceSelect.value = selectedRaceValue;
+        M.FormSelect.init(raceSelect);
+        const raceSelect2 = document.getElementById('race2');
+        const selectedRaceValue2 = data.applicantData.race2.toString();
+        raceSelect2.value = selectedRaceValue2;
+        M.FormSelect.init(raceSelect2);
 
         //appllicant sex
         document.getElementById('sex').value = data.applicantData.sex;
@@ -466,8 +527,16 @@ function fillFormWithDummyData() {
         ageSelect2.value = selectedAgeValue2;
         M.FormSelect.init(ageSelect2);
 
+        // co appllicant race / race2
+        const coraceSelect = document.getElementById('CoapplicantRace');
+        const coselectedRaceValue = data.coApplicantData.CoapplicantRace.toString();
+        coraceSelect.value = coselectedRaceValue;
+        M.FormSelect.init(coraceSelect);
 
-        document.getElementById('applicantRace').value = data.coApplicantData.applicantRace;
+        const coraceSelect2 = document.getElementById('co_applicant_race_2');
+        const coselectedRaceValue2 = data.coApplicantData.co_applicant_race_2.toString();
+        coraceSelect2.value = coselectedRaceValue2;
+        M.FormSelect.init(coraceSelect2);
 
         // co appllicant sex
         document.getElementById('co_sex').value = data.coApplicantData.co_sex;
@@ -476,7 +545,7 @@ function fillFormWithDummyData() {
         sexSelect2.value = selectedSexValue2;
         M.FormSelect.init(sexSelect2);
 
-        
+
 
 
         document.getElementById('applicantEthnicity').value = data.coApplicantData.applicantEthnicity;
@@ -503,51 +572,51 @@ function fillFormWithDummyData() {
         document.getElementById('interestOnlyPayment').value = data.loanDetails.interestOnlyPayment;
         document.getElementById('balloonPayment').value = data.loanDetails.balloonPayment;
         document.getElementById('otherNonamortizingFeatures').value = data.loanDetails.otherNonamortizingFeatures;
-      
 
-    console.log('Form fields filled with data:', data);
-  } else {
-    console.error('No data found for the selected option.');
-  }
-}
-   </script>
+
+        console.log('Form fields filled with data:', data);
+      } else {
+        console.error('No data found for the selected option.');
+      }
+    }
+  </script>
 
   <script>
     // Your JavaScript code here
     // Handle Form Submission
     async function handleFormSubmission(formData) {
-        try {
-            const predictionData = await fetchPredictionData(formData);
-            updatePrediction(predictionData);
-        } catch (error) {
-            console.error('Error predicting:', error);
-        }
+      try {
+        const predictionData = await fetchPredictionData(formData);
+        updatePrediction(predictionData);
+      } catch (error) {
+        console.error('Error predicting:', error);
+      }
     }
 
     // Event Listeners
     document.addEventListener('DOMContentLoaded', function () {
-        // Materialize select elements
-        var elems = document.querySelectorAll('select');
-        var instances = M.FormSelect.init(elems);
+      // Materialize select elements
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems);
 
-        // Add an event listener to the form submit button
-        document.getElementById('loanForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-            predictLoan();
-        });
+      // Add an event listener to the form submit button
+      document.getElementById('loanForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        predictLoan();
+      });
     });
 
-    
+
   </script>
 
   <script>
 
 
-// Function to gather form data
-function PrepareFormData() {
-    // Gather all the form values
-    const formData = {};
-    const formElements = [
+    // Function to gather form data
+    function PrepareFormData() {
+      // Gather all the form values
+      const formData = {};
+      const formElements = [
         'age', 'income', 'race', 'sex', 'ethnicity', 'lenderCredits',
         'debtToIncomeRatio', 'creditScore', 'loanAmount', 'interestRate',
         'totalpointsandfees', 'loanterm', 'discountPoints', 'prepaymentPenaltyTerm',
@@ -557,10 +626,10 @@ function PrepareFormData() {
         'co_age', 'CoapplicantRace', 'co_sex', 'CoapplicantEthnicity',
         'propertyValue', 'lienStatus', 'manufacturedHomeLandPropertyInterest',
         'multifamilyAffordableUnits', 'occupancyType', 'manufacturedHomeSecuredPropertyType',
-        'totalUnits','race2','CoapplicantRace2'
-    ];
+        'totalUnits', 'race2', 'co_applicant_race_2'
+      ];
 
-    const dataMappings = {
+      const dataMappings = {
         'age': 'applicant_age',
         'sex': 'applicant_sex',
         'race': 'applicant_race_1',
@@ -595,78 +664,78 @@ function PrepareFormData() {
         'occupancyType': 'occupancy_type',
         'manufacturedHomeSecuredPropertyType': 'manufactured_home_secured_property_type',
         'totalUnits': 'total_units',
-        'race2' :'applicant_race_2',
-        'CoapplicantRace2':'co_applicant_race_2',
-    };
+        'race2': 'applicant_race_2',
+        'co_applicant_race_2': 'co_applicant_race_2',
+      };
 
-    const intDtypes = [
+      const intDtypes = [
         'loan_type', 'lien_status', 'loan_amount', 'loan_term', 'negative_amortization',
         'interest_only_payment', 'balloon_payment', 'other_nonamortizing_features',
         'occupancy_type', 'manufactured_home_secured_property_type',
         'manufactured_home_land_property_interest', 'total_units',
         'debt_to_income_ratio', 'applicant_age', 'co_applicant_age', 'aus_1', 'applicant_credit_score_type'
-    ];
+      ];
 
-    const floatDtypes = [
+      const floatDtypes = [
         'census_tract', 'interest_rate', 'property_value', 'income',
         'applicant_race_1', 'applicant_race_2', 'co_applicant_race_1',
         'co_applicant_race_2', 'applicant_ethnicity_1', 'co_applicant_ethnicity_1'
-    ];
-    
+      ];
 
-    formElements.forEach(element => {
+
+      formElements.forEach(element => {
         const inputElement = document.getElementById(element);
         if (inputElement) {
-            const mappedName = dataMappings[element] || element; // Use the mapped name or the original if no mapping
-            let value = inputElement.value;
-            value = parseFloat(value);
- 
-            formData[mappedName] = value;
+          const mappedName = dataMappings[element] || element; // Use the mapped name or the original if no mapping
+          let value = inputElement.value;
+          value = parseFloat(value);
+
+          formData[mappedName] = value;
         }
-    });
+      });
 
-    console.log(formData);
+      console.log(formData);
 
-    return formData;
-}
+      return formData;
+    }
 
-// Fetch Prediction Data
-async function fetchPredictionData(formData) {
-    const response = await fetch('/predict', {
+    // Fetch Prediction Data
+    async function fetchPredictionData(formData) {
+      const response = await fetch('/predict', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json', // Change the Content-Type to application/json
+          'Content-Type': 'application/json', // Change the Content-Type to application/json
         },
         body: JSON.stringify(formData) // Send the data as JSON
-    });
-    return await response.json();
-}
+      });
+      return await response.json();
+    }
 
-/* ----------------------Predict loan acceptance from form data ---------------------------   */
-// Function to send form data for prediction
-async function predictLoan() {
-    // Define the data to be sent
-    const formData = PrepareFormData(); 
+    /* ----------------------Predict loan acceptance from form data ---------------------------   */
+    // Function to send form data for prediction
+    async function predictLoan() {
+      // Define the data to be sent
+      const formData = PrepareFormData();
 
-    // Make the AJAX request
-    $.ajax({
+      // Make the AJAX request
+      $.ajax({
         type: 'POST',
         contentType: 'application/json',
-        url: '/predict', 
+        url: '/predict',
         dataType: 'json',
         data: JSON.stringify(formData), // Sending the formData
         success: function (result) {
-            console.log('Received result:', result);
-            const predictionElement = document.getElementById('prediction');
-            predictionElement.innerText = `Predicted class: ${result.prediction}`;
+          console.log('Received result:', result);
+          const predictionElement = document.getElementById('prediction');
+          predictionElement.innerText = `Predicted class: ${result.prediction}`;
         },
         error: function (error) {
-            console.error('Error:', error);
-            const predictionElement = document.getElementById('prediction');
-            predictionElement.innerText = `error: ${error.message}`;
+          console.error('Error:', error);
+          const predictionElement = document.getElementById('prediction');
+          predictionElement.innerText = `error: ${error.message}`;
         }
-    });
-}
+      });
+    }
 
   </script>
 
