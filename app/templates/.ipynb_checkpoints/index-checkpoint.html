@@ -51,16 +51,20 @@
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="John" id="first_name" type="text" class="validate">
-                      <label for="first_name">First Name</label>
+                      <select id="age" class="validate">
+                        <option value="" disabled selected>Choose an Age Category</option>
+                        <option value="2">45-54</option>
+                        <option value="1">35-44</option>
+                        <option value="3">55-64</option>
+                        <option value="0">25-34</option>
+                        <option value="4">65-74</option>
+                        <option value="7">&gt;74</option>
+                        <option value="6">&lt;25</option>
+                      </select>
+                      <label for="age">Age Category</label>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <input placeholder="35" id="age" type="number" class="validate">
-                      <label for="age">Age</label>
-                    </div>
-                  </div>
+                  
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Race" id="race" type="text" class="validate">
@@ -82,12 +86,6 @@
                 </div>
 
                 <div class="col s6">
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <input placeholder="Doe" id="last_name" type="text" class="validate">
-                      <label for="last_name">Last Name</label>
-                    </div>
-                  </div>
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Sex" id="sex" type="text" class="validate">
@@ -127,10 +125,20 @@
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Co-Applicant Age" id="applicantAge" type="number" class="validate">
-                      <label for="applicantAge">Co-Applicant Age</label>
+                      <select id="co_age" class="validate">
+                        <option value="" disabled selected>Choose an Age Category</option>
+                        <option value="2">45-54</option>
+                        <option value="1">35-44</option>
+                        <option value="3">55-64</option>
+                        <option value="0">25-34</option>
+                        <option value="4">65-74</option>
+                        <option value="7">&gt;74</option>
+                        <option value="6">&lt;25</option>
+                      </select>
+                      <label for="co_age">Age Category</label>
                     </div>
                   </div>
+                  
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Co-Applicant Race" id="applicantRace" type="text" class="validate">
@@ -393,8 +401,6 @@
 
   if (data) {
  // Fill the form fields with dummy data
-    document.getElementById('first_name').value = data.applicantData.first_name;
-    document.getElementById('last_name').value = data.applicantData.last_name;
     document.getElementById('age').value = data.applicantData.age;
     document.getElementById('race').value = data.applicantData.race;
     document.getElementById('sex').value = data.applicantData.sex;
@@ -404,7 +410,7 @@
     document.getElementById('creditScore').value = data.applicantData.creditScore;
     document.getElementById('lenderCredits').value = data.applicantData.lenderCredits;
 
-    document.getElementById('applicantAge').value = data.coApplicantData.applicantAge;
+    document.getElementById('co_age').value = data.coApplicantData.co_age;
     document.getElementById('applicantRace').value = data.coApplicantData.applicantRace;
     document.getElementById('applicantSex').value = data.coApplicantData.applicantSex;
     document.getElementById('applicantEthnicity').value = data.coApplicantData.applicantEthnicity;

@@ -5,66 +5,70 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Credit Risk Predictor App</title>
-  <!-- Compiled and minified Materialize CSS -->
+
+  <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
   <!-- Import local CSS file -->
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-  <!-- Compiled and minified Materialize JavaScript -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 </head>
 
 <body>
   <div class="container">
+
+    
     <div class="row" style="background-color: yellow;">
-      <div class="input-field col s12 browser-default">
-        <select id="dummyDataDropdown" onchange="fillFormWithDummyData()">
-          <option value="" disabled selected>Choose your option</option>
-        </select>
-        <label>Select Dummy Data:</label>
-      </div>
+    <div class="input-field col s12 browser-default">
+      <select id="dummyDataDropdown" onchange="fillFormWithDummyData()">
+        <option value="" disabled selected>Choose your option</option>
+      </select>
+      <label>Select Dummy Data:</label>
     </div>
+  </div>
+
     <h1 class="blue-text text-darken-2">Credit Risk Predictor App</h1>
     <div class="row">
+
       <div class="col s12">
+
         <div class="row">
           <div class="col s8">
-            <form id="loanForm" action="{{ url_for('predict') }}" method="post">
+            <form id="loanForm" action="predict">
+              <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
               <div class="row">
                 <div class="col s12">
                   <h4>Applicant data</h4>
                 </div>
               </div>
+
               <div class="row">
+
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="John" id="first_name" type="text" class="validate">
-                      <label for="first_name">First Name</label>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <input placeholder="35" id="age" type="number" class="validate">
-                      <label for="age">Age</label>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <label for="race">Race:</label>
-                      <select name="race" id="race">
-                        <option value="5">White</option>
-                        <option value="3">Black</option>
+                      <select id="age" class="validate">
+                        <option value="" disabled selected>Choose an Age Category</option>
+                        <option value="2">45-54</option>
+                        <option value="1">35-44</option>
+                        <option value="3">55-64</option>
+                        <option value="0">25-34</option>
+                        <option value="4">65-74</option>
+                        <option value="7">&gt;74</option>
+                        <option value="6">&lt;25</option>
                       </select>
+                      <label for="age">Age Category</label>
                     </div>
                   </div>
+                  
                   <div class="row">
                     <div class="input-field col s12">
-                      <label for="race2">Second Race:</label>
-                      <select name="race2" id="race2">
-                        <option value="5">White</option>
-                        <option value="3">Black</option>
-                      </select>
+                      <input placeholder="Race" id="race" type="text" class="validate">
+                      <label for="race">Race</label>
                     </div>
                   </div>
                   <div class="row">
@@ -80,47 +84,24 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Doe" id="last_name" type="text" class="validate">
-                      <label for="last_name">Last Name</label>
+                      <input placeholder="Sex" id="sex" type="text" class="validate">
+                      <label for="sex">Sex</label>
                     </div>
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <label for="applicantSex">Sex:</label>
-                      <select name="applicantSex" id="applicantSex">
-                        <option value="1">Male</option>
-                        <option value="2">Female</option>
-                        <option value="6">Joint</option>
-                      </select>
+                      <input placeholder="Ethnicity" id="ethnicity" type="text" class="validate">
+                      <label for="ethnicity">Ethnicity</label>
                     </div>
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <label for="ethnicity">Ethnicity:</label>
-                      <select name="ethnicity" id="ethnicity">
-                        <option value="2">Not Hispanic or Latino</option>
-                        <option value="1">Hispanic or Latino</option>
-                      </select>                      
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <label for="creditScoreType">Credit Score Type:</label>
-                      <select name="creditScoreType" id="creditScoreType">
-                        <option value="1">Equifax Beacon 5.0</option>
-                        <option value="2">Experian Fair Isaac</option>
-                        <option value="3">FICO Risk Score Classic 04</option>
-                        <option value="4">FICO Risk Score Classic 98</option>
-                        <option value="5">VantageScore 2.0</option>
-                        <option value="6">VantageScore 3.0</option>
-                        <option value="7">More than one credit scoring model</option>
-                        <option value="8">Other credit scoring model</option>
-                        <option value="9">Not applicable</option>
-                        <option value="1111">Exempt</option>
-                      </select>   
+                      <input placeholder="750" id="creditScore" type="number" class="validate">
+                      <label for="creditScore">Credit Score</label>
                     </div>
                   </div>
                   <div class="row">
@@ -130,67 +111,67 @@
                     </div>
                   </div>
                 </div>
+
               </div>
+
               <div class="row">
                 <div class="col s12">
                   <h4>Co-applicant</h4>
                 </div>
               </div>
+
               <div class="row">
+
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Co-Applicant Age" id="CoapplicantAge" type="number" class="validate">
-                      <label for="CoapplicantAge">Co-Applicant Age</label>
+                      <select id="co_age" class="validate">
+                        <option value="" disabled selected>Choose an Age Category</option>
+                        <option value="2">45-54</option>
+                        <option value="1">35-44</option>
+                        <option value="3">55-64</option>
+                        <option value="0">25-34</option>
+                        <option value="4">65-74</option>
+                        <option value="7">&gt;74</option>
+                        <option value="6">&lt;25</option>
+                      </select>
+                      <label for="co_age">Age Category</label>
                     </div>
                   </div>
+                  
                   <div class="row">
                     <div class="input-field col s12">
-                      <label for="CoapplicantRace">Race:</label>
-                      <select name="race" id="CoapplicantRace">
-                        <option value="5">White</option>
-                        <option value="3">Black</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <label for="CoapplicantRace2">Second Race:</label>
-                      <select name="race" id="CoapplicantRace2">
-                        <option value="5">White</option>
-                        <option value="3">Black</option>
-                      </select>
+                      <input placeholder="Co-Applicant Race" id="applicantRace" type="text" class="validate">
+                      <label for="applicantRace">Co-Applicant Race</label>
                     </div>
                   </div>
                 </div>
+
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
-                      <label for="CoapplicantEthnicity">Ethnicity:</label>
-                      <select name="CoapplicantEthnicity" id="CoapplicantEthnicity">
-                        <option value="2">Not Hispanic or Latino</option>
-                        <option value="1">Hispanic or Latino</option>
-                      </select>   
+                      <input placeholder="Co-Applicant Ethnicity" id="applicantEthnicity" type="text" class="validate">
+                      <label for="applicantEthnicity">Co-Applicant Ethnicity</label>
                     </div>
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <label for="CoapplicantSex">Sex:</label>
-                      <select name="CoapplicantSex" id="CoapplicantSex">
-                        <option value="1">Male</option>
-                        <option value="2">Female</option>
-                        <option value="6">Joint</option>
-                      </select>
+                      <input placeholder="Co-Applicant Sex" id="applicantSex" type="text" class="validate">
+                      <label for="applicantSex">Co-Applicant Sex</label>
                     </div>
                   </div>
                 </div>
+
               </div>
+
               <div class="row">
                 <div class="col s12">
                   <h4>Property info</h4>
                 </div>
               </div>
+
               <div class="row">
+
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
@@ -219,6 +200,7 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
@@ -240,13 +222,17 @@
                     </div>
                   </div>
                 </div>
+
               </div>
+
               <div class="row">
                 <div class="col s12">
                   <h4>Loan details</h4>
                 </div>
               </div>
+
               <div class="row">
+
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
@@ -254,30 +240,36 @@
                       <label for="loanAmount">Loan Amount</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Interest Rate" id="interestRate" type="text" step="0.01" class="validate">
                       <label for="interestRate">Interest Rate</label>
                     </div>
                   </div>
+                  
+
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Total Points and Fees" id="totalpointsandfees" type="text" class="validate">
                       <label for="totalpointsandfees">Total Points and Fees</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Loan Term" id="loanterm" type="text" class="validate">
                       <label for="loanterm">Loan Term</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Discount Points" id="discountPoints" type="number" class="validate">
                       <label for="discountPoints">Discount Points</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Prepayment Penalty Term" id="prepaymentPenaltyTerm" type="number"
@@ -285,6 +277,7 @@
                       <label for="prepaymentPenaltyTerm">Prepayment Penalty Term</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Negative Amortization" id="negativeAmortization" type="text" class="validate">
@@ -292,6 +285,7 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
@@ -299,36 +293,42 @@
                       <label for="totalloancosts">Total Loan Costs</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Loan Type" id="loantype" type="text" class="validate">
                       <label for="loantype">Loan Type</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Loan Purpose" id="loanpurpose" type="text" class="validate">
                       <label for="loanpurpose">Loan Purpose</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Origination Charges" id="originationCharges" type="number" class="validate">
                       <label for="originationCharges">Origination Charges</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Interest-Only Payment" id="interestOnlyPayment" type="text" class="validate">
                       <label for="interestOnlyPayment">Interest-Only Payment</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Balloon Payment" id="balloonPayment" type="text" class="validate">
                       <label for="balloonPayment">Balloon Payment</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Other Nonamortizing Features" id="otherNonamortizingFeatures" type="text"
@@ -337,8 +337,11 @@
                     </div>
                   </div>
                 </div>
+
               </div>
-              <button class="btn waves-effect waves-light" type="submit" onclick="predictLoan()" ="action">Submit</button>
+
+              
+
             </form>
           </div>
           <div class="col s3">
@@ -348,11 +351,288 @@
         </div>
       </div>
     </div>
+
+
+
   </div>
   </div>
 
-  <!-- Import own JavaScript -->
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <!-- Import Materialize JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+ <!-- Filling the dummy dropdown -->
+  <script>
+
+    let dummyData;
+
+    // Load dummy data from JSON
+    fetch('./static/testdata.json')
+      .then(response => response.json())
+      .then(data => {
+        dummyData = data;
+        console.log('Dummy data loaded:', dummyData);
+        populateDropdown();
+      })
+      .catch(error => console.error('Error loading dummy data:', error));
+
+
+  // Function to fill form with dummy data
+  function populateDropdown() {
+      const dropdown = document.getElementById('dummyDataDropdown');
+      for (const key in dummyData) {
+        if (dummyData.hasOwnProperty(key)) {
+          const option = document.createElement('option');
+          option.value = key;
+          option.textContent = key;
+          dropdown.appendChild(option);
+        }
+      }
+
+      // Initialize Materialize select elements
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems);
+
+      console.log('Dropdown populated with options:', dropdown.innerHTML);
+    }
+
+
+
+//Filling the from with dummy data
+function fillFormWithDummyData() {
+  const selectedOption = document.getElementById('dummyDataDropdown').value;
+  const data = dummyData[selectedOption];
+
+  console.log('Selected Option:', selectedOption);
+  console.log('Data:', data);
+
+  if (data) {
+    // Fill the form fields with dummy data
+
+        // age
+        const ageSelect = document.getElementById('age');
+        const selectedAgeValue = data.applicantData.age.toString();
+        ageSelect.value = selectedAgeValue;
+        M.FormSelect.init(ageSelect);
+
+
+
+        document.getElementById('race').value = data.applicantData.race;
+        document.getElementById('sex').value = data.applicantData.sex;
+        document.getElementById('ethnicity').value = data.applicantData.ethnicity;
+        document.getElementById('income').value = data.applicantData.income;
+        document.getElementById('debtToIncomeRatio').value = data.applicantData.debtToIncomeRatio;
+        document.getElementById('creditScore').value = data.applicantData.creditScore;
+        document.getElementById('lenderCredits').value = data.applicantData.lenderCredits;
+
+        const ageSelect2 = document.getElementById('co_age');
+        const selectedAgeValue2 = data.coApplicantData.co_age.toString();
+        ageSelect2.value = selectedAgeValue2;
+        M.FormSelect.init(ageSelect2);
+
+
+
+
+
+        document.getElementById('applicantRace').value = data.coApplicantData.applicantRace;
+        document.getElementById('applicantSex').value = data.coApplicantData.applicantSex;
+        document.getElementById('applicantEthnicity').value = data.coApplicantData.applicantEthnicity;
+
+        document.getElementById('propertyvalue').value = data.propertyInfo.propertyValue;
+        document.getElementById('lienstatus').value = data.propertyInfo.lienStatus;
+        document.getElementById('manufacturedHomeLandPropertyInterest').value = data.propertyInfo.manufacturedHomeLandPropertyInterest;
+        document.getElementById('multifamilyAffordableUnits').value = data.propertyInfo.multifamilyAffordableUnits;
+        document.getElementById('occupancyType').value = data.propertyInfo.occupancyType;
+        document.getElementById('manufacturedHomeSecuredPropertyType').value = data.propertyInfo.manufacturedHomeSecuredPropertyType;
+        document.getElementById('totalUnits').value = data.propertyInfo.totalUnits;
+
+        document.getElementById('loanAmount').value = data.loanDetails.loanAmount;
+        document.getElementById('interestRate').value = data.loanDetails.interestRate;
+        document.getElementById('totalpointsandfees').value = data.loanDetails.totalpointsandfees;
+        document.getElementById('loanterm').value = data.loanDetails.loanterm;
+        document.getElementById('discountPoints').value = data.loanDetails.discountPoints;
+        document.getElementById('prepaymentPenaltyTerm').value = data.loanDetails.prepaymentPenaltyTerm;
+        document.getElementById('negativeAmortization').value = data.loanDetails.negativeAmortization;
+        document.getElementById('totalloancosts').value = data.loanDetails.totalloancosts;
+        document.getElementById('loantype').value = data.loanDetails.loantype;
+        document.getElementById('loanpurpose').value = data.loanDetails.loanpurpose;
+        document.getElementById('originationCharges').value = data.loanDetails.originationCharges;
+        document.getElementById('interestOnlyPayment').value = data.loanDetails.interestOnlyPayment;
+        document.getElementById('balloonPayment').value = data.loanDetails.balloonPayment;
+        document.getElementById('otherNonamortizingFeatures').value = data.loanDetails.otherNonamortizingFeatures;
+      
+
+    console.log('Form fields filled with data:', data);
+  } else {
+    console.error('No data found for the selected option.');
+  }
+}
+   </script>
+
+  <script>
+    // Your JavaScript code here
+    // Handle Form Submission
+    async function handleFormSubmission(formData) {
+        try {
+            const predictionData = await fetchPredictionData(formData);
+            updatePrediction(predictionData);
+        } catch (error) {
+            console.error('Error predicting:', error);
+        }
+    }
+
+    // Event Listeners
+    document.addEventListener('DOMContentLoaded', function () {
+        // Materialize select elements
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems);
+
+        // Add an event listener to the form submit button
+        document.getElementById('loanForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            predictLoan();
+        });
+    });
+
+    
+  </script>
+
+  <script>
+
+
+// Function to gather form data
+function PrepareFormData() {
+    // Gather all the form values
+    const formData = {};
+    const formElements = [
+        'age', 'income', 'race', 'sex', 'ethnicity', 'lenderCredits',
+        'debtToIncomeRatio', 'creditScore', 'loanAmount', 'interestRate',
+        'totalpointsandfees', 'loanterm', 'discountPoints', 'prepaymentPenaltyTerm',
+        'negativeAmortization', 'totalloancosts', 'loantype', 'loanpurpose',
+        'originationCharges', 'interestOnlyPayment', 'balloonPayment',
+        'otherNonamortizingFeatures',
+        'co_age', 'CoapplicantRace', 'CoapplicantSex', 'CoapplicantEthnicity',
+        'propertyValue', 'lienStatus', 'manufacturedHomeLandPropertyInterest',
+        'multifamilyAffordableUnits', 'occupancyType', 'manufacturedHomeSecuredPropertyType',
+        'totalUnits','race2','CoapplicantRace2'
+    ];
+
+    const dataMappings = {
+        'age': 'applicant_age',
+        'sex': 'applicant_sex',
+        'race': 'applicant_race_1',
+        'ethnicity': 'applicant_ethnicity_1',
+        'loantype': 'loan_type',
+        'income': 'income',
+        'lenderCredits': 'lenderCredits',
+        'debtToIncomeRatio': 'debt_to_income_ratio',
+        'creditScoreType': 'applicant_credit_score_type',
+        'loanAmount': 'loanAmount',
+        'interestRate': 'interestRate',
+        'totalpointsandfees': 'totalpointsandfees',
+        'loanterm': 'loanterm',
+        'discountPoints': 'discountPoints',
+        'prepaymentPenaltyTerm': 'prepaymentPenaltyTerm',
+        'negativeAmortization': 'negativeAmortization',
+        'totalloancosts': 'totalloancosts',
+        'loantype': 'loan_type',
+        'loanpurpose': 'loanpurpose',
+        'originationCharges': 'originationCharges',
+        'interestOnlyPayment': 'interestOnlyPayment',
+        'balloonPayment': 'balloonPayment',
+        'otherNonamortizingFeatures': 'otherNonamortizingFeatures',
+        'co_age': 'co_applicant_age',
+        'CoapplicantRace': 'co_applicant_race_1',
+        'CoapplicantSex': 'co_applicant_sex',
+        'CoapplicantEthnicity': 'co_applicant_ethnicity_1',
+        'propertyValue': 'propertyValue',
+        'lienStatus': 'lien_status',
+        'manufacturedHomeLandPropertyInterest': 'manufactured_home_land_property_interest',
+        'multifamilyAffordableUnits': 'multifamily_affordable_units',
+        'occupancyType': 'occupancy_type',
+        'manufacturedHomeSecuredPropertyType': 'manufactured_home_secured_property_type',
+        'totalUnits': 'total_units',
+        'race2' :'applicant_race_2',
+        'CoapplicantRace2':'co_applicant_race_2',
+    };
+
+    const intDtypes = [
+        'loan_type', 'lien_status', 'loan_amount', 'loan_term', 'negative_amortization',
+        'interest_only_payment', 'balloon_payment', 'other_nonamortizing_features',
+        'occupancy_type', 'manufactured_home_secured_property_type',
+        'manufactured_home_land_property_interest', 'total_units',
+        'debt_to_income_ratio', 'applicant_age', 'co_applicant_age', 'aus_1', 'applicant_credit_score_type'
+    ];
+
+    const floatDtypes = [
+        'census_tract', 'interest_rate', 'property_value', 'income',
+        'applicant_race_1', 'applicant_race_2', 'co_applicant_race_1',
+        'co_applicant_race_2', 'applicant_ethnicity_1', 'co_applicant_ethnicity_1'
+    ];
+    
+
+    formElements.forEach(element => {
+        const inputElement = document.getElementById(element);
+        if (inputElement) {
+            const mappedName = dataMappings[element] || element; // Use the mapped name or the original if no mapping
+            let value = inputElement.value;
+
+            // Convert to the appropriate data type
+            if (intDtypes.includes(mappedName)) {
+                value = parseInt(value);
+            } else if (floatDtypes.includes(mappedName)) {
+                value = parseFloat(value);
+            }
+
+            formData[mappedName] = value;
+        }
+    });
+
+    console.log(formData);
+
+    return formData;
+}
+
+// Fetch Prediction Data
+async function fetchPredictionData(formData) {
+    const response = await fetch('/predict', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json', // Change the Content-Type to application/json
+        },
+        body: JSON.stringify(formData) // Send the data as JSON
+    });
+    return await response.json();
+}
+
+/* ----------------------Predict loan acceptance from form data ---------------------------   */
+// Function to send form data for prediction
+async function predictLoan() {
+    // Define the data to be sent
+    const formData = PrepareFormData(); 
+
+    // Make the AJAX request
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json',
+        url: '/predict', 
+        dataType: 'json',
+        data: JSON.stringify(formData), // Sending the formData
+        success: function (result) {
+            console.log('Received result:', result);
+            const predictionElement = document.getElementById('prediction');
+            predictionElement.innerText = `Predicted class: ${result.prediction}`;
+        },
+        error: function (error) {
+            console.error('Error:', error);
+            const predictionElement = document.getElementById('prediction');
+            predictionElement.innerText = `error: ${error.message}`;
+        }
+    });
+}
+
+  </script>
 
 </body>
+
 </html>

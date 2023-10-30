@@ -1,22 +1,20 @@
 {
     "dummyData1": {
       "applicantData": {
-        "first_name": "John",
-        "last_name": "Doe",
-        "age": 35,
+        "age": 1,
         "race": "White",
         "race2": "Black",
         "sex": "Male",
         "ethnicity": "Latino",
         "income": 60000,
         "debtToIncomeRatio": 25,
-        "creditScoreType": 1,
+        "creditScore": 1,
         "lenderCredits": 0
       },
       "coApplicantData": {
-        "CoapplicantAge": 30,
+        "co_age": 0,
         "CoapplicantRace": "Latino",
-        "CoapplicantRace2": "",
+        "CoapplicantRace2": "0",
         "CoapplicantSex": "Male",
         "CoapplicantEthnicity": "White"
       },
@@ -49,9 +47,7 @@
 
     "dummyData2": {
       "applicantData": {
-        "first_name": "Alice",
-        "last_name": "Smith",
-        "age": 40,
+        "age": 2,
         "race": "Black",
         "sex": "Female",
         "ethnicity": "Non-Latino",
@@ -61,7 +57,7 @@
         "lenderCredits": 0
       },
       "coApplicantData": {
-        "applicantAge": 35,
+        "co_age": 0,
         "applicantRace": "Non-Latino",
         "applicantSex": "Female",
         "applicantEthnicity": "Black"
@@ -95,9 +91,7 @@
 
     "dummyData3": {
       "applicantData": {
-        "first_name": "Mark",
-        "last_name": "Johnson",
-        "age": 45,
+        "age": 2,
         "race": "Joint",
         "sex": "Joint",
         "ethnicity": "Joint",
@@ -107,7 +101,7 @@
         "lenderCredits": 0
       },
       "coApplicantData": {
-        "applicantAge": 40,
+        "co_age": 2,
         "applicantRace": "Joint",
         "applicantSex": "Joint",
         "applicantEthnicity": "Joint"
