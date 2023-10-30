@@ -7,7 +7,7 @@
         "sex": "Male",
         "ethnicity": "Latino",
         "income": 60000,
-        "debtToIncomeRatio": 25,
+        "debtToIncomeRatio": 0.2,
         "creditScore": 1,
         "lenderCredits": 0
       },

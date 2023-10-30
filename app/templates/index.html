@@ -79,10 +79,19 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="0.25" id="debtToIncomeRatio" type="number" class="validate">
-                      <label for="debtToIncomeRatio">Debt-to-Income Ratio</label>
+                        <select id="debtToIncomeRatio" class="validate">
+                            <option value="" disabled selected>Choose a Debt-to-Income Ratio Category</option>
+                            <option value="0.6">36%-50%</option>
+                            <option value="0.2">20%-&lt;30%</option>
+                            <option value="0.4">30%-&lt;36%</option>
+                            <option value="1.0">&lt;20%</option>
+                            <option value="0.0">&gt;60%</option>
+                            <option value="0.8">50%-60%</option>
+                        </select>
+                        <label for="debtToIncomeRatio">Debt-to-Income Ratio Category</label>
                     </div>
-                  </div>
+                </div>
+                
                 </div>
 
                 <div class="col s6">
@@ -415,16 +424,22 @@ function fillFormWithDummyData() {
         ageSelect.value = selectedAgeValue;
         M.FormSelect.init(ageSelect);
 
-
-
         document.getElementById('race').value = data.applicantData.race;
         document.getElementById('sex').value = data.applicantData.sex;
         document.getElementById('ethnicity').value = data.applicantData.ethnicity;
         document.getElementById('income').value = data.applicantData.income;
-        document.getElementById('debtToIncomeRatio').value = data.applicantData.debtToIncomeRatio;
+
+
+        // debt to income ratio
+        const debtToIncomeRatioSelect = document.getElementById('debtToIncomeRatio');
+        const selectedDebtToIncomeRatio = data.applicantData.debtToIncomeRatio.toString();
+        debtToIncomeRatioSelect.value = selectedDebtToIncomeRatio;
+        M.FormSelect.init(debtToIncomeRatioSelect);
+
         document.getElementById('creditScore').value = data.applicantData.creditScore;
         document.getElementById('lenderCredits').value = data.applicantData.lenderCredits;
 
+        // co appllicant age
         const ageSelect2 = document.getElementById('co_age');
         const selectedAgeValue2 = data.coApplicantData.co_age.toString();
         ageSelect2.value = selectedAgeValue2;
