@@ -15,13 +15,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-
 </head>
 
 <body>
   <div class="container">
-
-
     <div class="row" style="background-color: yellow;">
       <div class="input-field col s12 browser-default">
         <select id="dummyDataDropdown" onchange="fillFormWithDummyData()">
@@ -30,12 +27,9 @@
         <label>Select Dummy Data:</label>
       </div>
     </div>
-
     <h1 class="blue-text text-darken-2">Credit Risk Predictor App</h1>
     <div class="row">
-
       <div class="col s12">
-
         <div class="row">
           <div class="col s8">
             <form id="loanForm" action="predict">
@@ -45,9 +39,7 @@
                   <h4>Applicant data</h4>
                 </div>
               </div>
-
               <div class="row">
-
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
@@ -64,7 +56,6 @@
                       <label for="age">Age Category</label>
                     </div>
                   </div>
-
                   <div class="row">
                     <div class="input-field col s12">
                       <select id="race" class="validate">
@@ -81,8 +72,6 @@
                       <label for="ethnicity">Ethnicity</label>
                     </div>
                   </div>
-
-
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="100000" id="income" type="number" class="validate">
@@ -103,9 +92,7 @@
                       <label for="debtToIncomeRatio">Debt-to-Income Ratio Category</label>
                     </div>
                   </div>
-
                 </div>
-
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
@@ -137,7 +124,6 @@
                       <label for="race2">Secondary Race</label>
                     </div>
                   </div>
-
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="750" id="creditScore" type="number" class="validate">
@@ -151,17 +137,13 @@
                     </div>
                   </div>
                 </div>
-
               </div>
-
               <div class="row">
                 <div class="col s12">
                   <h4>Co-applicant</h4>
                 </div>
               </div>
-
               <div class="row">
-
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
@@ -178,7 +160,6 @@
                       <label for="co_age">Age Category</label>
                     </div>
                   </div>
-
                 </div>
                 <div class="row">
                   <div class="input-field col s12">
@@ -211,9 +192,6 @@
                     <label for="co_applicant_race_2">Secondary Race</label>
                   </div>
                 </div>
-
-
-
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
@@ -234,9 +212,6 @@
                       <label for="co_sex">Sex</label>
                     </div>
                   </div>
-
-
-
                 </div>
               </div>
               <div class="row">
@@ -244,9 +219,7 @@
                   <h4>Property info</h4>
                 </div>
               </div>
-
               <div class="row">
-
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
@@ -275,7 +248,6 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
@@ -297,17 +269,13 @@
                     </div>
                   </div>
                 </div>
-
               </div>
-
               <div class="row">
                 <div class="col s12">
                   <h4>Loan details</h4>
                 </div>
               </div>
-
               <div class="row">
-
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
@@ -315,36 +283,43 @@
                       <label for="loanAmount">Loan Amount</label>
                     </div>
                   </div>
-
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Interest Rate" id="interestRate" type="text" step="0.01" class="validate">
-                      <label for="interestRate">Interest Rate</label>
+                        <select id="interestRate" class="validate">
+                            <option value="" disabled selected>Choose an Interest Rate Category</option>
+                            <option value="1">0.0-1.0</option>
+                            <option value="2">1.0-2.0</option>
+                            <option value="3">2.0-3.0</option>
+                            <option value="4">3.0-3.5</option>
+                            <option value="5">3.5-4.0</option>
+                            <option value="6">4.0-4.5</option>
+                            <option value="7">4.5-5.0</option>
+                            <option value="8">5.0-6.0</option>
+                            <option value="9">6.0-7.0</option>
+                            <option value="10">7.0-8.0</option>
+                            <option value="11">8.0-9.0</option>
+                        </select>
+                        <label for="interestRate">Interest Rate Category</label>
                     </div>
-                  </div>
-
-
+                </div>                
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Total Points and Fees" id="totalpointsandfees" type="text" class="validate">
                       <label for="totalpointsandfees">Total Points and Fees</label>
                     </div>
                   </div>
-
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Loan Term" id="loanterm" type="text" class="validate">
                       <label for="loanterm">Loan Term</label>
                     </div>
                   </div>
-
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Discount Points" id="discountPoints" type="number" class="validate">
                       <label for="discountPoints">Discount Points</label>
                     </div>
                   </div>
-
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Prepayment Penalty Term" id="prepaymentPenaltyTerm" type="number"
@@ -352,7 +327,6 @@
                       <label for="prepaymentPenaltyTerm">Prepayment Penalty Term</label>
                     </div>
                   </div>
-
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Negative Amortization" id="negativeAmortization" type="text" class="validate">
@@ -360,7 +334,6 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
@@ -368,42 +341,36 @@
                       <label for="totalloancosts">Total Loan Costs</label>
                     </div>
                   </div>
-
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Loan Type" id="loantype" type="text" class="validate">
                       <label for="loantype">Loan Type</label>
                     </div>
                   </div>
-
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Loan Purpose" id="loanpurpose" type="text" class="validate">
                       <label for="loanpurpose">Loan Purpose</label>
                     </div>
                   </div>
-
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Origination Charges" id="originationCharges" type="number" class="validate">
                       <label for="originationCharges">Origination Charges</label>
                     </div>
                   </div>
-
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Interest-Only Payment" id="interestOnlyPayment" type="text" class="validate">
                       <label for="interestOnlyPayment">Interest-Only Payment</label>
                     </div>
                   </div>
-
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Balloon Payment" id="balloonPayment" type="text" class="validate">
                       <label for="balloonPayment">Balloon Payment</label>
                     </div>
                   </div>
-
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Other Nonamortizing Features" id="otherNonamortizingFeatures" type="text"
@@ -412,11 +379,7 @@
                     </div>
                   </div>
                 </div>
-
               </div>
-
-
-
             </form>
           </div>
           <div class="col s3">
@@ -426,9 +389,6 @@
         </div>
       </div>
     </div>
-
-
-
   </div>
   </div>
 
@@ -559,7 +519,17 @@
         document.getElementById('totalUnits').value = data.propertyInfo.totalUnits;
 
         document.getElementById('loanAmount').value = data.loanDetails.loanAmount;
+
+
         document.getElementById('interestRate').value = data.loanDetails.interestRate;
+        
+        // interest rate
+        document.getElementById('interestRate').value = data.loanDetails.interestRate;
+        const interestRateSelect = document.getElementById('interestRate');
+        const selectedinterestRateValue = data.loanDetails.interestRate.toString();
+        interestRateSelect.value = selectedinterestRateValue;
+        M.FormSelect.init(interestRateSelect);
+
         document.getElementById('totalpointsandfees').value = data.loanDetails.totalpointsandfees;
         document.getElementById('loanterm').value = data.loanDetails.loanterm;
         document.getElementById('discountPoints').value = data.loanDetails.discountPoints;

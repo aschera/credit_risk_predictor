@@ -29,7 +29,7 @@
       },
       "loanDetails": {
         "loanAmount": 150000,
-        "interestRate": 4.5,
+        "interestRate": 6,
         "totalpointsandfees": 2000,
         "loanterm": "30 years",
         "discountPoints": 0,
