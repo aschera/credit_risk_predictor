@@ -16,34 +16,35 @@
         "CoapplicantRace": 1.0,
         "co_applicant_race_2": 0.488372,
         "co_sex": 1,
-        "CoapplicantEthnicity": 1.0
+        "CoapplicantEthnicity": 1.0,
+        "cocreditScore": 1
       },
       "propertyInfo": {
         "propertyValue": 200000,
-        "lienStatus": "First Lien",
-        "manufacturedHomeLandPropertyInterest": "N/A",
+        "lienStatus": 0.0,
+        "manufacturedHomeLandPropertyInterest": 1.0,
         "multifamilyAffordableUnits": 0,
-        "occupancyType": "Primary Residence",
-        "manufacturedHomeSecuredPropertyType": "Site-Built",
+        "occupancyType": 0.0,
+        "manufacturedHomeSecuredPropertyType": 1.0,
         "totalUnits": 1
       },
       "loanDetails": {
-        "loanAmount": 150000,
+        "loanAmount": 0.009412,
         "interestRate": 6,
         "totalpointsandfees": 2000,
         "loanterm": 0.5,
         "loantovalueratio": 0.333333,
         "discountPoints": 0,
         "prepaymentPenaltyTerm": 0,
-        "negativeAmortization": "No",
-        "totalloancosts": 0.117647,
-        "loantype": "Conventional",
-        "loanpurpose": "Purchase",
+        "negativeAmortization": 1.0,
+        "totalloancosts": 1.0,
+        "loantype": 0.333333,
         "originationCharges": 1500,
-        "interestOnlyPayment": "No",
-        "balloonPayment": "No",
-        "otherNonamortizingFeatures": "No",
-        "origination_charges": 0.285714
+        "interestOnlyPayment": 1.0,
+        "balloonPayment": 1.0,
+        "otherNonamortizingFeatures": 1.0,
+        "origination_charges": 0.285714,
+        "open_end_line_of_credit": 1.0
       }
     }
   }

@@ -130,10 +130,18 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="750" id="creditScore" type="number" class="validate">
-                      <label for="creditScore">Credit Score</label>
+                      <select id="applicant_credit_score_type" class="validate">
+                        <option value="1">Equifax Beacon 5.0</option>
+                        <option value="0">Experian Fair Isaac</option>
+                        <option value="0.250">FICO Risk Score Classic 04</option>
+                        <option value="0.125">FICO Risk Score Classic 98</option>
+                        <option value="0.750">VantageScore 2.0</option>
+                        <option value="0.875">VantageScore 3.0</option>
+                      </select>
+                      <label for="applicant_credit_score_type">Applicant Credit Score Type</label>
                     </div>
                   </div>
+                  
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Lender Credits" id="lenderCredits" type="number" class="validate">
@@ -217,6 +225,19 @@
                         <option value="0.046512">Black or African American</option>
                       </select>
                       <label for="co_applicant_race_2">Secondary Race</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="co_applicant_credit_score_type" class="validate">
+                        <option value="1">Equifax Beacon 5.0</option>
+                        <option value="0">Experian Fair Isaac</option>
+                        <option value="0.250">FICO Risk Score Classic 04</option>
+                        <option value="0.125">FICO Risk Score Classic 98</option>
+                        <option value="0.750">VantageScore 2.0</option>
+                        <option value="0.875">VantageScore 3.0</option>
+                      </select>
+                      <label for="co_applicant_credit_score_type">Applicant Credit Score Type</label>
                     </div>
                   </div>
                 </div>
@@ -401,12 +422,6 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Loan Purpose" id="loanpurpose" type="text" class="validate">
-                      <label for="loanpurpose">Loan Purpose</label>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="input-field col s12">
                       <select id="loantovalueratio" class="validate">
                         <option value="0.000000">75.0-80.0 </option>
                         <option value="0.066667">70.0-75.0 </option>
@@ -557,7 +572,19 @@
         debtToIncomeRatioSelect.value = selectedDebtToIncomeRatio;
         M.FormSelect.init(debtToIncomeRatioSelect);
 
-        document.getElementById('creditScore').value = data.applicantData.creditScore;
+        // credit score type applicant and co-applicant
+        const creditScoreSelect = document.getElementById('applicant_credit_score_type');
+        const selectedcreditScore = data.applicantData.creditScore.toString();
+        creditScoreSelect.value = selectedcreditScore;
+        M.FormSelect.init(creditScoreSelect);
+
+        const creditScoreSelect2 = document.getElementById('co_applicant_credit_score_type');
+        const selectedcreditScore2 = data.coApplicantData.cocreditScore.toString();
+        creditScoreSelect2.value = selectedcreditScore2;
+        M.FormSelect.init(creditScoreSelect2);
+
+        
+        
         document.getElementById('lenderCredits').value = data.applicantData.lenderCredits;
 
         // co appllicant age
@@ -638,7 +665,6 @@
         M.FormSelect.init(totalloancostsSelect);
 
         document.getElementById('loantype').value = data.loanDetails.loantype;
-        document.getElementById('loanpurpose').value = data.loanDetails.loanpurpose;
         document.getElementById('originationCharges').value = data.loanDetails.originationCharges;
         document.getElementById('interestOnlyPayment').value = data.loanDetails.interestOnlyPayment;
         document.getElementById('balloonPayment').value = data.loanDetails.balloonPayment;
@@ -689,9 +715,9 @@
       const formData = {};
       const formElements = [
         'age', 'income', 'race', 'sex', 'ethnicity', 'lenderCredits',
-        'debtToIncomeRatio', 'creditScore', 'loanAmount', 'interestRate',
+        'debtToIncomeRatio', 'creditScore','cocreditScore', 'loanAmount', 'interestRate',
         'totalpointsandfees', 'loanterm', 'discountPoints', 'prepaymentPenaltyTerm',
-        'negativeAmortization', 'totalloancosts', 'loantype', 'loanpurpose',
+        'negativeAmortization', 'totalloancosts', 'loantype', 
         'originationCharges', 'interestOnlyPayment', 'balloonPayment',
         'otherNonamortizingFeatures',
         'co_age', 'CoapplicantRace', 'co_sex', 'CoapplicantEthnicity',
@@ -710,6 +736,7 @@
         'lenderCredits': 'lenderCredits',
         'debtToIncomeRatio': 'debt_to_income_ratio',
         'creditScoreType': 'applicant_credit_score_type',
+        'cocreditScoreType': 'co_applicant_credit_score_type',
         'loanAmount': 'loanAmount',
         'interestRate': 'interestRate',
         'totalpointsandfees': 'totalpointsandfees',
@@ -719,7 +746,6 @@
         'negativeAmortization': 'negativeAmortization',
         'totalloancosts': 'total_loan_costs',
         'loantype': 'loan_type',
-        'loanpurpose': 'loanpurpose',
         'originationCharges': 'originationCharges',
         'interestOnlyPayment': 'interestOnlyPayment',
         'balloonPayment': 'balloonPayment',
