@@ -250,11 +250,15 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Manufactured Home Land Property Interest"
-                        id="manufacturedHomeLandPropertyInterest" type="text" class="validate">
+                      <select id="manufacturedHomeLandPropertyInterest" class="validate">
+                        <option value="1.0">Direct ownership</option>
+                        <option value="0.0">Indirect ownership</option>
+                        <option value="0.5">Paid leasehold</option>
+                      </select>
                       <label for="manufacturedHomeLandPropertyInterest">Manufactured Home Land Property Interest</label>
                     </div>
                   </div>
+                  
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Multifamily Affordable Units" id="multifamilyAffordableUnits" type="number"
@@ -292,8 +296,8 @@
                   <div class="row">
                     <div class="input-field col s12">
                       <select id="lienstatus" class="validate">
-                        <option value="0">Secured by a first lien (Original Value)</option>
-                        <option value="1">Secured by a subordinate lien (Original Value)</option>
+                        <option value="0">Secured by a first lien</option>
+                        <option value="1">Secured by a subordinate lien</option>
                       </select>
                       <label for="lienstatus">Lien Status</label>
                     </div>
@@ -621,6 +625,7 @@
         M.FormSelect.init(lienstatusSelect);
 
         document.getElementById('manufacturedHomeLandPropertyInterest').value = data.propertyInfo.manufacturedHomeLandPropertyInterest;
+        
         document.getElementById('multifamilyAffordableUnits').value = data.propertyInfo.multifamilyAffordableUnits;
         document.getElementById('occupancyType').value = data.propertyInfo.occupancyType;
         document.getElementById('manufacturedHomeSecuredPropertyType').value = data.propertyInfo.manufacturedHomeSecuredPropertyType;
