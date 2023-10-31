@@ -1,50 +1,50 @@
 {
-    "dummyData1": {
-      "applicantData": {
-        "age": 1,
-        "race": 1.0,
-        "race2": 0.564103,
-        "sex": 1,
-        "ethnicity": 0.0,
-        "income": 60000,
-        "debtToIncomeRatio": 0.2,
-        "creditScore": 1
-      },
-      "coApplicantData": {
-        "co_age": 0,
-        "CoapplicantRace": 1.0,
-        "co_applicant_race_2": 0.488372,
-        "co_sex": 1,
-        "CoapplicantEthnicity": 1.0,
-        "cocreditScore": 1
-      },
-      "propertyInfo": {
-        "propertyValue": 185000,
-        "lienStatus": 0.0,
-        "manufacturedHomeLandPropertyInterest": 1.0,
-        "multifamilyAffordableUnits": 0,
-        "occupancyType": 0.0,
-        "manufacturedHomeSecuredPropertyType": 1.0,
-        "totalUnits": 1
-      },
-      "loanDetails": {
-        "loanAmount": 0.009412,
-        "interestRate": 6,
-        "totalpointsandfees": 2000,
-        "loanterm": 0.5,
-        "loantovalueratio": 0.333333,
-        "discountPoints": 0,
-        "prepaymentPenaltyTerm": 0,
-        "negativeAmortization": 1.0,
-        "totalloancosts": 1.0,
-        "loantype": 0.333333,
-        "originationCharges": 1500,
-        "interestOnlyPayment": 1.0,
-        "balloonPayment": 1.0,
-        "otherNonamortizingFeatures": 1.0,
-        "origination_charges": 0.285714,
-        "open_end_line_of_credit": 1.0
-      }
+  "dummyData1": {
+    "applicantData": {
+      "age": 1,
+      "race": 1.0,
+      "race2": 0.564103,
+      "sex": 1,
+      "ethnicity": 0.0,
+      "income": 60000,
+      "debtToIncomeRatio": 0.2,
+      "creditScore": 1
+    },
+    "coApplicantData": {
+      "co_age": 0,
+      "CoapplicantRace": 1.0,
+      "co_applicant_race_2": 0.488372,
+      "co_sex": 1,
+      "CoapplicantEthnicity": 1.0,
+      "cocreditScore": 1
+    },
+    "propertyInfo": {
+      "census_tract": 0.745178	,  
+      "propertyValue": 185000,
+      "property_value": 0.007826,  
+      "lienStatus": 0.0,
+      "manufacturedHomeLandPropertyInterest": 1,
+      "manufacturedHomeSecuredPropertyType": 1,
+      "occupancyType": 0.0,
+      "totalUnits": 1,
+      "open_end_line_of_credit": 1.0
+    },
+    "loanDetails": {
+      "loanAmount": 0.01,
+      "interestRate": 5.182086,
+      "totalpointsandfees": 2000,
+      "loanterm": 0.5,
+      "loantovalueratio": 0.333333,
+      "discountPoints": 0,
+      "prepaymentPenaltyTerm": 0,
+      "negativeAmortization": 1.0,
+      "totalloancosts": 0.470588,
+      "loantype": 0.333333,
+      "interestOnlyPayment": 1.0,
+      "balloonPayment": 1.0,
+      "otherNonamortizingFeatures": 1.0,
+      "origination_charges": 0.285714,
+      "open_end_line_of_credit": 1.0
     }
   }
-  
+}
