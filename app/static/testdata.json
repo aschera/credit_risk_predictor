@@ -31,7 +31,7 @@
         "loanAmount": 150000,
         "interestRate": 6,
         "totalpointsandfees": 2000,
-        "loanterm": "30 years",
+        "loanterm": 0.5,
         "loantovalueratio": 0.333333,
         "discountPoints": 0,
         "prepaymentPenaltyTerm": 0,

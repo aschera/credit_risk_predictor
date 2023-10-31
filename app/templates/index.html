@@ -333,10 +333,19 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Loan Term" id="loanterm" type="text" class="validate">
+                      <select id="loanterm" class="validate">
+                        <option value="0.833333">27-31 years</option>
+                        <option value="0.333333">12-16 years</option>
+                        <option value="0.5">17-21 years</option>
+                        <option value="0.166667">7-11 years</option>
+                        <option value="0.666667">22-26 years</option>
+                        <option value="0.0">2-6 years</option>
+                        <option value="1.0">37-41 years</option>
+                      </select>
                       <label for="loanterm">Loan Term</label>
                     </div>
                   </div>
+                  
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Discount Points" id="discountPoints" type="number" class="validate">
@@ -613,7 +622,16 @@
         M.FormSelect.init(interestRateSelect);
 
         document.getElementById('totalpointsandfees').value = data.loanDetails.totalpointsandfees;
+
+        // loan term
         document.getElementById('loanterm').value = data.loanDetails.loanterm;
+        const loantermSelect = document.getElementById('loanterm');
+        const selectedloantermValue = data.loanDetails.loanterm.toString();
+        interestRateSelect.value = selectedloantermValue;
+        M.FormSelect.init(loantermSelect);
+    
+
+
         document.getElementById('discountPoints').value = data.loanDetails.discountPoints;
         document.getElementById('prepaymentPenaltyTerm').value = data.loanDetails.prepaymentPenaltyTerm;
         document.getElementById('negativeAmortization').value = data.loanDetails.negativeAmortization;
