@@ -36,7 +36,7 @@
         "discountPoints": 0,
         "prepaymentPenaltyTerm": 0,
         "negativeAmortization": "No",
-        "totalloancosts": 3000,
+        "totalloancosts": 0.117647,
         "loantype": "Conventional",
         "loanpurpose": "Purchase",
         "originationCharges": 1500,

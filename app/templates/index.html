@@ -344,10 +344,30 @@
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Total Loan Costs" id="totalloancosts" type="text" class="validate">
+                      <select id="totalloancosts" class="validate">
+                        <option value="0.235294">0-500</option>
+                        <option value="0.058824">3000-3500</option>
+                        <option value="0.000000">2500-3000</option>
+                        <option value="0.117647">3500-4000</option>
+                        <option value="0.176471">500-1000</option>
+                        <option value="0.294118">2000-2500</option>
+                        <option value="0.411765">4000-4500</option>
+                        <option value="0.352941">4500-5000</option>
+                        <option value="0.529412">5000-5500</option>
+                        <option value="0.470588">1500-2000</option>
+                        <option value="0.588235">5500-6000</option>
+                        <option value="0.647059">1000-1500</option>
+                        <option value="0.705882">6000-6500</option>
+                        <option value="0.764706">6500-7000</option>
+                        <option value="0.823529">7000-7500</option>
+                        <option value="0.882353">7500-8000</option>
+                        <option value="0.941176">8000-8500</option>
+                        <option value="1.000000">8500-9000</option>
+                      </select>
                       <label for="totalloancosts">Total Loan Costs</label>
                     </div>
                   </div>
+                  
                   <div class="row">
                     <div class="input-field col s12">
                       <input placeholder="Loan Type" id="loantype" type="text" class="validate">
@@ -581,7 +601,17 @@
         document.getElementById('discountPoints').value = data.loanDetails.discountPoints;
         document.getElementById('prepaymentPenaltyTerm').value = data.loanDetails.prepaymentPenaltyTerm;
         document.getElementById('negativeAmortization').value = data.loanDetails.negativeAmortization;
+
+
+        // total loan costs
         document.getElementById('totalloancosts').value = data.loanDetails.totalloancosts;
+        const totalloancostsSelect = document.getElementById('totalloancosts');
+        const selectedTotalloancostsValue = data.loanDetails.totalloancosts.toString();
+        totalloancostsSelect.value = selectedTotalloancostsValue;
+        M.FormSelect.init(totalloancostsSelect);
+
+
+
         document.getElementById('loantype').value = data.loanDetails.loantype;
         document.getElementById('loanpurpose').value = data.loanDetails.loanpurpose;
         document.getElementById('originationCharges').value = data.loanDetails.originationCharges;
@@ -662,7 +692,7 @@
         'discountPoints': 'discountPoints',
         'prepaymentPenaltyTerm': 'prepaymentPenaltyTerm',
         'negativeAmortization': 'negativeAmortization',
-        'totalloancosts': 'totalloancosts',
+        'totalloancosts': 'total_loan_costs',
         'loantype': 'loan_type',
         'loanpurpose': 'loanpurpose',
         'originationCharges': 'originationCharges',
