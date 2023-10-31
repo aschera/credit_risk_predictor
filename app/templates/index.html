@@ -292,6 +292,22 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
+                      <select id="origination_charges" class="validate">
+                        <option value="0.000000">0-500</option>
+                        <option value="0.142857">500-1000</option>
+                        <option value="0.285714">1000-1500</option>
+                        <option value="0.428571">1500-2000</option>
+                        <option value="0.571429">2000-2500</option>
+                        <option value="0.714286">2500-3000</option>
+                        <option value="0.857143">3000-3500</option>
+                        <option value="1.000000">3500-4000</option>
+                      </select>
+                      <label for="origination_charges">Origination Charges</label>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="input-field col s12">
                         <select id="interestRate" class="validate">
                             <option value="" disabled selected>Choose an Interest Rate Category</option>
                             <option value="1">0.0-1.0</option>
@@ -672,7 +688,7 @@
         'co_age', 'CoapplicantRace', 'co_sex', 'CoapplicantEthnicity',
         'propertyValue', 'lienStatus', 'manufacturedHomeLandPropertyInterest',
         'multifamilyAffordableUnits', 'occupancyType', 'manufacturedHomeSecuredPropertyType',
-        'totalUnits', 'race2', 'co_applicant_race_2', 'loantovalueratio'
+        'totalUnits', 'race2', 'co_applicant_race_2', 'loantovalueratio', 'origination_charges'
       ];
 
       const dataMappings = {
@@ -712,7 +728,8 @@
         'totalUnits': 'total_units',
         'race2': 'applicant_race_2',
         'co_applicant_race_2': 'co_applicant_race_2',
-        'loantovalueratio': 'combined_loan_to_value_ratio'
+        'loantovalueratio': 'combined_loan_to_value_ratio',
+        'origination_charges': 'origination_charges',
       };
 
       formElements.forEach(element => {

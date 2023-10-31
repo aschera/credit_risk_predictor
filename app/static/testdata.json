@@ -42,7 +42,8 @@
         "originationCharges": 1500,
         "interestOnlyPayment": "No",
         "balloonPayment": "No",
-        "otherNonamortizingFeatures": "No"
+        "otherNonamortizingFeatures": "No",
+        "origination_charges": 0.285714
       }
     }
   }
