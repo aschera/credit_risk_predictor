@@ -549,9 +549,7 @@
         ethnicitySelect.value = selectedEthnicityValue;
         M.FormSelect.init(ethnicitySelect);
 
-
         document.getElementById('income').value = data.applicantData.income;
-
 
         // debt to income ratio
         const debtToIncomeRatioSelect = document.getElementById('debtToIncomeRatio');
@@ -593,7 +591,6 @@
         ethnicitySelect2.value = selectedEthnicityValue2;
         M.FormSelect.init(ethnicitySelect2);
 
-
         document.getElementById('propertyvalue').value = data.propertyInfo.propertyValue;
         document.getElementById('lienstatus').value = data.propertyInfo.lienStatus;
         document.getElementById('manufacturedHomeLandPropertyInterest').value = data.propertyInfo.manufacturedHomeLandPropertyInterest;
@@ -611,7 +608,6 @@
         ethnicitySelect2.value = selectedLoantovalueratioValue;
         M.FormSelect.init(loantovalueratioSelect);
         
-
         document.getElementById('interestRate').value = data.loanDetails.interestRate;
         
         // interest rate
@@ -630,12 +626,9 @@
         interestRateSelect.value = selectedloantermValue;
         M.FormSelect.init(loantermSelect);
     
-
-
         document.getElementById('discountPoints').value = data.loanDetails.discountPoints;
         document.getElementById('prepaymentPenaltyTerm').value = data.loanDetails.prepaymentPenaltyTerm;
         document.getElementById('negativeAmortization').value = data.loanDetails.negativeAmortization;
-
 
         // total loan costs
         document.getElementById('totalloancosts').value = data.loanDetails.totalloancosts;
@@ -643,8 +636,6 @@
         const selectedTotalloancostsValue = data.loanDetails.totalloancosts.toString();
         totalloancostsSelect.value = selectedTotalloancostsValue;
         M.FormSelect.init(totalloancostsSelect);
-
-
 
         document.getElementById('loantype').value = data.loanDetails.loantype;
         document.getElementById('loanpurpose').value = data.loanDetails.loanpurpose;
