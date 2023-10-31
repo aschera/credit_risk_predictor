@@ -362,6 +362,29 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
+                      <select id="loantovalueratio" class="validate">
+                        <option value="0.000000">75.0-80.0 </option>
+                        <option value="0.066667">70.0-75.0 </option>
+                        <option value="0.133333">95.0-100.0 </option>
+                        <option value="0.200000">65.0-70.0 </option>
+                        <option value="0.266667">90.0-95.0 </option>
+                        <option value="0.333333">85.0-90.0 </option>
+                        <option value="0.400000">55.0-60.0 </option>
+                        <option value="0.466667">60.0-65.0 </option>
+                        <option value="0.533333">80.0-85.0 </option>
+                        <option value="0.600000">50.0-55.0 </option>
+                        <option value="0.666667">45.0-50.0 </option>
+                        <option value="0.733333">40.0-45.0 </option>
+                        <option value="0.800000">35.0-40.0 </option>
+                        <option value="0.866667">100.0-120.0 </option>
+                        <option value="0.933333">30.0-35.0 </option>
+                        <option value="1.000000">25.0-30.0 </option>
+                      </select>
+                      <label for="loantovalueratio">Combined loan to value ratio</label>
+                    </div>
+                  </div>                  
+                  <div class="row">
+                    <div class="input-field col s12">
                       <input placeholder="Origination Charges" id="originationCharges" type="number" class="validate">
                       <label for="originationCharges">Origination Charges</label>
                     </div>
@@ -475,9 +498,9 @@
         M.FormSelect.init(sexSelect);
 
         //appllicant ethnicity
-        document.getElementById('ethnicity').value = data.applicantData.sex;
+        document.getElementById('ethnicity').value = data.applicantData.ethnicity;
         const ethnicitySelect = document.getElementById('ethnicity');
-        const selectedEthnicityValue = data.applicantData.sex.toString();
+        const selectedEthnicityValue = data.applicantData.ethnicity.toString();
         ethnicitySelect.value = selectedEthnicityValue;
         M.FormSelect.init(ethnicitySelect);
 
@@ -519,9 +542,9 @@
         M.FormSelect.init(sexSelect2);
 
         //co-appllicant ethnicity
-        document.getElementById('applicantEthnicity').value = data.applicantData.sex;
+        document.getElementById('applicantEthnicity').value = data.coApplicantData.CoapplicantEthnicity;
         const ethnicitySelect2 = document.getElementById('applicantEthnicity');
-        const selectedEthnicityValue2 = data.applicantData.sex.toString();
+        const selectedEthnicityValue2 = data.coApplicantData.CoapplicantEthnicity.toString();
         ethnicitySelect2.value = selectedEthnicityValue2;
         M.FormSelect.init(ethnicitySelect2);
 
@@ -536,6 +559,13 @@
 
         document.getElementById('loanAmount').value = data.loanDetails.loanAmount;
 
+        // loan to value ratio
+        document.getElementById('loantovalueratio').value = data.loanDetails.loantovalueratio;
+        const loantovalueratioSelect = document.getElementById('loantovalueratio');
+        const selectedLoantovalueratioValue = data.loanDetails.loantovalueratio.toString();
+        ethnicitySelect2.value = selectedLoantovalueratioValue;
+        M.FormSelect.init(loantovalueratioSelect);
+        
 
         document.getElementById('interestRate').value = data.loanDetails.interestRate;
         
@@ -612,7 +642,7 @@
         'co_age', 'CoapplicantRace', 'co_sex', 'CoapplicantEthnicity',
         'propertyValue', 'lienStatus', 'manufacturedHomeLandPropertyInterest',
         'multifamilyAffordableUnits', 'occupancyType', 'manufacturedHomeSecuredPropertyType',
-        'totalUnits', 'race2', 'co_applicant_race_2'
+        'totalUnits', 'race2', 'co_applicant_race_2', 'loantovalueratio'
       ];
 
       const dataMappings = {
@@ -652,22 +682,8 @@
         'totalUnits': 'total_units',
         'race2': 'applicant_race_2',
         'co_applicant_race_2': 'co_applicant_race_2',
+        'loantovalueratio': 'combined_loan_to_value_ratio'
       };
-
-      const intDtypes = [
-        'loan_type', 'lien_status', 'loan_amount', 'loan_term', 'negative_amortization',
-        'interest_only_payment', 'balloon_payment', 'other_nonamortizing_features',
-        'occupancy_type', 'manufactured_home_secured_property_type',
-        'manufactured_home_land_property_interest', 'total_units',
-        'debt_to_income_ratio', 'applicant_age', 'co_applicant_age', 'aus_1', 'applicant_credit_score_type'
-      ];
-
-      const floatDtypes = [
-        'census_tract', 'interest_rate', 'property_value', 'income',
-        'applicant_race_1', 'applicant_race_2', 'co_applicant_race_1',
-        'co_applicant_race_2', 'applicant_ethnicity_1', 'co_applicant_ethnicity_1'
-      ];
-
 
       formElements.forEach(element => {
         const inputElement = document.getElementById(element);

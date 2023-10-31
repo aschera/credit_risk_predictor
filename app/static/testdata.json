@@ -32,6 +32,7 @@
         "interestRate": 6,
         "totalpointsandfees": 2000,
         "loanterm": "30 years",
+        "loantovalueratio": 0.333333,
         "discountPoints": 0,
         "prepaymentPenaltyTerm": 0,
         "negativeAmortization": "No",
