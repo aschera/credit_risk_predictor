@@ -8,8 +8,7 @@
         "ethnicity": 0.0,
         "income": 60000,
         "debtToIncomeRatio": 0.2,
-        "creditScore": 1,
-        "lenderCredits": 0
+        "creditScore": 1
       },
       "coApplicantData": {
         "co_age": 0,
@@ -20,7 +19,7 @@
         "cocreditScore": 1
       },
       "propertyInfo": {
-        "propertyValue": 200000,
+        "propertyValue": 185000,
         "lienStatus": 0.0,
         "manufacturedHomeLandPropertyInterest": 1.0,
         "multifamilyAffordableUnits": 0,

@@ -18,7 +18,7 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="container main">
     <div class="row" style="background-color: yellow;">
       <div class="input-field col s12 browser-default">
         <select id="dummyDataDropdown" onchange="fillFormWithDummyData()">
@@ -82,20 +82,6 @@
                       <label for="income">Income</label>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <select id="debtToIncomeRatio" class="validate">
-                        <option value="" disabled selected>Choose a Debt-to-Income Ratio Category</option>
-                        <option value="0.6">36%-50%</option>
-                        <option value="0.2">20%-&lt;30%</option>
-                        <option value="0.4">30%-&lt;36%</option>
-                        <option value="1.0">&lt;20%</option>
-                        <option value="0.0">&gt;60%</option>
-                        <option value="0.8">50%-60%</option>
-                      </select>
-                      <label for="debtToIncomeRatio">Debt-to-Income Ratio Category</label>
-                    </div>
-                  </div>
                 </div>
                 <div class="col s6">
                   <div class="row">
@@ -141,11 +127,18 @@
                       <label for="applicant_credit_score_type">Applicant Credit Score Type</label>
                     </div>
                   </div>
-                  
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Lender Credits" id="lenderCredits" type="number" class="validate">
-                      <label for="lenderCredits">Lender Credits</label>
+                      <select id="debtToIncomeRatio" class="validate">
+                        <option value="" disabled selected>Choose a Debt-to-Income Ratio Category</option>
+                        <option value="0.6">36%-50%</option>
+                        <option value="0.2">20%-&lt;30%</option>
+                        <option value="0.4">30%-&lt;36%</option>
+                        <option value="1.0">&lt;20%</option>
+                        <option value="0.0">&gt;60%</option>
+                        <option value="0.8">50%-60%</option>
+                      </select>
+                      <label for="debtToIncomeRatio">Debt-to-Income Ratio Category</label>
                     </div>
                   </div>
                 </div>
@@ -257,12 +250,6 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Lien Status" id="lienstatus" type="text" class="validate">
-                      <label for="lienstatus">Lien Status</label>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="input-field col s12">
                       <input placeholder="Manufactured Home Land Property Interest"
                         id="manufacturedHomeLandPropertyInterest" type="text" class="validate">
                       <label for="manufacturedHomeLandPropertyInterest">Manufactured Home Land Property Interest</label>
@@ -279,7 +266,11 @@
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Occupancy Type" id="occupancyType" type="text" class="validate">
+                      <select id="occupancyType" class="validate">
+                        <option value="0">Principal residence</option>
+                        <option value="1">Second residence</option>
+                        <option value="0.5">Investment property</option>
+                      </select>
                       <label for="occupancyType">Occupancy Type</label>
                     </div>
                   </div>
@@ -294,6 +285,17 @@
                     <div class="input-field col s12">
                       <input placeholder="Total Units" id="totalUnits" type="number" class="validate">
                       <label for="totalUnits">Total Units</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col s12">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="lienstatus" class="validate">
+                        <option value="0">Secured by a first lien (Original Value)</option>
+                        <option value="1">Secured by a subordinate lien (Original Value)</option>
+                      </select>
+                      <label for="lienstatus">Lien Status</label>
                     </div>
                   </div>
                 </div>
@@ -545,24 +547,28 @@
         const selectedRaceValue = data.applicantData.race.toString();
         raceSelect.value = selectedRaceValue;
         M.FormSelect.init(raceSelect);
+
         const raceSelect2 = document.getElementById('race2');
         const selectedRaceValue2 = data.applicantData.race2.toString();
         raceSelect2.value = selectedRaceValue2;
         M.FormSelect.init(raceSelect2);
 
         //appllicant sex
-        document.getElementById('sex').value = data.applicantData.sex;
         const sexSelect = document.getElementById('sex');
         const selectedSexValue = data.applicantData.sex.toString();
         sexSelect.value = selectedSexValue;
         M.FormSelect.init(sexSelect);
 
-        //appllicant ethnicity
-        document.getElementById('ethnicity').value = data.applicantData.ethnicity;
+        // appllicant and co-applicant ethnicity
         const ethnicitySelect = document.getElementById('ethnicity');
         const selectedEthnicityValue = data.applicantData.ethnicity.toString();
         ethnicitySelect.value = selectedEthnicityValue;
         M.FormSelect.init(ethnicitySelect);
+
+        const ethnicitySelect2 = document.getElementById('applicantEthnicity');
+        const selectedEthnicityValue2 = data.coApplicantData.CoapplicantEthnicity.toString();
+        ethnicitySelect2.value = selectedEthnicityValue2;
+        M.FormSelect.init(ethnicitySelect2);
 
         document.getElementById('income').value = data.applicantData.income;
 
@@ -583,10 +589,6 @@
         creditScoreSelect2.value = selectedcreditScore2;
         M.FormSelect.init(creditScoreSelect2);
 
-        
-        
-        document.getElementById('lenderCredits').value = data.applicantData.lenderCredits;
-
         // co appllicant age
         const ageSelect2 = document.getElementById('co_age');
         const selectedAgeValue2 = data.coApplicantData.co_age.toString();
@@ -605,21 +607,19 @@
         M.FormSelect.init(coraceSelect2);
 
         // co appllicant sex
-        document.getElementById('co_sex').value = data.coApplicantData.co_sex;
         const sexSelect2 = document.getElementById('co_sex');
         const selectedSexValue2 = data.coApplicantData.co_sex.toString();
         sexSelect2.value = selectedSexValue2;
         M.FormSelect.init(sexSelect2);
 
-        //co-appllicant ethnicity
-        document.getElementById('applicantEthnicity').value = data.coApplicantData.CoapplicantEthnicity;
-        const ethnicitySelect2 = document.getElementById('applicantEthnicity');
-        const selectedEthnicityValue2 = data.coApplicantData.CoapplicantEthnicity.toString();
-        ethnicitySelect2.value = selectedEthnicityValue2;
-        M.FormSelect.init(ethnicitySelect2);
-
         document.getElementById('propertyvalue').value = data.propertyInfo.propertyValue;
-        document.getElementById('lienstatus').value = data.propertyInfo.lienStatus;
+
+        // lien status
+        const lienstatusSelect = document.getElementById('lienstatus');
+        const selectedlienstatusValue = data.propertyInfo.lienStatus.toString();
+        lienstatusSelect.value = selectedlienstatusValue;
+        M.FormSelect.init(lienstatusSelect);
+
         document.getElementById('manufacturedHomeLandPropertyInterest').value = data.propertyInfo.manufacturedHomeLandPropertyInterest;
         document.getElementById('multifamilyAffordableUnits').value = data.propertyInfo.multifamilyAffordableUnits;
         document.getElementById('occupancyType').value = data.propertyInfo.occupancyType;
@@ -714,7 +714,7 @@
       // Gather all the form values
       const formData = {};
       const formElements = [
-        'age', 'income', 'race', 'sex', 'ethnicity', 'lenderCredits',
+        'age', 'income', 'race', 'sex', 'ethnicity', 
         'debtToIncomeRatio', 'creditScore','cocreditScore', 'loanAmount', 'interestRate',
         'totalpointsandfees', 'loanterm', 'discountPoints', 'prepaymentPenaltyTerm',
         'negativeAmortization', 'totalloancosts', 'loantype', 
@@ -733,7 +733,6 @@
         'ethnicity': 'applicant_ethnicity_1',
         'loantype': 'loan_type',
         'income': 'income',
-        'lenderCredits': 'lenderCredits',
         'debtToIncomeRatio': 'debt_to_income_ratio',
         'creditScoreType': 'applicant_credit_score_type',
         'cocreditScoreType': 'co_applicant_credit_score_type',
