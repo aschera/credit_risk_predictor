@@ -16,14 +16,7 @@ import pandas as pd
 app = Flask(__name__)
 
 # Load the pre-trained model
-model_xgboost = joblib.load('../notebooks/Christinas/EDA_stepwise/xgboost_model.pkl') # excepts 33 features:
-
-# Define a dictionary to store the test data
-test_data = {}
-
-# Load test data from JSON and populate the test_data dictionary
-with open('./static/testdata.json', 'r') as json_file:
-    test_data = json.load(json_file)
+model_xgboost = joblib.load('../notebooks/Christinas/EDA_stepwise/xgboost_model.pkl')
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -39,57 +32,31 @@ def index():
 @app.route('/predict', methods=['POST'])
 def predict():
     if request.method == 'POST':
-        try:
 
-            # ----------------------------------------------------------------#
-            # --------------------------Test----------------------------------#
-            '''
-            # Load the data from the NumPy array file
-            row1_data = np.load('../notebooks/Christinas/EDA_stepwise/row1.npy')
-
-            # Make sure the loaded data is in the right format
-            input_data_test = row1_data .reshape(1, -1)  # Reshape to match the expected input shape
-
-            # Make prediction using the pre-trained model
-            prediction1 = model_xgboost.predict(input_data_test)
-
-            # Define the "action taken" based on the model output
-            action_taken1 = 'accepted' if prediction1 == 1 else 'rejected'
-            logger.info('Prediction1: %s', prediction1)
-            logger.info('Action taken1: %s', action_taken1)
-            
-            '''
-
-            
-            # ----------------------------------------------------------------#
-            # --------------------------Form----------------------------------#
-            
             # Access the JSON data sent from the client
             request_data = request.get_json()
-            logger.info('request_data: %s', request_data)
-            
-            # Map expected feature names to values in request_data and conditionally convert to float
-            input_data = [float(request_data.get(feature, 0)) if not isinstance(request_data.get(feature), (float, int)) else request_data.get(feature) for feature in expected_feature_names]
 
-            # Convert the input data to a NumPy array
-            input_data = np.array(input_data).reshape(1, -1)
+            # Create a dictionary with feature names and values
+            input_data_dict = {}
 
-            logger.info('input_data: %s', input_data)
+            for feature in expected_feature_names:
+                input_data_dict[feature] = float(request_data.get(feature, 0))
+
+            # Create a DataFrame from the dictionary
+            input_data_df = pd.DataFrame(input_data_dict, index=[0])
+            logger.info('input_data_df: %s', input_data_df)
 
             # Make prediction using the pre-trained model
-            prediction = model_xgboost.predict(input_data)
+            prediction = model_xgboost.predict(input_data_df)
+            logger.info('prediction: %s', prediction)
 
             # Define the "action taken" based on the model output
             action_taken = 'accepted' if prediction == 1 else 'rejected'
-            
+
             # Return prediction as JSON response
             response_data = {'action_taken': action_taken}
 
             return jsonify(response_data), 200
-        except Exception as e:
-            logging.error('Prediction Error: %s', str(e))
-            return jsonify({'error': 'Prediction failed'}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
-
