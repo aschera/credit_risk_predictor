@@ -18,29 +18,29 @@ def predict():
 
     # Extract the necessary features for prediction
     features = [
-        request_data['dummyData1']['applicantData']['age'],
+        request_data['dummyData1']['applicantData']['applicant_age'],
         request_data['dummyData1']['applicantData']['income'],
-        request_data['dummyData1']['applicantData']['race'],
-        request_data['dummyData1']['applicantData']['sex'],
-        request_data['dummyData1']['applicantData']['ethnicity'],
+        request_data['dummyData1']['applicantData']['applicant_race_1'],
+        request_data['dummyData1']['applicantData']['applicant_sex'],
+        request_data['dummyData1']['applicantData']['applicant_ethnicity_1'],
         request_data['dummyData1']['applicantData']['lenderCredits'],
-        request_data['dummyData1']['applicantData']['debtToIncomeRatio'],
-        request_data['dummyData1']['applicantData']['creditScore'],
+        request_data['dummyData1']['applicantData']['debt_to_income_ratio'],
+        request_data['dummyData1']['applicantData']['applicant_credit_score_type'],
 
-        request_data['dummyData1']['loanDetails']['loanAmount'],
-        request_data['dummyData1']['loanDetails']['interestRate'],
+        request_data['dummyData1']['loanDetails']['loan_amount'],
+        request_data['dummyData1']['loanDetails']['interest_rate'],
         request_data['dummyData1']['loanDetails']['totalpointsandfees'],
-        request_data['dummyData1']['loanDetails']['loanterm'],
+        request_data['dummyData1']['loanDetails']['loan_term'],
         request_data['dummyData1']['loanDetails']['discountPoints'],
         request_data['dummyData1']['loanDetails']['prepaymentPenaltyTerm'],
-        request_data['dummyData1']['loanDetails']['negativeAmortization'],
-        request_data['dummyData1']['loanDetails']['totalloancosts'],
-        request_data['dummyData1']['loanDetails']['loantype'],
+        request_data['dummyData1']['loanDetails']['negative_amortization'],
+        request_data['dummyData1']['loanDetails']['total_loan_costs'],
+        request_data['dummyData1']['loanDetails']['loan_type'],
         request_data['dummyData1']['loanDetails']['loanpurpose'],
         request_data['dummyData1']['loanDetails']['originationCharges'],
-        request_data['dummyData1']['loanDetails']['interestOnlyPayment'],
-        request_data['dummyData1']['loanDetails']['balloonPayment'],
-        request_data['dummyData1']['loanDetails']['otherNonamortizingFeatures']
+        request_data['dummyData1']['loanDetails']['interest_only_payment'],
+        request_data['dummyData1']['loanDetails']['balloon_payment'],
+        request_data['dummyData1']['loanDetails']['other_nonamortizing_features']
     ]
 
 
