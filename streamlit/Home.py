@@ -1,4 +1,4 @@
-#console command: streamlit run home.py
+#console command: streamlit run Home.py
 
 import streamlit as st
 
