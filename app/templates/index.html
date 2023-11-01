@@ -701,27 +701,21 @@
   <!-- Handle Prediction-->
   <script>
 
-  function PrepareFormData() {
-    const formData = {};
-    const formElements = [
-      'census_tract', 'loan_type', 'lien_status', 'open_end_line_of_credit', 'loan_amount', 'combined_loan_to_value_ratio',
-      'interest_rate', 'total_loan_costs', 'origination_charges', 'loan_term', 'negative_amortization', 'interest_only_payment',
-      'balloon_payment', 'other_nonamortizing_features', 'property_value', 'occupancy_type', 'manufactured_home_secured_property_type',
-      'manufactured_home_land_property_interest', 'total_units', 'income', 'debt_to_income_ratio', 'applicant_credit_score_type',
-      'co_applicant_credit_score_type', 'applicant_ethnicity_1', 'co_applicant_ethnicity_1', 'applicant_race_1', 'applicant_race_2',
-      'co_applicant_race_1', 'co_applicant_race_2', 'applicant_sex', 'co_applicant_sex', 'applicant_age', 'co_applicant_age'
-    ];
 
-    formElements.forEach(element => {
-      const inputElement = document.getElementById(element);
-      if (inputElement) {
-        formData[element] = inputElement.value;
-      }
-    });
+const expectedFeatureNames  = ['census_tract', 'loan_type', 'lien_status', 'open_end_line_of_credit', 'loan_amount', 'combined_loan_to_value_ratio', 'interest_rate', 'total_loan_costs', 'origination_charges', 'loan_term', 'negative_amortization', 'interest_only_payment', 'balloon_payment', 'other_nonamortizing_features', 'property_value', 'occupancy_type', 'manufactured_home_secured_property_type', 'manufactured_home_land_property_interest', 'total_units', 'income', 'debt_to_income_ratio', 'applicant_credit_score_type', 'co_applicant_credit_score_type', 'applicant_ethnicity_1', 'co_applicant_ethnicity_1', 'applicant_race_1', 'applicant_race_2', 'co_applicant_race_1', 'co_applicant_race_2', 'applicant_sex', 'co_applicant_sex', 'applicant_age', 'co_applicant_age']
 
-    // console.log(formData);
-    return formData;
-  }
+function PrepareFormData() {
+  const formData = {};
+
+  expectedFeatureNames.forEach((feature, index) => {
+    const inputElement = document.getElementById(feature);
+    if (inputElement) {
+      formData[feature] = inputElement.value;
+    }
+  });
+
+  return formData;
+}
 
 
     function ConvertFormData(formData) {
@@ -738,11 +732,8 @@
           }
         }
       }
-
       return inputArray;
     }
-
-
 
     // Fetch Prediction Data
     async function fetchPredictionData(formData) {
@@ -764,7 +755,6 @@
       // Define the data to be sent
       const formData = PrepareFormData();
       const convertedData = ConvertFormData(formData); // Convert the form data
-      console.log(convertedData);
 
       // Make the AJAX request
       $.ajax({

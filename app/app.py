@@ -66,12 +66,14 @@ def predict():
             
             # Access the JSON data sent from the client
             request_data = request.get_json()
-
-            # Map expected feature names to values in request_data
-            input_data = [float(request_data.get(feature, 0)) for feature in expected_feature_names]
+            logger.info('request_data: %s', request_data)
+            
+            # Map expected feature names to values in request_data and conditionally convert to float
+            input_data = [float(request_data.get(feature, 0)) if not isinstance(request_data.get(feature), (float, int)) else request_data.get(feature) for feature in expected_feature_names]
 
             # Convert the input data to a NumPy array
             input_data = np.array(input_data).reshape(1, -1)
+
             logger.info('input_data: %s', input_data)
 
             # Make prediction using the pre-trained model
