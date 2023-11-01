@@ -43,7 +43,7 @@ def predict():
 
             # ----------------------------------------------------------------#
             # --------------------------Test----------------------------------#
-            
+            '''
             # Load the data from the NumPy array file
             row1_data = np.load('../notebooks/Christinas/EDA_stepwise/row1.npy')
 
@@ -54,14 +54,16 @@ def predict():
             prediction1 = model_xgboost.predict(input_data_test)
 
             # Define the "action taken" based on the model output
-            action_taken1 = 'rejected' if prediction1 == 0 else 'accepted'
+            action_taken1 = 'accepted' if prediction1 == 1 else 'rejected'
             logger.info('Prediction1: %s', prediction1)
             logger.info('Action taken1: %s', action_taken1)
             
+            '''
+
+            
             # ----------------------------------------------------------------#
             # --------------------------Form----------------------------------#
-
-            ''' 
+            
             # Access the JSON data sent from the client
             request_data = request.get_json()
 
@@ -76,10 +78,10 @@ def predict():
             prediction = model_xgboost.predict(input_data)
 
             # Define the "action taken" based on the model output
-            action_taken = 'rejected' if prediction == 0 else 'accepted'
-            '''
+            action_taken = 'accepted' if prediction == 1 else 'rejected'
+            
             # Return prediction as JSON response
-            response_data = {'action_taken': action_taken1}
+            response_data = {'action_taken': action_taken}
 
             return jsonify(response_data), 200
         except Exception as e:

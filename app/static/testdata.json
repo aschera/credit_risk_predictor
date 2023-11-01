@@ -1,47 +1,88 @@
 {
-  
-    "acceptedDummy00": {
-      "applicantData": {
-        "applicant_age": 0.285714,
-        "applicant_sex": 0.0,
-        "applicant_race_1": 1.0,
-        "applicant_race_2": 0.0,
-        "applicant_ethnicity_1": 1.0,
-        "income": 0.030906,
-        "debt_to_income_ratio": 0.600000,
-        "applicant_credit_score_type": 0.125
-      },
-      "coApplicantData": {
-        "co_applicant_age": 0.285714,
-        "co_applicant_sex": 0.200000,
-        "co_applicant_race_1": 1.0,
-        "co_applicant_race_2": 0.0930232558139534,
-        "co_applicant_ethnicity_1": 1.0,
-        "co_applicant_credit_score_type": 0.2222222222222222
-      },
-      "propertyInfo": {
-        "lien_status": 0.000000,
-        "property_value": 0.017391,
-        "occupancy_type": 0.000000,
-        "manufactured_home_secured_property_type": 1.000000,
-        "manufactured_home_land_property_interest": 1.000000,
-        "total_units": 0.000000
-      },
-      "loanDetails": {
-        "census_tract":0.091639, 
-        "loan_amount": 0.0052941176470588,
-        "interest_rate": 0.3333333333333333,
-        "loan_term": 0.3333333333333333,
-        "combined_loan_to_value_ratio": 0.4,
-        "negative_amortization": 1.0,
-        "total_loan_costs": 0.3529411764705882,
-        "loan_type": 0.0,
-        "interest_only_payment": 1.0,
-        "balloon_payment": 1.0,
-        "other_nonamortizing_features": 1.0,
-        "origination_charges": 0.0,
-        "open_end_line_of_credit": 1.0
-      }
+  "acceptedDummy00": {
+    "applicantData": {
+      "applicant_age": 0.285714,
+      "applicant_sex": 0.0,
+      "applicant_race_1": 1.0,
+      "applicant_race_2": 0.0,
+      "applicant_ethnicity_1": 1.0,
+      "income": 0.030906,
+      "debt_to_income_ratio": 0.600000,
+      "applicant_credit_score_type": 0.125
+    },
+    "coApplicantData": {
+      "co_applicant_age": 0.285714,
+      "co_applicant_sex": 0.200000,
+      "co_applicant_race_1": 1.0,
+      "co_applicant_race_2": 0.0930232558139534,
+      "co_applicant_ethnicity_1": 1.0,
+      "co_applicant_credit_score_type": 0.2222222222222222
+    },
+    "propertyInfo": {
+      "lien_status": 0.000000,
+      "property_value": 0.017391,
+      "occupancy_type": 0.000000,
+      "manufactured_home_secured_property_type": 1.000000,
+      "manufactured_home_land_property_interest": 1.000000,
+      "total_units": 0.000000
+    },
+    "loanDetails": {
+      "census_tract": 0.091639,
+      "loan_amount": 0.0052941176470588,
+      "interest_rate": 0.3333333333333333,
+      "loan_term": 0.3333333333333333,
+      "combined_loan_to_value_ratio": 0.4,
+      "negative_amortization": 1.0,
+      "total_loan_costs": 0.3529411764705882,
+      "loan_type": 0.0,
+      "interest_only_payment": 1.0,
+      "balloon_payment": 1.0,
+      "other_nonamortizing_features": 1.0,
+      "origination_charges": 0.0,
+      "open_end_line_of_credit": 1.0
+    }
+  },
+  "acceptedDummy01": {
+    "applicantData": {
+      "applicant_age": 0.285714,
+      "applicant_sex": 1.0,
+      "applicant_race_1": 1.0,
+      "applicant_race_2": 1.0,
+      "applicant_ethnicity_1": 1.0,
+      "income": 0.030906,
+      "debt_to_income_ratio": 0.600000,
+      "applicant_credit_score_type": 0.125
+    },
+    "coApplicantData": {
+      "co_applicant_age": 0.285714,
+      "co_applicant_sex": 0.200000,
+      "co_applicant_race_1": 1.0,
+      "co_applicant_race_2": 0.0930232558139534,
+      "co_applicant_ethnicity_1": 1.0,
+      "co_applicant_credit_score_type": 0.2222222222222222
+    },
+    "propertyInfo": {
+      "lien_status": 0.000000,
+      "property_value": 0.017391,
+      "occupancy_type": 0.000000,
+      "manufactured_home_secured_property_type": 1.000000,
+      "manufactured_home_land_property_interest": 1.000000,
+      "total_units": 0.000000
+    },
+    "loanDetails": {
+      "census_tract": 0.091639,
+      "loan_amount": 0.0052941176470588,
+      "interest_rate": 0.3333333333333333,
+      "loan_term": 0.3333333333333333,
+      "combined_loan_to_value_ratio": 0.4,
+      "negative_amortization": 1.0,
+      "total_loan_costs": 0.3529411764705882,
+      "loan_type": 1.0,
+      "interest_only_payment": 10.0,
+      "balloon_payment": 0.0,
+      "other_nonamortizing_features": 0.0,
+      "origination_charges": 1.0,
+      "open_end_line_of_credit": 0.0
     }
   }
-  
+}
