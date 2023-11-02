@@ -291,8 +291,10 @@
                     <div class="input-field col s12">
                       <select id="manufactured_home_land_property_interest" name="manufactured_home_land_property_interest" class="validate">
                         <option value="1">Direct ownership</option>
-                        <option value="0">Indirect ownership</option>
-                        <option value="0.5">Paid leasehold</option>
+                        <option value="2">Indirect ownership</option>
+                        <option value="3">Paid leasehold</option>
+                        <option value="4">Unpaid leasehold</option>
+                        <option value="5">Not applicable</option>
                       </select>
                       <label for="manufactured_home_land_property_interest">Manufactured Home Land Property
                         Interest</label>
@@ -317,11 +319,11 @@
                     <div class="input-field col s12">
                       <select id="manufactured_home_secured_property_type" name="manufactured_home_secured_property_type" class="validate">
                         <option value="1">Manufactured home and land</option>
-                        <option value="0">Manufactured home and not land</option>
-                        <option value="0.5">Not applicable</option>
+                        <option value="2">Manufactured home and not land</option>
+                        <option value="3">Not applicable</option>
                       </select>
                       <label for="manufactured_home_secured_property_type">Manufactured Home Land Property
-                        Interest</label>
+                        Type</label>
                     </div>
                   </div>
 
@@ -369,26 +371,28 @@
 
                   <div class="row">
                     <div class="input-field col s12">
-                      <input id="loan_amount" type="text" name="loan_amount" class="validate" step="0.0001">
-                      <label for="loan_amount">Loan Amount (between 0.0001 and 0.5)</label>
+                      <input placeholder="Loan Amount" id="loan_amount" name="loan_amount" type="text"
+                        class="validate">
+                      <label for="negative_amortization">Loan Amount</label>
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="origination_charges" name="origination_charges" class="validate">
-                        <option value="0">0-500</option>
-                        <option value="0.142857">500-1000</option>
-                        <option value="0.285714">1000-1500</option>
-                        <option value="0.428571">1500-2000</option>
-                        <option value="0.571429">2000-2500</option>
-                        <option value="0.714286">2500-3000</option>
-                        <option value="0.857143">3000-3500</option>
-                        <option value="1">3500-4000</option>
-                      </select>
-                      <label for="origination_charges">Origination Charges</label>
+                        <select id="origination_charges" name="origination_charges" class="validate">
+                            <option value="1">0-500</option>
+                            <option value="3">500-1000</option>
+                            <option value="2">1000-1500</option>
+                            <option value="4">1500-2000</option>
+                            <option value="5">2000-2500</option>
+                            <option value="6">2500-3000</option>
+                            <option value="7">3000-3500</option>
+                            <option value="8">3500-4000</option>
+                        </select>
+                        <label for="origination_charges">Origination Charges</label>
                     </div>
-                  </div>
+                </div>
+                
 
                   <div class="row">
                     <div class="input-field col s12">
@@ -413,18 +417,19 @@
 
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="loan_term" name="loan_term" class="validate">
-                        <option value="0.833333">27-31 years</option>
-                        <option value="0.333333">12-16 years</option>
-                        <option value="0.5">17-21 years</option>
-                        <option value="0.166667">7-11 years</option>
-                        <option value="0.666667">22-26 years</option>
-                        <option value="0.0">2-6 years</option>
-                        <option value="1.0">37-41 years</option>
-                      </select>
-                      <label for="loan_term">Loan Term</label>
+                        <select id="loan_term" name="loan_term" class="validate">
+                            <option value="6">27-31 years</option>
+                            <option value="3">12-16 years</option>
+                            <option value="4">17-21 years</option>
+                            <option value="2">7-11 years</option>
+                            <option value="5">22-26 years</option>
+                            <option value="1">2-6 years</option>
+                            <option value="7">37-41 years</option>
+                        </select>
+                        <label for="loan_term">Loan Term</label>
                     </div>
-                  </div>
+                </div>
+                
 
                   <div class="row">
                     <div class="input-field col s12">
@@ -439,29 +444,30 @@
 
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="total_loan_costs" name="total_loan_costs" class="validate">
-                        <option value="0.235294">0-500</option>
-                        <option value="0.058824">3000-3500</option>
-                        <option value="0.000000">2500-3000</option>
-                        <option value="0.117647">3500-4000</option>
-                        <option value="0.176471">500-1000</option>
-                        <option value="0.294118">2000-2500</option>
-                        <option value="0.411765">4000-4500</option>
-                        <option value="0.352941">4500-5000</option>
-                        <option value="0.529412">5000-5500</option>
-                        <option value="0.470588">1500-2000</option>
-                        <option value="0.588235">5500-6000</option>
-                        <option value="0.647059">1000-1500</option>
-                        <option value="0.705882">6000-6500</option>
-                        <option value="0.764706">6500-7000</option>
-                        <option value="0.823529">7000-7500</option>
-                        <option value="0.882353">7500-8000</option>
-                        <option value="0.941176">8000-8500</option>
-                        <option value="1.000000">8500-9000</option>
-                      </select>
-                      <label for="total_loan_costs">Total Loan Costs</label>
+                        <select id="total_loan_costs" name="total_loan_costs" class="validate">
+                            <option value="7">0-500</option>
+                            <option value="2">3000-3500</option>
+                            <option value="1">2500-3000</option>
+                            <option value="3">3500-4000</option>
+                            <option value="4">500-1000</option>
+                            <option value="5">2000-2500</option>
+                            <option value="6">4000-4500</option>
+                            <option value="8">4500-5000</option>
+                            <option value="10">5000-5500</option>
+                            <option value="9">1500-2000</option>
+                            <option value="12">5500-6000</option>
+                            <option value="11">1000-1500</option>
+                            <option value="13">6000-6500</option>
+                            <option value="14">6500-7000</option>
+                            <option value="15">7000-7500</option>
+                            <option value="16">7500-8000</option>
+                            <option value="17">8000-8500</option>
+                            <option value="18">8500-9000</option>
+                        </select>
+                        <label for="total_loan_costs">Total Loan Costs</label>
                     </div>
-                  </div>
+                </div>
+                
 
                   <div class="row">
                     <div class="input-field col s12">
@@ -472,27 +478,29 @@
 
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="combined_loan_to_value_ratio" name="combined_loan_to_value_ratio" class="validate">
-                        <option value="0.000000">75.0-80.0 </option>
-                        <option value="0.066667">70.0-75.0 </option>
-                        <option value="0.133333">95.0-100.0 </option>
-                        <option value="0.200000">65.0-70.0 </option>
-                        <option value="0.266667">90.0-95.0 </option>
-                        <option value="0.333333">85.0-90.0 </option>
-                        <option value="0.400000">55.0-60.0 </option>
-                        <option value="0.466667">60.0-65.0 </option>
-                        <option value="0.533333">80.0-85.0 </option>
-                        <option value="0.600000">50.0-55.0 </option>
-                        <option value="0.666667">45.0-50.0 </option>
-                        <option value="0.733333">40.0-45.0 </option>
-                        <option value="0.800000">35.0-40.0 </option>
-                        <option value="0.866667">100.0-120.0 </option>
-                        <option value="0.933333">30.0-35.0 </option>
-                        <option value="1.000000">25.0-30.0 </option>
-                      </select>
-                      <label for="combined_loan_to_value_ratio">Combined loan to value ratio</label>
+                        <select id="combined_loan_to_value_ratio" name="combined_loan_to_value_ratio" class="validate">
+                            <option value="1">75.0-80.0</option>
+                            <option value="2">70.0-75.0</option>
+                            <option value="3">95.0-100.0</option>
+                            <option value="4">65.0-70.0</option>
+                            <option value="5">90.0-95.0</option>
+                            <option value="6">85.0-90.0</option>
+                            <option value="7">55.0-60.0</option>
+                            <option value="8">60.0-65.0</option>
+                            <option value="9">80.0-85.0</option>
+                            <option value="10">50.0-55.0</option>
+                            <option value="11">45.0-50.0</option>
+                            <option value="12">40.0-45.0</option>
+                            <option value="13">35.0-40.0</option>
+                            <option value="14">30.0-35.0</option>
+                            <option value="15">25.0-30.0</option>
+                            <option value="16">100.0-120.0</option>
+                            <option value="17">0.0-25.0</option>
+                        </select>
+                        <label for="combined_loan_to_value_ratio">Combined loan to value ratio</label>
                     </div>
-                  </div>
+                </div>
+                
 
                   <div class="row">
                     <div class="input-field col s12">
@@ -627,28 +635,7 @@
     });
   </script>
 
-<script>
-document.getElementById("loanForm").addEventListener("submit", function(event) {
-  event.preventDefault(); // Prevent the form from submitting normally
 
-  // Serialize the form data to a string
-  const formData = new FormData(this);
-  let formDataString = "";
-  for (const [key, value] of formData.entries()) {
-    formDataString += `${key}: ${value}\n`;
-  }
-
-  // Log the form data to the browser console
-  console.log("Form Data:\n", formDataString);
-
-  // Now you can submit the form, or you can send the data via AJAX, or perform other actions as needed
-  // this.submit(); // Uncomment this line to submit the form
-
-  // For debugging, you can also display the form data on the page
-  // const outputElement = document.getElementById("formOutput");
-  // outputElement.textContent = formDataString;
-});
-</script>
 
 </body>
 
