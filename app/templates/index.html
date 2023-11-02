@@ -77,7 +77,7 @@
                       <select id="applicant_ethnicity_1" name="applicant_ethnicity_1" class="validate">
                         <option value="" disabled selected>Choose an Ethnicity</option>
                         <option value="1"> Not Hispanic or Latino</option>
-                        <option value="0">Hispanic or Latino</option>
+                        <option value="2">Hispanic or Latino</option>
                       </select>
                       <label for="applicant_ethnicity_1">Ethnicity</label>
                     </div>
@@ -109,17 +109,24 @@
                     <div class="input-field col s12">
                       <select id="applicant_race_2" name="applicant_race_2" class="validate">
                         <option value="" disabled selected>Choose a Secondary Race</option>
-                        <option value="0.000000">White</option>
-                        <option value="0.564103">Black or African American</option>
-                        <option value="0.461538">American Indian or Alaska Native</option>
-                        <option value="0.487179">Asian</option>
-                        <option value="0.410256">Asian Indian</option>
-                        <option value="0.512821">Chinese</option>
-                        <option value="0.435897">Filipino</option>
-                        <option value="1.000000">Japanese</option>
-                        <option value="0.538462">Korean</option>
-                        <option value="0.974359">Vietnamese</option>
-                        <option value="0.923077">Other Asian</option>
+                        <option value="1">American Indian or Alaska Native</option>
+                        <option value="2">Asian</option>
+                        <option value="21">Asian Indian</option>
+                        <option value="22">Chinese</option>
+                        <option value="23">Filipino</option>
+                        <option value="24">Japanese</option>
+                        <option value="25">Korean</option>
+                        <option value="26">Vietnamese</option>
+                        <option value="27">Other Asian</option>
+                        <option value="3">Black or African American</option>
+                        <option value="4">Native Hawaiian or Other Pacific Islander</option>
+                        <option value="41">Native Hawaiian</option>
+                        <option value="42">Guamanian or Chamorro</option>
+                        <option value="43">Samoan</option>
+                        <option value="44">Other Pacific Islander</option>
+                        <option value="5">White</option>
+                        <option value="6">Information not provided by applicant in mail, internet, or telephone application</option>
+                        <option value="7">Not applicable</option>
                       </select>
                       <label for="applicant_race_2">Secondary Race</label>
                     </div>
@@ -129,11 +136,14 @@
                     <div class="input-field col s12">
                       <select id="applicant_credit_score_type" name="applicant_credit_score_type" class="validate">
                         <option value="1">Equifax Beacon 5.0</option>
-                        <option value="0">Experian Fair Isaac</option>
-                        <option value="0.250">FICO Risk Score Classic 04</option>
-                        <option value="0.125">FICO Risk Score Classic 98</option>
-                        <option value="0.750">VantageScore 2.0</option>
-                        <option value="0.875">VantageScore 3.0</option>
+                        <option value="2">Experian Fair Isaac</option>
+                        <option value="3">FICO Risk Score Classic 04</option>
+                        <option value="4">FICO Risk Score Classic 98</option>
+                        <option value="5">VantageScore 2.0</option>
+                        <option value="6">VantageScore 3.0</option>
+                        <option value="7">More than one credit scoring model</option>
+                        <option value="8">Other credit scoring model</option>
+                        <option value="9">Not applicable</option>
                       </select>
                       <label for="applicant_credit_score_type">Applicant Credit Score Type</label>
                     </div>
@@ -143,12 +153,12 @@
                     <div class="input-field col s12">
                       <select id="debt_to_income_ratio" name="debt_to_income_ratio"class="validate">
                         <option value="" disabled selected>Choose a Debt-to-Income Ratio Category</option>
-                        <option value="0.6">36%-50%</option>
-                        <option value="0.2">20%-&lt;30%</option>
-                        <option value="0.4">30%-&lt;36%</option>
-                        <option value="1.0">&lt;20%</option>
-                        <option value="0.0">&gt;60%</option>
-                        <option value="0.8">50%-60%</option>
+                        <option value="4">36%-50%</option>
+                        <option value="2">20%-&lt;30%</option>
+                        <option value="3">30%-&lt;36%</option>
+                        <option value="1">&lt;20%</option>
+                        <option value="6">&gt;60%</option>
+                        <option value="5">50%-60%</option>
                       </select>
                       <label for="debt_to_income_ratio">Debt-to-Income Ratio Category</label>
                     </div>
@@ -184,7 +194,7 @@
                       <select id="co_applicant_ethnicity_1" name="co_applicant_ethnicity_1" class="validate">
                         <option value="" disabled selected>Choose an Ethnicity</option>
                         <option value="1"> Not Hispanic or Latino</option>
-                        <option value="0">Hispanic or Latino</option>
+                        <option value="2">Hispanic or Latino</option>
                       </select>
                       <label for="co_applicant_ethnicity_1">Ethnicity</label>
                     </div>
@@ -217,46 +227,47 @@
                     <div class="input-field col s12">
                       <select id="co_applicant_race_2" name="co_applicant_race_2" class="validate">
                         <option value="" disabled selected>Choose a Secondary Race</option>
-                        <option value="0.093023">White</option>
-                        <option value="0.511628">Black or African American</option>
-                        <option value="0.534884">American Indian or Alaska Native</option>
-                        <option value="0.465116">Asian</option>
-                        <option value="0.604651">Other Asian</option>
-                        <option value="0.488372">Chinese</option>
-                        <option value="0.581395">Vietnamese</option>
-                        <option value="1.000000">Other Pacific Islander</option>
-                        <option value="0.558140">Korean</option>
-                        <option value="0.930233">Native Hawaiian</option>
-                        <option value="0.000000">American Indian or Alaska Native</option>
-                        <option value="0.069767">Native Hawaiian or Other Pacific Islander</option>
-                        <option value="0.046512">Black or African American</option>
+                        <option value="1">American Indian or Alaska Native</option>
+                        <option value="2">Asian</option>
+                        <option value="21">Asian Indian</option>
+                        <option value="22">Chinese</option>
+                        <option value="23">Filipino</option>
+                        <option value="24">Japanese</option>
+                        <option value="25">Korean</option>
+                        <option value="26">Vietnamese</option>
+                        <option value="27">Other Asian</option>
+                        <option value="3">Black or African American</option>
+                        <option value="4">Native Hawaiian or Other Pacific Islander</option>
+                        <option value="41">Native Hawaiian</option>
+                        <option value="42">Guamanian or Chamorro</option>
+                        <option value="43">Samoan</option>
+                        <option value="44">Other Pacific Islander</option>
+                        <option value="5">White</option>
+                        <option value="6">Information not provided by applicant in mail, internet, or telephone application</option>
+                        <option value="7">Not applicable</option>
                       </select>
                       <label for="co_applicant_race_2">Secondary Race</label>
                     </div>
                   </div>
+                  
                   <div class="row">
                     <div class="input-field col s12">
                       <select id="co_applicant_credit_score_type" name="co_applicant_credit_score_type" class="validate">
                         <option value="1">Equifax Beacon 5.0</option>
-                        <option value="0">Experian Fair Isaac</option>
-                        <option value="0.250">FICO Risk Score Classic 04</option>
-                        <option value="0.125">FICO Risk Score Classic 98</option>
-                        <option value="0.750">VantageScore 2.0</option>
-                        <option value="0.875">VantageScore 3.0</option>
+                        <option value="2">Experian Fair Isaac</option>
+                        <option value="3">FICO Risk Score Classic 04</option>
+                        <option value="4">FICO Risk Score Classic 98</option>
+                        <option value="5">VantageScore 2.0</option>
+                        <option value="6">VantageScore 3.0</option>
+                        <option value="7">More than one credit scoring model</option>
+                        <option value="8">Other credit scoring model</option>
+                        <option value="9">Not applicable</option>
+                        <option value="10">No co-applicant</option>
                       </select>
                       <label for="co_applicant_credit_score_type">Applicant Credit Score Type</label>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <select id="open_end_line_of_credit" name="open_end_line_of_credit" class="validate">
-                        <option value="" disabled selected>Choose a Race</option>
-                        <option value="1">Open-end line of credit</option>
-                        <option value="0">Not an open-end line of credit</option>
-                      </select>
-                      <label for="open_end_line_of_credit">Open end line of credit</label>
-                    </div>
-                  </div>
+
 
                 </div>
               </div>
@@ -344,6 +355,17 @@
               </div>
               <div class="row">
                 <div class="col s6">
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="open_end_line_of_credit" name="open_end_line_of_credit" class="validate">
+                        <option value="" disabled selected>Choose a Race</option>
+                        <option value="1">Open-end line of credit</option>
+                        <option value="2">Not an open-end line of credit</option>
+                      </select>
+                      <label for="open_end_line_of_credit">Open end line of credit</label>
+                    </div>
+                  </div>
 
                   <div class="row">
                     <div class="input-field col s12">
