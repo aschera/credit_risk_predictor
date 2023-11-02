@@ -21,7 +21,7 @@
   <div class="container main">
     <div class="row" style="background-color: yellow;">
       <div class="input-field col s12 browser-default">
-        <select id="dummyDataDropdown" onchange="fillFormWithDummyData()">
+        <select id="dummyDataDropdown" onchange="populateFormFieldFromDummyData()">
           <option value="" disabled selected>Choose your option</option>
         </select>
         <label>Select Dummy Data:</label>
@@ -32,8 +32,11 @@
       <div class="col s12">
         <div class="row">
           <div class="col s8">
-            <form id="loanForm" action="predict">
-              <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+            <form id="loanForm" method="post" action="{{ url_for('predict')}}">
+              <button class="btn waves-effect waves-light" type="submit">
+                Predict
+              </button>
+
               <div class="row">
                 <div class="col s12">
                   <h4>Applicant data</h4>
@@ -41,9 +44,10 @@
               </div>
               <div class="row">
                 <div class="col s6">
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="applicant_age" class="validate">
+                      <select id="applicant_age" name="applicant_age" class="validate">
                         <option value="" disabled selected>Choose an Age Category</option>
                         <option value="2">45-54</option>
                         <option value="1">35-44</option>
@@ -56,19 +60,21 @@
                       <label for="applicant_age">Age Category</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="applicant_race_1" class="validate">
+                      <select id="applicant_race_1" name="applicant_race_1" class="validate">
                         <option value="" disabled selected>Choose a Race</option>
-                        <option value="1">White</option>
-                        <option value="0">Black or African American</option>
+                        <option value="5">White</option>
+                        <option value="3">Black or African American</option>
                       </select>
                       <label for="applicant_race_1">Race</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="applicant_ethnicity_1" class="validate">
+                      <select id="applicant_ethnicity_1" name="applicant_ethnicity_1" class="validate">
                         <option value="" disabled selected>Choose an Ethnicity</option>
                         <option value="1"> Not Hispanic or Latino</option>
                         <option value="0">Hispanic or Latino</option>
@@ -76,17 +82,20 @@
                       <label for="applicant_ethnicity_1">Ethnicity</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="100000" id="income" type="text" class="validate" step="0.01">
+                      <input placeholder="100000" id="income" name="income" type="text" class="validate" step="0.01">
                       <label for="income">Income</label>
                     </div>
                   </div>
+
                 </div>
                 <div class="col s6">
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="applicant_sex" class="validate">
+                      <select id="applicant_sex" name="applicant_sex" class="validate">
                         <option value="" disabled selected>Choose a Gender</option>
                         <option value="1">Male</option>
                         <option value="2">Female</option>
@@ -95,9 +104,10 @@
                       <label for="applicant_sex">Sex</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="applicant_race_2" class="validate">
+                      <select id="applicant_race_2" name="applicant_race_2" class="validate">
                         <option value="" disabled selected>Choose a Secondary Race</option>
                         <option value="0.000000">White</option>
                         <option value="0.564103">Black or African American</option>
@@ -114,9 +124,10 @@
                       <label for="applicant_race_2">Secondary Race</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="applicant_credit_score_type" class="validate">
+                      <select id="applicant_credit_score_type" name="applicant_credit_score_type" class="validate">
                         <option value="1">Equifax Beacon 5.0</option>
                         <option value="0">Experian Fair Isaac</option>
                         <option value="0.250">FICO Risk Score Classic 04</option>
@@ -127,9 +138,10 @@
                       <label for="applicant_credit_score_type">Applicant Credit Score Type</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="debt_to_income_ratio" class="validate">
+                      <select id="debt_to_income_ratio" name="debt_to_income_ratio"class="validate">
                         <option value="" disabled selected>Choose a Debt-to-Income Ratio Category</option>
                         <option value="0.6">36%-50%</option>
                         <option value="0.2">20%-&lt;30%</option>
@@ -141,6 +153,7 @@
                       <label for="debt_to_income_ratio">Debt-to-Income Ratio Category</label>
                     </div>
                   </div>
+
                 </div>
               </div>
               <div class="row">
@@ -148,11 +161,12 @@
                   <h4>Co-applicant</h4>
                 </div>
               </div>
+
               <div class="row">
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="co_applicant_age" class="validate">
+                      <select id="co_applicant_age" name="co_applicant_age" class="validate">
                         <option value="" disabled selected>Choose an Age Category</option>
                         <option value="2">45-54</option>
                         <option value="1">35-44</option>
@@ -167,7 +181,7 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="co_applicant_ethnicity_1" class="validate">
+                      <select id="co_applicant_ethnicity_1" name="co_applicant_ethnicity_1" class="validate">
                         <option value="" disabled selected>Choose an Ethnicity</option>
                         <option value="1"> Not Hispanic or Latino</option>
                         <option value="0">Hispanic or Latino</option>
@@ -177,7 +191,7 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="co_applicant_sex" class="validate">
+                      <select id="co_applicant_sex" name="co_applicant_sex" class="validate">
                         <option value="" disabled selected>Choose a Gender</option>
                         <option value="1">Male</option>
                         <option value="2">Female</option>
@@ -191,17 +205,17 @@
                 <div class="col s6">
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="co_applicant_race_1" class="validate">
+                      <select id="co_applicant_race_1" name="co_applicant_race_1" class="validate">
                         <option value="" disabled selected>Choose a Race</option>
-                        <option value="1">White</option>
-                        <option value="0">Black or African American</option>
+                        <option value="5">White</option>
+                        <option value="3">Black or African American</option>
                       </select>
                       <label for="co_applicant_race_1">Race</label>
                     </div>
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="co_applicant_race_2" class="validate">
+                      <select id="co_applicant_race_2" name="co_applicant_race_2" class="validate">
                         <option value="" disabled selected>Choose a Secondary Race</option>
                         <option value="0.093023">White</option>
                         <option value="0.511628">Black or African American</option>
@@ -222,7 +236,7 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="co_applicant_credit_score_type" class="validate">
+                      <select id="co_applicant_credit_score_type" name="co_applicant_credit_score_type" class="validate">
                         <option value="1">Equifax Beacon 5.0</option>
                         <option value="0">Experian Fair Isaac</option>
                         <option value="0.250">FICO Risk Score Classic 04</option>
@@ -235,7 +249,7 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="open_end_line_of_credit" class="validate">
+                      <select id="open_end_line_of_credit" name="open_end_line_of_credit" class="validate">
                         <option value="" disabled selected>Choose a Race</option>
                         <option value="1">Open-end line of credit</option>
                         <option value="0">Not an open-end line of credit</option>
@@ -246,6 +260,7 @@
 
                 </div>
               </div>
+
               <div class="row">
                 <div class="col s12">
                   <h4>Property info</h4>
@@ -253,15 +268,17 @@
               </div>
               <div class="row">
                 <div class="col s6">
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Property Value" id="property_value" type="text" class="validate" step="0.01">
+                      <input placeholder="Property Value" name="property_value" id="property_value" type="text" class="validate" step="0.01">
                       <label for="property_value">Property Value</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="manufactured_home_land_property_interest" class="validate">
+                      <select id="manufactured_home_land_property_interest" name="manufactured_home_land_property_interest" class="validate">
                         <option value="1">Direct ownership</option>
                         <option value="0">Indirect ownership</option>
                         <option value="0.5">Paid leasehold</option>
@@ -270,11 +287,13 @@
                         Interest</label>
                     </div>
                   </div>
+
                 </div>
                 <div class="col s6">
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="occupancy_type" class="validate">
+                      <select id="occupancy_type" name="occupancy_type" class="validate">
                         <option value="0">Principal residence</option>
                         <option value="1">Second residence</option>
                         <option value="0.5">Investment property</option>
@@ -282,9 +301,10 @@
                       <label for="occupancy_type">Occupancy Type</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="manufactured_home_secured_property_type" class="validate">
+                      <select id="manufactured_home_secured_property_type" name="manufactured_home_secured_property_type" class="validate">
                         <option value="1">Manufactured home and land</option>
                         <option value="0">Manufactured home and not land</option>
                         <option value="0.5">Not applicable</option>
@@ -293,24 +313,28 @@
                         Interest</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Total Units" id="total_units" type="number" class="validate">
+                      <input placeholder="Total Units" id="total_units" name="total_units" type="number" class="validate">
                       <label for="total_units">Total Units</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Lien Status" id="lien_status" type="text" class="validate">
+                      <input placeholder="Lien Status" id="lien_status" name="lien_status" type="text" class="validate">
                       <label for="lien_status">Lien Status</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Census Tract" id="census_tract" type="text" class="validate">
+                      <input placeholder="Census Tract" id="census_tract" name="census_tract" type="text" class="validate">
                       <label for="census_tract">Census Tract</label>
                     </div>
                   </div>
+
                 </div>
               </div>
               <div class="row">
@@ -320,15 +344,17 @@
               </div>
               <div class="row">
                 <div class="col s6">
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <input id="loan_amount" type="text" class="validate" step="0.0001">
+                      <input id="loan_amount" type="text" name="loan_amount" class="validate" step="0.0001">
                       <label for="loan_amount">Loan Amount (between 0.0001 and 0.5)</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="origination_charges" class="validate">
+                      <select id="origination_charges" name="origination_charges" class="validate">
                         <option value="0">0-500</option>
                         <option value="0.142857">500-1000</option>
                         <option value="0.285714">1000-1500</option>
@@ -341,9 +367,10 @@
                       <label for="origination_charges">Origination Charges</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="interest_rate" class="validate">
+                      <select id="interest_rate" name="interest_rate"  class="validate">
                         <option value="" disabled selected>Choose an Interest Rate</option>
                         <option value="1">0.0-1.0</option>
                         <option value="2">1.0-2.0</option>
@@ -361,9 +388,10 @@
                       <label for="interest_rate">Interest Rate</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="loan_term" class="validate">
+                      <select id="loan_term" name="loan_term" class="validate">
                         <option value="0.833333">27-31 years</option>
                         <option value="0.333333">12-16 years</option>
                         <option value="0.5">17-21 years</option>
@@ -378,22 +406,18 @@
 
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Discount Points" id="discountPoints" type="number" class="validate">
-                      <label for="discountPoints">Discount Points</label>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <input placeholder="Negative Amortization" id="negative_amortization" type="text"
+                      <input placeholder="Negative Amortization" id="negative_amortization" name="negative_amortization" type="text"
                         class="validate">
                       <label for="negative_amortization">Negative Amortization</label>
                     </div>
                   </div>
+
                 </div>
                 <div class="col s6">
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="total_loan_costs" class="validate">
+                      <select id="total_loan_costs" name="total_loan_costs" class="validate">
                         <option value="0.235294">0-500</option>
                         <option value="0.058824">3000-3500</option>
                         <option value="0.000000">2500-3000</option>
@@ -419,16 +443,14 @@
 
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Loan Type" id="loan_type" type="text" class="validate">
+                      <input placeholder="Loan Type" id="loan_type" name="loan_type" type="text" class="validate">
                       <label for="loan_type">Loan Type</label>
                     </div>
                   </div>
 
-
-
                   <div class="row">
                     <div class="input-field col s12">
-                      <select id="combined_loan_to_value_ratio" class="validate">
+                      <select id="combined_loan_to_value_ratio" name="combined_loan_to_value_ratio" class="validate">
                         <option value="0.000000">75.0-80.0 </option>
                         <option value="0.066667">70.0-75.0 </option>
                         <option value="0.133333">95.0-100.0 </option>
@@ -449,22 +471,25 @@
                       <label for="combined_loan_to_value_ratio">Combined loan to value ratio</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Interest-Only Payment" id="interest_only_payment" type="text"
+                      <input placeholder="Interest-Only Payment" id="interest_only_payment" name="interest_only_payment" type="text"
                         class="validate">
                       <label for="interest_only_payment">Interest-Only Payment</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Balloon Payment" id="balloon_payment" type="text" class="validate">
+                      <input placeholder="Balloon Payment" id="balloon_payment" name="balloon_payment" type="text" class="validate">
                       <label for="balloon_payment">Balloon Payment</label>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="input-field col s12">
-                      <input placeholder="Other Nonamortizing Features" id="other_nonamortizing_features" type="text"
+                      <input placeholder="Other Nonamortizing Features" id="other_nonamortizing_features" name="other_nonamortizing_features" type="text"
                         class="validate">
                       <label for="other_nonamortizing_features">Other Nonamortizing Features</label>
                     </div>
@@ -476,7 +501,9 @@
           </div>
           <div class="col s3">
             <h2>Prediction:</h2>
-            <p id="prediction">Result: </p>
+            <p id="prediction">
+              {{ prediction_text }}
+            </p>
           </div>
         </div>
       </div>
@@ -493,24 +520,24 @@
   <!-- Filling the dummy dropdown -->
   <script>
 
-    let dummyData;
+    let jsonData; 
 
-    // Load dummy data from JSON
-    fetch('./static/testdata.json')
+    // Load your reshaped JSON data
+    fetch('./static/testdata.json') 
       .then(response => response.json())
       .then(data => {
-        dummyData = data;
-        console.log('Dummy data loaded:', dummyData);
+        jsonData = data; // Assign the loaded data to the jsonData variable
+        console.log('JSON data loaded:', jsonData);
         populateDropdown();
       })
-      .catch(error => console.error('Error loading dummy data:', error));
+      .catch(error => console.error('Error loading JSON data:', error));
 
 
     // Function to fill form with dummy data
     function populateDropdown() {
       const dropdown = document.getElementById('dummyDataDropdown');
-      for (const key in dummyData) {
-        if (dummyData.hasOwnProperty(key)) {
+      for (const key in jsonData) {
+        if (jsonData.hasOwnProperty(key)) {
           const option = document.createElement('option');
           option.value = key;
           option.textContent = key;
@@ -527,162 +554,47 @@
 
 
 
-    //Filling the from with dummy data
-    function fillFormWithDummyData() {
-      const selectedOption = document.getElementById('dummyDataDropdown').value;
-      const data = dummyData[selectedOption];
+    // ----------------------------------------------------------------//
 
-      if (data) {
-        // Fill the form fields with dummy data
+    function populateFormFieldFromDummyData() {
+      const dropdown = document.getElementById('dummyDataDropdown');
+      const selectedDummyIndex = dropdown.selectedIndex; // Get the selected index
 
-        // applicant_age
-        const ageSelect = document.getElementById('applicant_age');
-        const selectedAgeValue = data.applicantData.applicant_age.toString();
-        ageSelect.value = selectedAgeValue;
-        M.FormSelect.init(ageSelect);
+      if (jsonData && jsonData[selectedDummyIndex]) {
+        const data = jsonData[selectedDummyIndex];
 
-        // applicant_race_1 / applicant_race_2
-        const raceSelect = document.getElementById('applicant_race_1');
-        const selectedRaceValue = data.applicantData.applicant_race_1.toString();
-        raceSelect.value = selectedRaceValue;
-        M.FormSelect.init(raceSelect);
+        for (const key in data) {
+          if (data.hasOwnProperty(key)) {
+            const value = data[key];
+            populateFormField(key, value);
+          }
+        }
 
-        const raceSelect2 = document.getElementById('applicant_race_2');
-        const selectedRaceValue2 = data.applicantData.applicant_race_2.toString();
-        raceSelect2.value = selectedRaceValue2;
-        M.FormSelect.init(raceSelect2);
-
-        //appllicant applicant_sex
-        const sexSelect = document.getElementById('applicant_sex');
-        const selectedSexValue = data.applicantData.applicant_sex.toString();
-        sexSelect.value = selectedSexValue;
-        M.FormSelect.init(sexSelect);
-
-        // appllicant and co-applicant applicant_ethnicity_1
-        const ethnicitySelect = document.getElementById('applicant_ethnicity_1');
-        const selectedEthnicityValue = data.applicantData.applicant_ethnicity_1.toString();
-        ethnicitySelect.value = selectedEthnicityValue;
-        M.FormSelect.init(ethnicitySelect);
-
-        const ethnicitySelect2 = document.getElementById('co_applicant_ethnicity_1');
-        const selectedEthnicityValue2 = data.coApplicantData.co_applicant_ethnicity_1.toString();
-        ethnicitySelect2.value = selectedEthnicityValue2;
-        M.FormSelect.init(ethnicitySelect2);
-
-        // debt to income ratio
-        const debt_to_income_ratioSelect = document.getElementById('debt_to_income_ratio');
-        const selecteddebt_to_income_ratio = data.applicantData.debt_to_income_ratio.toString();
-        debt_to_income_ratioSelect.value = selecteddebt_to_income_ratio;
-        M.FormSelect.init(debt_to_income_ratioSelect);
-
-        // credit score type applicant and co-applicant
-        const creditScoreSelect = document.getElementById('applicant_credit_score_type');
-        const selectedcreditScore = data.applicantData.applicant_credit_score_type.toString();
-        creditScoreSelect.value = selectedcreditScore;
-        M.FormSelect.init(creditScoreSelect);
-
-        const creditScoreSelect2 = document.getElementById('co_applicant_credit_score_type');
-        const selectedcreditScore2 = data.coApplicantData.co_applicant_credit_score_type.toString();
-        creditScoreSelect2.value = selectedcreditScore2;
-        M.FormSelect.init(creditScoreSelect2);
-
-        // co appllicant applicant_age
-        const ageSelect2 = document.getElementById('co_applicant_age');
-        const selectedAgeValue2 = data.coApplicantData.co_applicant_age.toString();
-        ageSelect2.value = selectedAgeValue2;
-        M.FormSelect.init(ageSelect2);
-
-        // co appllicant applicant_race_1 / applicant_race_2
-        const coraceSelect = document.getElementById('co_applicant_race_1');
-        const coselectedRaceValue = data.coApplicantData.co_applicant_race_1.toString();
-        coraceSelect.value = coselectedRaceValue;
-        M.FormSelect.init(coraceSelect);
-
-        const coraceSelect2 = document.getElementById('co_applicant_race_2');
-        const coselectedRaceValue2 = data.coApplicantData.co_applicant_race_2.toString();
-        coraceSelect2.value = coselectedRaceValue2;
-        M.FormSelect.init(coraceSelect2);
-
-        // co appllicant applicant_sex
-        const sexSelect2 = document.getElementById('co_applicant_sex');
-        const selectedSexValue2 = data.coApplicantData.co_applicant_sex.toString();
-        sexSelect2.value = selectedSexValue2;
-        M.FormSelect.init(sexSelect2);
-
-        // loan to value ratio
-        document.getElementById('combined_loan_to_value_ratio').value = data.loanDetails.combined_loan_to_value_ratio;
-        const ombined_loan_to_value_ratioSelect = document.getElementById('combined_loan_to_value_ratio');
-        const selectedombined_loan_to_value_ratioValue = data.loanDetails.combined_loan_to_value_ratio.toString();
-        ethnicitySelect2.value = selectedombined_loan_to_value_ratioValue;
-        M.FormSelect.init(ombined_loan_to_value_ratioSelect);
-
-        // interest rate
-        const interest_rateSelect = document.getElementById('interest_rate');
-        const selectedinterest_rateValue = data.loanDetails.interest_rate.toString();
-        interest_rateSelect.value = selectedinterest_rateValue;
-        M.FormSelect.init(interest_rateSelect);
-
-        // loan term
-        const loan_termSelect = document.getElementById('loan_term');
-        const selectedloan_termValue = data.loanDetails.loan_term.toString();
-        loan_termSelect.value = selectedloan_termValue;
-        M.FormSelect.init(loan_termSelect);
-
-        // total loan costs
-        const total_loan_costsSelect = document.getElementById('total_loan_costs');
-        const selectedtotal_loan_costsValue = data.loanDetails.total_loan_costs.toString();
-        total_loan_costsSelect.value = selectedtotal_loan_costsValue;
-        M.FormSelect.init(total_loan_costsSelect);
-
-        // origination_charges
-        const origination_chargesSelect = document.getElementById('origination_charges');
-        const selectedorigination_chargesValue = data.loanDetails.origination_charges.toString();
-        origination_chargesSelect.value = selectedorigination_chargesValue;
-        M.FormSelect.init(origination_chargesSelect);
-
-        // manufactured_home_land_property_interest
-        const manufactured_home_land_property_interestSelect = document.getElementById('manufactured_home_land_property_interest');
-        const selectedmanufactured_home_land_property_interestValue = data.propertyInfo.manufactured_home_land_property_interest.toString();
-        manufactured_home_land_property_interestSelect.value = selectedmanufactured_home_land_property_interestValue;
-        M.FormSelect.init(manufactured_home_land_property_interestSelect);
-
-        // manufactured_home_secured_property_type
-        const manufactured_home_secured_property_typeSelect = document.getElementById('manufactured_home_secured_property_type');
-        const selectedmanufactured_home_secured_property_typeValue = data.propertyInfo.manufactured_home_secured_property_type.toString();
-        manufactured_home_secured_property_typeSelect.value = selectedmanufactured_home_secured_property_typeValue;
-        M.FormSelect.init(manufactured_home_secured_property_typeSelect);
-
-        document.getElementById('open_end_line_of_credit').value = data.propertyInfo.open_end_line_of_credit;
-        document.getElementById('occupancy_type').value = data.propertyInfo.occupancy_type;
-        document.getElementById('total_units').value = data.propertyInfo.total_units;
-        document.getElementById('loan_amount').value = data.loanDetails.loan_amount;
-        document.getElementById('loan_type').value = data.loanDetails.loan_type;
-        document.getElementById('negative_amortization').value = data.loanDetails.negative_amortization;
-        document.getElementById('income').value = data.applicantData.income;
-        document.getElementById('property_value').value = data.propertyInfo.property_value;
-        document.getElementById('interest_only_payment').value = data.loanDetails.interest_only_payment;
-        document.getElementById('balloon_payment').value = data.loanDetails.balloon_payment;
-        document.getElementById('other_nonamortizing_features').value = data.loanDetails.other_nonamortizing_features;
-        document.getElementById('lien_status').value = data.loanDetails.lien_status;
-        document.getElementById('census_tract').value = data.loanDetails.census_tract;
-        
-
+        // Initialize all select fields after setting their values
+        const selectFields = document.querySelectorAll('select');
+        M.FormSelect.init(selectFields);
       } else {
-        console.error('No data found for the selected option.');
+        console.error('Data not found for the selected dummy index:', selectedDummyIndex);
       }
     }
+
+    function populateFormField(name, value) {
+      const element = document.querySelector(`[name="${name}"]`);
+      if (element) {
+        element.value = value.toString();
+        console.log(`Set ${name} to ${value}`);
+      } else {
+        console.error(`Element with name ${name} not found.`);
+      }
+    }
+
+
+
   </script>
 
   <!-- Handle Form Submission -->
   <script>
-    async function handleFormSubmission(formData) {
-      try {
-        const predictionData = await fetchPredictionData(formData);
-        updatePrediction(predictionData);
-      } catch (error) {
-        console.error('Error predicting:', error);
-      }
-    }
+
 
     // Event Listeners
     document.addEventListener('DOMContentLoaded', function () {
@@ -690,93 +602,32 @@
       var elems = document.querySelectorAll('select');
       var instances = M.FormSelect.init(elems);
 
-      // Add an event listener to the form submit button
-      document.getElementById('loanForm').addEventListener('submit', function (event) {
-        event.preventDefault();
-        predictLoan();
-      });
     });
   </script>
 
-  <!-- Handle Prediction-->
-  <script>
+<script>
+document.getElementById("loanForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // Prevent the form from submitting normally
 
+  // Serialize the form data to a string
+  const formData = new FormData(this);
+  let formDataString = "";
+  for (const [key, value] of formData.entries()) {
+    formDataString += `${key}: ${value}\n`;
+  }
 
-const expectedFeatureNames  = ['census_tract', 'loan_type', 'lien_status', 'open_end_line_of_credit', 'loan_amount', 'combined_loan_to_value_ratio', 'interest_rate', 'total_loan_costs', 'origination_charges', 'loan_term', 'negative_amortization', 'interest_only_payment', 'balloon_payment', 'other_nonamortizing_features', 'property_value', 'occupancy_type', 'manufactured_home_secured_property_type', 'manufactured_home_land_property_interest', 'total_units', 'income', 'debt_to_income_ratio', 'applicant_credit_score_type', 'co_applicant_credit_score_type', 'applicant_ethnicity_1', 'co_applicant_ethnicity_1', 'applicant_race_1', 'applicant_race_2', 'co_applicant_race_1', 'co_applicant_race_2', 'applicant_sex', 'co_applicant_sex', 'applicant_age', 'co_applicant_age']
+  // Log the form data to the browser console
+  console.log("Form Data:\n", formDataString);
 
-function PrepareFormData() {
-  const formData = {};
+  // Now you can submit the form, or you can send the data via AJAX, or perform other actions as needed
+  // this.submit(); // Uncomment this line to submit the form
 
-  expectedFeatureNames.forEach((feature, index) => {
-    const inputElement = document.getElementById(feature);
-    if (inputElement) {
-      formData[feature] = inputElement.value;
-    }
-  });
+  // For debugging, you can also display the form data on the page
+  // const outputElement = document.getElementById("formOutput");
+  // outputElement.textContent = formDataString;
+});
+</script>
 
-  return formData;
-}
-
-
-    function ConvertFormData(formData) {
-      const inputArray = {};
-
-      for (const field in formData) {
-        if (formData.hasOwnProperty(field)) {
-          const value = parseFloat(formData[field]);
-          if (!isNaN(value)) {
-            inputArray[field] = value;
-          } else {
-            // Use a default value (0.0) if the value is not numeric
-            inputArray[field] = 0.0;
-          }
-        }
-      }
-      return inputArray;
-    }
-
-    // Fetch Prediction Data
-    async function fetchPredictionData(formData) {
-      const convertedData = ConvertFormData(formData); // Convert the form data
-
-      const response = await fetch('/predict', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json', // Change the Content-Type to application/json
-        },
-        body: JSON.stringify(convertedData) // Send the converted data as JSON
-      });
-      return await response.json();
-    }
-
-    /* ----------------------Predict loan acceptance from form data ---------------------------   */
-    // Function to send form data for prediction
-    async function predictLoan() {
-      // Define the data to be sent
-      const formData = PrepareFormData();
-      const convertedData = ConvertFormData(formData); // Convert the form data
-
-      // Make the AJAX request
-      $.ajax({
-        type: 'POST',
-        contentType: 'application/json',
-        url: '/predict',
-        dataType: 'json',
-        data: JSON.stringify(convertedData), // Sending the formData
-        success: function (result) {
-          console.log('Received result:', result);
-          const predictionElement = document.getElementById('prediction');
-          predictionElement.innerText = `Predicted class: ${result.action_taken}`;
-        },
-        error: function (error) {
-          console.error('Error:', error);
-          const predictionElement = document.getElementById('prediction');
-          predictionElement.innerText = `error: ${error.message}`;
-        }
-      });
-    }
-
-  </script>
 </body>
 
 </html>
