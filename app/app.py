@@ -12,7 +12,7 @@ from flask import jsonify
 app = Flask(__name__)
 
 # Load the pre-trained model
-model = pickle.load(open('../notebooks/Christinas/EDA_stepwise/xgboost_model.pkl', 'rb'))
+model = pickle.load(open('../model/xgboost_model.pkl', 'rb'))
 
 # Define the order of columns
 column_order = [
