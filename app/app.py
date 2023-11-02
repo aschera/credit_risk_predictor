@@ -20,37 +20,48 @@ app = Flask(__name__)
 # model_xgboost = joblib.load('../notebooks/Christinas/EDA_stepwise/xgboost_model.pkl')
 model = pickle.load(open('../notebooks/Christinas/EDA_stepwise/xgboost_model.pkl', 'rb')) # Load the trained model
 
+# Define the order of columns
+column_order = ['census_tract', 'action_taken', 'loan_type', 'lien_status', 
+                'open_end_line_of_credit', 'loan_amount', 'combined_loan_to_value_ratio', 
+                'interest_rate', 'total_loan_costs', 'origination_charges', 'loan_term', 
+                'negative_amortization', 'interest_only_payment', 'balloon_payment', 
+                'other_nonamortizing_features', 'property_value', 'occupancy_type', 
+                'manufactured_home_secured_property_type', 'manufactured_home_land_property_interest', 
+                'total_units', 'income', 'debt_to_income_ratio', 'applicant_credit_score_type', 
+                'co_applicant_credit_score_type', 'applicant_ethnicity_1', 'co_applicant_ethnicity_1', 
+                'applicant_race_1', 'applicant_race_2', 'co_applicant_race_1', 'co_applicant_race_2', 
+                'applicant_sex', 'co_applicant_sex', 'applicant_age', 'co_applicant_age']
+
+
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-@app.route('/')
-def index():
-    return render_template('index.html')
-
 @app.route('/predict', methods=['POST'])
 def predict():
-    if request.method == 'POST':
-        init_features = []
 
-        for x in request.form.values():
+    init_features = []
+    final_features = []
+
+    if request.method == 'POST':
+        for column_name in column_order:
+            x = request.form.get(column_name, 'undefined')
             if x.strip().lower() == 'undefined':
-                continue  # Skip 'undefined' values
+                float_value = 0.0
             try:
                 float_value = float(x)
                 init_features.append(float_value)
             except ValueError:
-                # Handle any other non-numeric values as needed
+                float_value = 0.0
                 pass
 
-        logger.info('init_features: %s', init_features)   
+        logger.info('init_features: %s', init_features)
 
         if init_features:
             final_features = [np.array(init_features)]
             prediction = model.predict(final_features)
-
+            
             logger.info('prediction: %s', prediction)
-            #prediction = 'test'
 
             return render_template('index.html', prediction_text='Prediction: {}'.format(prediction))
         else:
