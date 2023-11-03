@@ -5,6 +5,7 @@ from flask import jsonify
 from xgboost import XGBClassifier
 import numpy as np
 import joblib
+import shap
 
 app = Flask(__name__)
 
@@ -66,6 +67,8 @@ def predict():
 
     # Return a JSON response with both prediction_text and explanation
     return jsonify({"prediction_text": prediction_text, "explanation": explanation.tolist()})
+
+
 
 
 if __name__ == '__main__':
