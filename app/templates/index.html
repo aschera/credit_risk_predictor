@@ -36,8 +36,6 @@
               <button class="btn waves-effect waves-light" type="submit" onclick="predictLoan()">
                 Predict
               </button>
-
-
               <div class="row">
                 <div class="col s12">
                   <h4>Applicant data</h4>
@@ -342,13 +340,6 @@
                     </div>
                   </div>
 
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <input placeholder="Census Tract" id="census_tract" required="required" name="census_tract" type="text" class="validate">
-                      <label for="census_tract">Census Tract</label>
-                    </div>
-                  </div>
-
                 </div>
               </div>
               <div class="row">
@@ -550,38 +541,62 @@
 
   <!-- Filling the dummy dropdown -->
   <script>
-
     let jsonData; 
 
-    // Load your reshaped JSON data
-    fetch('./static/testdata.json') 
-      .then(response => response.json())
-      .then(data => {
-        jsonData = data; // Assign the loaded data to the jsonData variable
-        console.log('JSON data loaded:', jsonData);
-        populateDropdown();
-      })
-      .catch(error => console.error('Error loading JSON data:', error));
+  // Load JSON data
+  fetch('./static/testdata.json')
+    .then(response => response.json())
+    .then(data => {
+      jsonData = parseDataToFloat(data); // Parse data to floats
+      console.log('JSON data loaded:', jsonData);
+      //printDataTypes(jsonData); // Print data types
+      populateDropdown();
+    })
+    .catch(error => console.error('Error loading JSON data:', error));
 
-
-    // Function to fill form with dummy data
-    function populateDropdown() {
-      const dropdown = document.getElementById('dummyDataDropdown');
-      for (const key in jsonData) {
-        if (jsonData.hasOwnProperty(key)) {
-          const option = document.createElement('option');
-          option.value = key;
-          option.textContent = key;
-          dropdown.appendChild(option);
+  // Function to parse data to floats
+  function parseDataToFloat(data) {
+    return data.map(obj => {
+      const parsedObj = {};
+      for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          // Ensure that the value is parsed to a float
+          parsedObj[key] = parseFloat(obj[key]);
         }
       }
+      return parsedObj;
+    });
+  }
 
-      // Initialize Materialize select elements
-      var elems = document.querySelectorAll('select');
-      var instances = M.FormSelect.init(elems);
+    // Function to print data types
+    function printDataTypes(dataList) {
+    dataList.forEach((obj, index) => {
+      console.log(`Object ${index} data types:`);
+      for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          const valueType = typeof obj[key];
+          console.log(`${key}: ${valueType}`);
+        }
+      }
+    });
+  }
 
-      console.log('Dropdown populated with options:', dropdown.innerHTML);
-    }
+  // Function to fill form with dummy data
+  function populateDropdown() {
+    const dropdown = document.getElementById('dummyDataDropdown');
+    jsonData.forEach((obj, index) => {
+      const option = document.createElement('option');
+      option.value = index;
+      option.textContent = `Object ${index}`;
+      dropdown.appendChild(option);
+    });
+
+    // Initialize Materialize select elements
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
+
+    console.log('Dropdown populated with options:', dropdown.innerHTML);
+  }
 
 
 
@@ -618,8 +633,6 @@
         console.error(`Element with name ${name} not found.`);
       }
     }
-
-
 
   </script>
 
@@ -662,8 +675,5 @@
       });
   }
   </script>
-  
-
 </body>
-
 </html>
