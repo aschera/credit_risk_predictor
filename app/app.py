@@ -4,11 +4,15 @@ import pickle
 from flask import jsonify
 from xgboost import XGBClassifier
 import numpy as np
+import joblib
 
 app = Flask(__name__)
 
 # Load the pre-trained model
 model = pickle.load(open('../model/xgboost_model_not_scaled.pkl', 'rb'))
+
+# Load the explainer from the file
+explainer = joblib.load('../model/explainer.pkl')
 
 # Define the order of columns
 column_order = [
@@ -23,7 +27,6 @@ column_order = [
     'applicant_race_1', 'applicant_race_2', 'co_applicant_race_1', 'co_applicant_race_2',
     'applicant_sex', 'co_applicant_sex', 'applicant_age', 'co_applicant_age'
 ]
-
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -58,13 +61,12 @@ def predict():
     # Set the prediction_text variable
     prediction_text = f"Prediction: {prediction[0]}"
 
-    # Return a JSON response
-    return jsonify({"prediction_text": prediction_text})
+    # Use the explainer to generate explanations
+    explanation = explainer.shap_values(init_features)
+
+    # Return a JSON response with both prediction_text and explanation
+    return jsonify({"prediction_text": prediction_text, "explanation": explanation.tolist()})
+
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-
-# INFO:app:Received data: [2.0, 3.0, 2.0, 3.0]
-# INFO:app:final_features: [array([2., 3., 2., 3.])]
