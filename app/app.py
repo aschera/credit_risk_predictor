@@ -55,7 +55,11 @@ def predict():
     # Convert the prediction to a regular Python list
     prediction = prediction.tolist()
 
-    return jsonify({"prediction": prediction})
+    # Set the prediction_text variable
+    prediction_text = f"Prediction: {prediction[0]}"
+
+    # Return a JSON response
+    return jsonify({"prediction_text": prediction_text})
 
 if __name__ == '__main__':
     app.run(debug=True)

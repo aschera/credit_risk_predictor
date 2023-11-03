@@ -659,21 +659,16 @@
           body: formData
       })
       .then(response => response.json())
-      .then(data => {
-          // Handle the response from the server here
-          if (data.error) {
-              // Display an error message to the user
-              alert(data.error);
-          } else {
-              // Display the prediction to the user
-              console.log("Prediction:", data.prediction);
-              // You can update the page content or show the prediction in a modal, for example
-          }
-      })
-      .catch(error => {
-          console.error("Error:", error);
-      });
+    .then(data => {
+        // Access the prediction_text from the JSON response
+        const predictionText = data.prediction_text;
+
+        // Display the prediction text in the HTML
+        document.getElementById('prediction').textContent = predictionText;
+    })
+    .catch(error => console.error('Error:', error));
   }
+  
   </script>
 </body>
 </html>
