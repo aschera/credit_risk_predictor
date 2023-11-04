@@ -522,11 +522,15 @@
             </form>
           </div>
           <div class="col s3">
-            <h2>Prediction:</h2>
+            <h3>Result:</h3>
             <p id="prediction">
+              Prediction:
               {{ prediction_text }}
-              {{ explanation }}
             </p>
+            <div id="image">
+
+            </div>
+
           </div>
         </div>
       </div>
@@ -651,25 +655,35 @@
   </script>
 
 <script>
-  function predictLoan() {
-      const form = document.getElementById('loanForm');
-      const formData = new FormData(form);
-  
-      fetch("{{ url_for('predict') }}", {
-          method: "POST",
-          body: formData
-      })
-      .then(response => response.json())
+ function predictLoan() {
+    const form = document.getElementById('loanForm');
+    const formData = new FormData(form);
+
+    fetch("{{ url_for('predict') }}", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
     .then(data => {
-        // Access the prediction_text from the JSON response
+        // Access the prediction_text and image_url from the JSON response
         const predictionText = data.prediction_text;
+        const imageText = data.image_name;
 
         // Display the prediction text in the HTML
-        document.getElementById('prediction').textContent = predictionText;
-    })
+        const predictionElement = document.getElementById('prediction');
+        predictionElement.textContent = predictionText;
+
+        // Construct the full image URL
+        const imageUrl = "/static/" + imageText;
+
+        // Display the image with a link to open it in a new window
+        const imageElement = document.getElementById('image');
+        imageElement.innerHTML = `<span> Force graph - click to see bigger:</span><a href="${imageUrl}" target="_blank" title="Click to show larger"><img width="800px" src="${imageUrl}" /></a>`;
+        })
     .catch(error => console.error('Error:', error));
-  }
-  
+}
+
   </script>
+
 </body>
 </html>
