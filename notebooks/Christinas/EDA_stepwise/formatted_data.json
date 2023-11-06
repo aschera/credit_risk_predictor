@@ -1,0 +1,452 @@
+{
+  "acceptedDummy1": {
+    "applicantData": {
+      "age": 0.4285714285714285,
+      "sex": 0.0,
+      "race": 1.0,
+      "race2": 0.0,
+      "ethnicity": 1.0,
+      "income": 0.030691344037059,
+      "debtToIncomeRatio": 0.6000000000000001,
+      "creditScore": 1.0
+    },
+    "coApplicantData": {
+      "co_age": 0.4285714285714285,
+      "co_sex": 0.2,
+      "CoapplicantRace": 1.0,
+      "co_applicant_race_2": 0.0930232558139534,
+      "CoapplicantEthnicity": 1.0,
+      "cocreditScore": 0.1111111111111111
+    },
+    "propertyInfo": {
+      "census_tract": 0.3116892024898579,
+      "propertyValue": 0.0040579710144927,
+      "property_value": 0.0040579710144927,
+      "lienStatus": 0.0,
+      "manufacturedHomeLandPropertyInterest": 1.0,
+      "manufacturedHomeSecuredPropertyType": 1.0,
+      "occupancyType": 0.0,
+      "totalUnits": 0.0,
+      "open_end_line_of_credit": 1.0
+    },
+    "loanDetails": {
+      "loanAmount": 0.0058823529411764,
+      "interestRate": 0.3333333333333333,
+      "loanterm": 0.8333333333333334,
+      "loantovalueratio": 0.2,
+      "negativeAmortization": 1.0,
+      "totalloancosts": 0.3529411764705882,
+      "loantype": 0.0,
+      "interestOnlyPayment": 1.0,
+      "balloonPayment": 1.0,
+      "otherNonamortizingFeatures": 1.0,
+      "origination_charges": 0.0,
+      "open_end_line_of_credit": 1.0
+    }
+  },
+  "rejectedDummy1": {
+    "applicantData": {
+      "age": 0.1428571428571428,
+      "sex": 0.2,
+      "race": 1.0,
+      "race2": 0.0,
+      "ethnicity": 1.0,
+      "income": 0.0323263034857622,
+      "debtToIncomeRatio": 0.2,
+      "creditScore": 1.0
+    },
+    "coApplicantData": {
+      "co_age": 0.1428571428571428,
+      "co_sex": 0.0,
+      "CoapplicantRace": 1.0,
+      "co_applicant_race_2": 0.0930232558139534,
+      "CoapplicantEthnicity": 1.0,
+      "cocreditScore": 0.2222222222222222
+    },
+    "propertyInfo": {
+      "census_tract": 0.1455379318211986,
+      "propertyValue": 0.0133333333333333,
+      "property_value": 0.0133333333333333,
+      "lienStatus": 0.0,
+      "manufacturedHomeLandPropertyInterest": 1.0,
+      "manufacturedHomeSecuredPropertyType": 1.0,
+      "occupancyType": 0.0,
+      "totalUnits": 0.0,
+      "open_end_line_of_credit": 1.0
+    },
+    "loanDetails": {
+      "loanAmount": 0.02,
+      "interestRate": 0.1111111111111111,
+      "loanterm": 0.3333333333333333,
+      "loantovalueratio": 0.0666666666666666,
+      "negativeAmortization": 1.0,
+      "totalloancosts": 0.0,
+      "loantype": 0.0,
+      "interestOnlyPayment": 1.0,
+      "balloonPayment": 1.0,
+      "otherNonamortizingFeatures": 1.0,
+      "origination_charges": 0.1428571428571428,
+      "open_end_line_of_credit": 1.0
+    }
+  },
+  "rejectedDummy2": {
+    "applicantData": {
+      "age": 0.8571428571428571,
+      "sex": 0.2,
+      "race": 1.0,
+      "race2": 0.0,
+      "ethnicity": 1.0,
+      "income": 0.030655489663184,
+      "debtToIncomeRatio": 0.6000000000000001,
+      "creditScore": 1.0
+    },
+    "coApplicantData": {
+      "co_age": 0.8571428571428571,
+      "co_sex": 0.0,
+      "CoapplicantRace": 1.0,
+      "co_applicant_race_2": 0.0930232558139534,
+      "CoapplicantEthnicity": 1.0,
+      "cocreditScore": 0.0
+    },
+    "propertyInfo": {
+      "census_tract": 0.4911169816984175,
+      "propertyValue": 0.0063768115942028,
+      "property_value": 0.0063768115942028,
+      "lienStatus": 0.0,
+      "manufacturedHomeLandPropertyInterest": 1.0,
+      "manufacturedHomeSecuredPropertyType": 1.0,
+      "occupancyType": 0.0,
+      "totalUnits": 0.0,
+      "open_end_line_of_credit": 1.0
+    },
+    "loanDetails": {
+      "loanAmount": 0.01,
+      "interestRate": 0.4444444444444444,
+      "loanterm": 0.8333333333333334,
+      "loantovalueratio": 0.0,
+      "negativeAmortization": 1.0,
+      "totalloancosts": 0.4705882352941176,
+      "loantype": 0.0,
+      "interestOnlyPayment": 1.0,
+      "balloonPayment": 1.0,
+      "otherNonamortizingFeatures": 1.0,
+      "origination_charges": 0.0,
+      "open_end_line_of_credit": 1.0
+    }
+  },
+  "acceptedDummy2": {
+    "applicantData": {
+      "age": 0.4285714285714285,
+      "sex": 0.0,
+      "race": 1.0,
+      "race2": 0.0,
+      "ethnicity": 1.0,
+      "income": 0.0315733616343857,
+      "debtToIncomeRatio": 0.0,
+      "creditScore": 0.25
+    },
+    "coApplicantData": {
+      "co_age": 0.4285714285714285,
+      "co_sex": 0.2,
+      "CoapplicantRace": 1.0,
+      "co_applicant_race_2": 0.0930232558139534,
+      "CoapplicantEthnicity": 1.0,
+      "cocreditScore": 0.8888888888888888
+    },
+    "propertyInfo": {
+      "census_tract": 0.9816145775343048,
+      "propertyValue": 0.0040579710144927,
+      "property_value": 0.0040579710144927,
+      "lienStatus": 0.0,
+      "manufacturedHomeLandPropertyInterest": 1.0,
+      "manufacturedHomeSecuredPropertyType": 1.0,
+      "occupancyType": 0.0,
+      "totalUnits": 0.0,
+      "open_end_line_of_credit": 1.0
+    },
+    "loanDetails": {
+      "loanAmount": 0.0058823529411764,
+      "interestRate": 0.3333333333333333,
+      "loanterm": 0.1666666666666666,
+      "loantovalueratio": 0.0666666666666666,
+      "negativeAmortization": 1.0,
+      "totalloancosts": 0.3529411764705882,
+      "loantype": 0.0,
+      "interestOnlyPayment": 1.0,
+      "balloonPayment": 1.0,
+      "otherNonamortizingFeatures": 1.0,
+      "origination_charges": 0.0,
+      "open_end_line_of_credit": 1.0
+    }
+  },
+  "rejectedDummy3": {
+    "applicantData": {
+      "age": 0.4285714285714285,
+      "sex": 0.0,
+      "race": 1.0,
+      "race2": 0.0,
+      "ethnicity": 1.0,
+      "income": 0.0329645113407384,
+      "debtToIncomeRatio": 0.0,
+      "creditScore": 0.0
+    },
+    "coApplicantData": {
+      "co_age": 0.2857142857142857,
+      "co_sex": 0.2,
+      "CoapplicantRace": 1.0,
+      "co_applicant_race_2": 0.0930232558139534,
+      "CoapplicantEthnicity": 1.0,
+      "cocreditScore": 0.8888888888888888
+    },
+    "propertyInfo": {
+      "census_tract": 0.0915012427616978,
+      "propertyValue": 0.0130434782608695,
+      "property_value": 0.0130434782608695,
+      "lienStatus": 0.0,
+      "manufacturedHomeLandPropertyInterest": 1.0,
+      "manufacturedHomeSecuredPropertyType": 1.0,
+      "occupancyType": 1.0,
+      "totalUnits": 0.0,
+      "open_end_line_of_credit": 1.0
+    },
+    "loanDetails": {
+      "loanAmount": 0.0135294117647058,
+      "interestRate": 0.4444444444444444,
+      "loanterm": 0.3333333333333333,
+      "loantovalueratio": 0.5333333333333333,
+      "negativeAmortization": 1.0,
+      "totalloancosts": 0.2941176470588235,
+      "loantype": 0.0,
+      "interestOnlyPayment": 1.0,
+      "balloonPayment": 1.0,
+      "otherNonamortizingFeatures": 1.0,
+      "origination_charges": 0.4285714285714285,
+      "open_end_line_of_credit": 1.0
+    }
+  },
+  "rejectedDummy4": {
+    "applicantData": {
+      "age": 0.2857142857142857,
+      "sex": 0.2,
+      "race": 1.0,
+      "race2": 0.0,
+      "ethnicity": 1.0,
+      "income": 0.0350010397768423,
+      "debtToIncomeRatio": 0.2,
+      "creditScore": 0.0
+    },
+    "coApplicantData": {
+      "co_age": 0.2857142857142857,
+      "co_sex": 0.0,
+      "CoapplicantRace": 1.0,
+      "co_applicant_race_2": 0.0930232558139534,
+      "CoapplicantEthnicity": 1.0,
+      "cocreditScore": 0.8888888888888888
+    },
+    "propertyInfo": {
+      "census_tract": 0.0923747090207852,
+      "propertyValue": 0.0820289855072463,
+      "property_value": 0.0820289855072463,
+      "lienStatus": 0.0,
+      "manufacturedHomeLandPropertyInterest": 1.0,
+      "manufacturedHomeSecuredPropertyType": 1.0,
+      "occupancyType": 0.0,
+      "totalUnits": 0.0,
+      "open_end_line_of_credit": 1.0
+    },
+    "loanDetails": {
+      "loanAmount": 0.1264705882352941,
+      "interestRate": 0.2222222222222222,
+      "loanterm": 0.8333333333333334,
+      "loantovalueratio": 0.0,
+      "negativeAmortization": 1.0,
+      "totalloancosts": 0.3529411764705882,
+      "loantype": 0.0,
+      "interestOnlyPayment": 1.0,
+      "balloonPayment": 1.0,
+      "otherNonamortizingFeatures": 1.0,
+      "origination_charges": 0.0,
+      "open_end_line_of_credit": 1.0
+    }
+  },
+  "acceptedDummy3": {
+    "applicantData": {
+      "age": 0.1428571428571428,
+      "sex": 0.0,
+      "race": 1.0,
+      "race2": 0.0,
+      "ethnicity": 1.0,
+      "income": 0.0327995812209131,
+      "debtToIncomeRatio": 0.2,
+      "creditScore": 1.0
+    },
+    "coApplicantData": {
+      "co_age": 0.1428571428571428,
+      "co_sex": 0.2,
+      "CoapplicantRace": 1.0,
+      "co_applicant_race_2": 0.0930232558139534,
+      "CoapplicantEthnicity": 1.0,
+      "cocreditScore": 0.0
+    },
+    "propertyInfo": {
+      "census_tract": 0.4184202847002022,
+      "propertyValue": 0.0214492753623188,
+      "property_value": 0.0214492753623188,
+      "lienStatus": 0.0,
+      "manufacturedHomeLandPropertyInterest": 1.0,
+      "manufacturedHomeSecuredPropertyType": 1.0,
+      "occupancyType": 0.0,
+      "totalUnits": 0.0,
+      "open_end_line_of_credit": 1.0
+    },
+    "loanDetails": {
+      "loanAmount": 0.0394117647058823,
+      "interestRate": 0.3333333333333333,
+      "loanterm": 0.8333333333333334,
+      "loantovalueratio": 0.3333333333333333,
+      "negativeAmortization": 1.0,
+      "totalloancosts": 0.3529411764705882,
+      "loantype": 0.0,
+      "interestOnlyPayment": 1.0,
+      "balloonPayment": 1.0,
+      "otherNonamortizingFeatures": 1.0,
+      "origination_charges": 0.0,
+      "open_end_line_of_credit": 1.0
+    }
+  },
+  "rejectedDummy5": {
+    "applicantData": {
+      "age": 0.5714285714285714,
+      "sex": 0.2,
+      "race": 1.0,
+      "race2": 0.4871794871794872,
+      "ethnicity": 1.0,
+      "income": 0.0313725771406853,
+      "debtToIncomeRatio": 0.2,
+      "creditScore": 0.25
+    },
+    "coApplicantData": {
+      "co_age": 0.4285714285714285,
+      "co_sex": 0.0,
+      "CoapplicantRace": 1.0,
+      "co_applicant_race_2": 0.0930232558139534,
+      "CoapplicantEthnicity": 1.0,
+      "cocreditScore": 0.8888888888888888
+    },
+    "propertyInfo": {
+      "census_tract": 0.6543732867207772,
+      "propertyValue": 0.0107246376811594,
+      "property_value": 0.0107246376811594,
+      "lienStatus": 0.0,
+      "manufacturedHomeLandPropertyInterest": 1.0,
+      "manufacturedHomeSecuredPropertyType": 1.0,
+      "occupancyType": 0.0,
+      "totalUnits": 0.0,
+      "open_end_line_of_credit": 1.0
+    },
+    "loanDetails": {
+      "loanAmount": 0.0123529411764705,
+      "interestRate": 0.4444444444444444,
+      "loanterm": 0.8333333333333334,
+      "loantovalueratio": 0.4,
+      "negativeAmortization": 1.0,
+      "totalloancosts": 0.0,
+      "loantype": 0.0,
+      "interestOnlyPayment": 1.0,
+      "balloonPayment": 1.0,
+      "otherNonamortizingFeatures": 1.0,
+      "origination_charges": 0.2857142857142857,
+      "open_end_line_of_credit": 1.0
+    }
+  },
+  "acceptedDummy4": {
+    "applicantData": {
+      "age": 1.0,
+      "sex": 0.0,
+      "race": 1.0,
+      "race2": 0.0,
+      "ethnicity": 1.0,
+      "income": 0.0302180663019081,
+      "debtToIncomeRatio": 1.0000000000000002,
+      "creditScore": 0.0
+    },
+    "coApplicantData": {
+      "co_age": 1.0,
+      "co_sex": 0.2,
+      "CoapplicantRace": 1.0,
+      "co_applicant_race_2": 0.0930232558139534,
+      "CoapplicantEthnicity": 1.0,
+      "cocreditScore": 0.8888888888888888
+    },
+    "propertyInfo": {
+      "census_tract": 0.999600312049707,
+      "propertyValue": 0.0121739130434782,
+      "property_value": 0.0121739130434782,
+      "lienStatus": 0.0,
+      "manufacturedHomeLandPropertyInterest": 1.0,
+      "manufacturedHomeSecuredPropertyType": 1.0,
+      "occupancyType": 0.0,
+      "totalUnits": 0.0,
+      "open_end_line_of_credit": 1.0
+    },
+    "loanDetails": {
+      "loanAmount": 0.0229411764705882,
+      "interestRate": 0.3333333333333333,
+      "loanterm": 0.8333333333333334,
+      "loantovalueratio": 0.3333333333333333,
+      "negativeAmortization": 1.0,
+      "totalloancosts": 0.3529411764705882,
+      "loantype": 0.6666666666666667,
+      "interestOnlyPayment": 1.0,
+      "balloonPayment": 1.0,
+      "otherNonamortizingFeatures": 1.0,
+      "origination_charges": 0.0,
+      "open_end_line_of_credit": 1.0
+    }
+  },
+  "acceptedDummy5": {
+    "applicantData": {
+      "age": 1.0,
+      "sex": 0.0,
+      "race": 1.0,
+      "race2": 0.0,
+      "ethnicity": 1.0,
+      "income": 0.0304905595433586,
+      "debtToIncomeRatio": 0.0,
+      "creditScore": 0.125
+    },
+    "coApplicantData": {
+      "co_age": 1.0,
+      "co_sex": 0.2,
+      "CoapplicantRace": 1.0,
+      "co_applicant_race_2": 0.0930232558139534,
+      "CoapplicantEthnicity": 1.0,
+      "cocreditScore": 0.2222222222222222
+    },
+    "propertyInfo": {
+      "census_tract": 0.309344505424538,
+      "propertyValue": 0.004927536231884,
+      "property_value": 0.004927536231884,
+      "lienStatus": 0.0,
+      "manufacturedHomeLandPropertyInterest": 1.0,
+      "manufacturedHomeSecuredPropertyType": 1.0,
+      "occupancyType": 0.0,
+      "totalUnits": 0.0,
+      "open_end_line_of_credit": 1.0
+    },
+    "loanDetails": {
+      "loanAmount": 0.0052941176470588,
+      "interestRate": 0.3333333333333333,
+      "loanterm": 0.3333333333333333,
+      "loantovalueratio": 0.4,
+      "negativeAmortization": 1.0,
+      "totalloancosts": 0.3529411764705882,
+      "loantype": 0.0,
+      "interestOnlyPayment": 1.0,
+      "balloonPayment": 1.0,
+      "otherNonamortizingFeatures": 1.0,
+      "origination_charges": 0.0,
+      "open_end_line_of_credit": 1.0
+    }
+  }
+}

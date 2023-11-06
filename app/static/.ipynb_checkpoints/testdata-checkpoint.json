@@ -1,137 +1,132 @@
 {
-    "dummyData1": {
-      "applicantData": {
-        "first_name": "John",
-        "last_name": "Doe",
-        "age": 35,
-        "race": "White",
-        "sex": "Male",
-        "ethnicity": "Latino",
-        "income": 60000,
-        "debtToIncomeRatio": 25,
-        "creditScore": 720,
-        "lenderCredits": 0
-      },
-      "coApplicantData": {
-        "applicantAge": 30,
-        "applicantRace": "Latino",
-        "applicantSex": "Male",
-        "applicantEthnicity": "White"
-      },
-      "propertyInfo": {
-        "propertyValue": 200000,
-        "lienStatus": "First Lien",
-        "manufacturedHomeLandPropertyInterest": "N/A",
-        "multifamilyAffordableUnits": 0,
-        "occupancyType": "Primary Residence",
-        "manufacturedHomeSecuredPropertyType": "Site-Built",
-        "totalUnits": 1
-      },
-      "loanDetails": {
-        "loanAmount": 150000,
-        "interestRate": 4.5,
-        "totalpointsandfees": 2000,
-        "loanterm": "30 years",
-        "discountPoints": 0,
-        "prepaymentPenaltyTerm": 0,
-        "negativeAmortization": "No",
-        "totalloancosts": 3000,
-        "loantype": "Conventional",
-        "loanpurpose": "Purchase",
-        "originationCharges": 1500,
-        "interestOnlyPayment": "No",
-        "balloonPayment": "No",
-        "otherNonamortizingFeatures": "No"
-      }
+"dummyData1": {
+        "applicantData": {
+            "applicant_age": 35,
+            "applicant_race_1": "White",
+            "applicant_sex": 1,
+            "applicant_ethnicity_1": "Latino",
+            "income": 60000,
+            "debt_to_income_ratio": 25,
+            "applicant_credit_score_type": 720,
+            "lenderCredits": 0
+        },
+        "coApplicantData": {
+            "co_applicant_age": 30,
+            "applicantRace": "Latino",
+            "co_applicant_sex": 1,
+            "applicantEthnicity": "White"
+        },
+        "propertyInfo": {
+            "property_value": 200000,
+            "lienStatus": "First Lien",
+            "manufactured_home_land_property_interest": "N/A",
+            "multifamilyAffordableUnits": 0,
+            "occupancy_type": "Primary Residence",
+            "manufactured_home_secured_property_type": "Site-Built",
+            "total_units": 1
+        },
+        "loanDetails": {
+            "loan_amount": 150000,
+            "interest_rate": 4.5,
+            "totalpointsandfees": 2000,
+            "loan_term": "30 years",
+            "discountPoints": 0,
+            "prepaymentPenaltyTerm": 0,
+            "negative_amortization": "No",
+            "total_loan_costs": 3000,
+            "loan_type": "Conventional",
+            "loanpurpose": "Purchase",
+            "originationCharges": 1500,
+            "interest_only_payment": "No",
+            "balloon_payment": "No",
+            "other_nonamortizing_features": "No"
+        }
     },
+
     "dummyData2": {
       "applicantData": {
-        "first_name": "Alice",
-        "last_name": "Smith",
-        "age": 40,
-        "race": "Black",
-        "sex": "Female",
-        "ethnicity": "Non-Latino",
+        "applicant_age": 40,
+        "applicant_race_1": "Black",
+        "applicant_sex": "Female",
+        "applicant_ethnicity_1": "Non-Latino",
         "income": 55000,
-        "debtToIncomeRatio": 30,
-        "creditScore": 680,
+        "debt_to_income_ratio": 30,
+        "applicant_credit_score_type": 680,
         "lenderCredits": 0
       },
       "coApplicantData": {
-        "applicantAge": 35,
+        "co_applicant_age": 35,
         "applicantRace": "Non-Latino",
-        "applicantSex": "Female",
+        "co_applicant_sex": 2,
         "applicantEthnicity": "Black"
       },
       "propertyInfo": {
-        "propertyValue": 150000,
+        "property_value": 150000,
         "lienStatus": "Second Lien",
-        "manufacturedHomeLandPropertyInterest": "N/A",
+        "manufactured_home_land_property_interest": "N/A",
         "multifamilyAffordableUnits": 0,
-        "occupancyType": "Primary Residence",
-        "manufacturedHomeSecuredPropertyType": "Site-Built",
-        "totalUnits": 1
+        "occupancy_type": "Primary Residence",
+        "manufactured_home_secured_property_type": "Site-Built",
+        "total_units": 1
       },
       "loanDetails": {
-        "loanAmount": 120000,
-        "interestRate": 4.2,
+        "loan_amount": 120000,
+        "interest_rate": 4.2,
         "totalpointsandfees": 1800,
-        "loanterm": "15 years",
+        "loan_term": "15 years",
         "discountPoints": 0,
         "prepaymentPenaltyTerm": 0,
-        "negativeAmortization": "No",
-        "totalloancosts": 2500,
-        "loantype": "FHA",
+        "negative_amortization": "No",
+        "total_loan_costs": 2500,
+        "loan_type": "FHA",
         "loanpurpose": "Refinance",
         "originationCharges": 1200,
-        "interestOnlyPayment": "No",
-        "balloonPayment": "No",
-        "otherNonamortizingFeatures": "No"
+        "interest_only_payment": "No",
+        "balloon_payment": "No",
+        "other_nonamortizing_features": "No"
       }
     },
     "dummyData3": {
       "applicantData": {
-        "first_name": "Mark",
-        "last_name": "Johnson",
-        "age": 45,
-        "race": "Joint",
-        "sex": "Joint",
-        "ethnicity": "Joint",
+        "applicant_age": 45,
+        "applicant_race_1": "Joint",
+        "applicant_sex": 6,
+        "applicant_ethnicity_1": "Joint",
         "income": 70000,
-        "debtToIncomeRatio": 20,
-        "creditScore": 700,
+        "debt_to_income_ratio": 20,
+        "applicant_credit_score_type": 700,
         "lenderCredits": 0
       },
       "coApplicantData": {
-        "applicantAge": 40,
+        "co_applicant_age": 40,
         "applicantRace": "Joint",
-        "applicantSex": "Joint",
+        "co_applicant_sex": 6,
         "applicantEthnicity": "Joint"
       },
       "propertyInfo": {
-        "propertyValue": 180000,
+        "property_value": 180000,
         "lienStatus": "First Lien",
-        "manufacturedHomeLandPropertyInterest": "N/A",
+        "manufactured_home_land_property_interest": "N/A",
         "multifamilyAffordableUnits": 0,
-        "occupancyType": "Primary Residence",
-        "manufacturedHomeSecuredPropertyType": "Site-Built",
-        "totalUnits": 1
+        "occupancy_type": "Primary Residence",
+        "manufactured_home_secured_property_type": "Site-Built",
+        "total_units": 1
       },
       "loanDetails": {
-        "loanAmount": 100000,
-        "interestRate": 4.8,
+        "loan_amount": 100000,
+        "interest_rate": 4.8,
         "totalpointsandfees": 1900,
-        "loanterm": "20 years",
+        "loan_term": "20 years",
         "discountPoints": 0,
         "prepaymentPenaltyTerm": 0,
-        "negativeAmortization": "No",
-        "totalloancosts": 2800,
-        "loantype": "VA",
+        "negative_amortization": "No",
+        "total_loan_costs": 2800,
+        "loan_type": "VA",
         "loanpurpose": "Home Improvement",
         "originationCharges": 1300,
-        "interestOnlyPayment": "No",
-        "balloonPayment": "No",
-        "otherNonamortizingFeatures": "No"
+        "interest_only_payment": "No",
+        "balloon_payment": "No",
+        "other_nonamortizing_features": "No"
       }
     }
   }
