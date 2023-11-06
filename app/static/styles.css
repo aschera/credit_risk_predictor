@@ -4,8 +4,9 @@ body {
     padding: 20px;
   }
   
-  .container {
+  .container.main {
     max-width: 1200px;
+    width: 80%;
     margin: 0 auto;
   }
   

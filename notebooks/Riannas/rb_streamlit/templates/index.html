@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit Risk Predictor App</title>
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Import local CSS file -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container main">
+    <div class="row" style="background-color: yellow;">
+      <div class="input-field col s12 browser-default">
+        <select id="dummyDataDropdown" onchange="populateFormFieldFromDummyData()">
+          <option value="" disabled selected>Choose your option</option>
+        </select>
+        <label>Select Dummy Data:</label>
+      </div>
+    </div>
+    <h1 class="blue-text text-darken-2">Credit Risk Predictor App</h1>
+    <div class="row">
+      <div class="col s12">
+        <div class="row">
+          <div class="col s8">
+            <form id="loanForm" method="post" action="{{ url_for('predict')}}" onsubmit="return false;">
+              <button class="btn waves-effect waves-light" type="submit" onclick="predictLoan()">
+                Predict
+              </button>
+              <div class="row">
+                <div class="col s12">
+                  <h4>Applicant data</h4>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s6">
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="applicant_age" name="applicant_age" class="validate" required="required">
+                        <option value="" disabled selected>Choose an Age Category</option>
+                        <option value="2">45-54</option>
+                        <option value="1">35-44</option>
+                        <option value="3">55-64</option>
+                        <option value="0">25-34</option>
+                        <option value="4">65-74</option>
+                        <option value="7">&gt;74</option>
+                        <option value="6">&lt;25</option>
+                      </select>
+                      <label for="applicant_age">Age Category</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="applicant_race_1" name="applicant_race_1" class="validate" required="required">
+                        <option value="" disabled selected>Choose a Race</option>
+                        <option value="5">White</option>
+                        <option value="3">Black or African American</option>
+                      </select>
+                      <label for="applicant_race_1">Race</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="applicant_ethnicity_1" name="applicant_ethnicity_1" class="validate" required="required">
+                        <option value="" disabled selected>Choose an Ethnicity</option>
+                        <option value="1"> Not Hispanic or Latino</option>
+                        <option value="2">Hispanic or Latino</option>
+                      </select>
+                      <label for="applicant_ethnicity_1">Ethnicity</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="100000" id="income" name="income" type="number" class="validate" required="required">
+                      <label for="income">Income</label>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col s6">
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="applicant_sex" name="applicant_sex" class="validate">
+                        <option value="" disabled selected>Choose a Gender</option>
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                        <option value="6">Both male and female</option>
+                      </select>
+                      <label for="applicant_sex">Sex</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="applicant_race_2" name="applicant_race_2" class="validate" required="required">
+                        <option value="" disabled selected>Choose a Secondary Race</option>
+                        <option value="1">American Indian or Alaska Native</option>
+                        <option value="2">Asian</option>
+                        <option value="21">Asian Indian</option>
+                        <option value="22">Chinese</option>
+                        <option value="23">Filipino</option>
+                        <option value="24">Japanese</option>
+                        <option value="25">Korean</option>
+                        <option value="26">Vietnamese</option>
+                        <option value="27">Other Asian</option>
+                        <option value="3">Black or African American</option>
+                        <option value="4">Native Hawaiian or Other Pacific Islander</option>
+                        <option value="41">Native Hawaiian</option>
+                        <option value="42">Guamanian or Chamorro</option>
+                        <option value="43">Samoan</option>
+                        <option value="44">Other Pacific Islander</option>
+                        <option value="5">White</option>
+                        <option value="6">Information not provided by applicant in mail, internet, or telephone application</option>
+                        <option value="7">Not applicable</option>
+                      </select>
+                      <label for="applicant_race_2">Secondary Race</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="applicant_credit_score_type" name="applicant_credit_score_type" class="validate" required="required">
+                        <option value="1">Equifax Beacon 5.0</option>
+                        <option value="2">Experian Fair Isaac</option>
+                        <option value="3">FICO Risk Score Classic 04</option>
+                        <option value="4">FICO Risk Score Classic 98</option>
+                        <option value="5">VantageScore 2.0</option>
+                        <option value="6">VantageScore 3.0</option>
+                        <option value="7">More than one credit scoring model</option>
+                        <option value="8">Other credit scoring model</option>
+                        <option value="9">Not applicable</option>
+                      </select>
+                      <label for="applicant_credit_score_type">Applicant Credit Score Type</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="debt_to_income_ratio" name="debt_to_income_ratio"class="validate" required="required">
+                        <option value="" disabled selected>Choose a Debt-to-Income Ratio Category</option>
+                        <option value="4">36%-50%</option>
+                        <option value="2">20%-&lt;30%</option>
+                        <option value="3">30%-&lt;36%</option>
+                        <option value="1">&lt;20%</option>
+                        <option value="6">&gt;60%</option>
+                        <option value="5">50%-60%</option>
+                      </select>
+                      <label for="debt_to_income_ratio">Debt-to-Income Ratio Category</label>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s12">
+                  <h4>Co-applicant</h4>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col s6">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="co_applicant_age" name="co_applicant_age" class="validate" required="required">
+                        <option value="" disabled selected>Choose an Age Category</option>
+                        <option value="2">45-54</option>
+                        <option value="1">35-44</option>
+                        <option value="3">55-64</option>
+                        <option value="0">25-34</option>
+                        <option value="4">65-74</option>
+                        <option value="7">&gt;74</option>
+                        <option value="6">&lt;25</option>
+                      </select>
+                      <label for="co_applicant_age">Age Category</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="co_applicant_ethnicity_1" name="co_applicant_ethnicity_1" class="validate" required="required">
+                        <option value="" disabled selected>Choose an Ethnicity</option>
+                        <option value="1"> Not Hispanic or Latino</option>
+                        <option value="2">Hispanic or Latino</option>
+                      </select>
+                      <label for="co_applicant_ethnicity_1">Ethnicity</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="co_applicant_sex" name="co_applicant_sex" class="validate" required="required">
+                        <option value="" disabled selected>Choose a Gender</option>
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                        <option value="5">No co-applicant</option>
+                        <option value="6">Both male and female</option>
+                      </select>
+                      <label for="co_applicant_sex">Sex</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col s6">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="co_applicant_race_1" name="co_applicant_race_1" class="validate" required="required">
+                        <option value="" disabled selected>Choose a Race</option>
+                        <option value="5">White</option>
+                        <option value="3">Black or African American</option>
+                      </select>
+                      <label for="co_applicant_race_1">Race</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="co_applicant_race_2" name="co_applicant_race_2" class="validate" required="required">
+                        <option value="" disabled selected>Choose a Secondary Race</option>
+                        <option value="1">American Indian or Alaska Native</option>
+                        <option value="2">Asian</option>
+                        <option value="21">Asian Indian</option>
+                        <option value="22">Chinese</option>
+                        <option value="23">Filipino</option>
+                        <option value="24">Japanese</option>
+                        <option value="25">Korean</option>
+                        <option value="26">Vietnamese</option>
+                        <option value="27">Other Asian</option>
+                        <option value="3">Black or African American</option>
+                        <option value="4">Native Hawaiian or Other Pacific Islander</option>
+                        <option value="41">Native Hawaiian</option>
+                        <option value="42">Guamanian or Chamorro</option>
+                        <option value="43">Samoan</option>
+                        <option value="44">Other Pacific Islander</option>
+                        <option value="5">White</option>
+                        <option value="6">Information not provided by applicant in mail, internet, or telephone application</option>
+                        <option value="7">Not applicable</option>
+                      </select>
+                      <label for="co_applicant_race_2">Secondary Race</label>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="co_applicant_credit_score_type" name="co_applicant_credit_score_type" class="validate" required="required">
+                        <option value="1">Equifax Beacon 5.0</option>
+                        <option value="2">Experian Fair Isaac</option>
+                        <option value="3">FICO Risk Score Classic 04</option>
+                        <option value="4">FICO Risk Score Classic 98</option>
+                        <option value="5">VantageScore 2.0</option>
+                        <option value="6">VantageScore 3.0</option>
+                        <option value="7">More than one credit scoring model</option>
+                        <option value="8">Other credit scoring model</option>
+                        <option value="9">Not applicable</option>
+                        <option value="10">No co-applicant</option>
+                      </select>
+                      <label for="co_applicant_credit_score_type">Applicant Credit Score Type</label>
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col s12">
+                  <h4>Property info</h4>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s6">
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Property Value" name="property_value" id="property_value" type="text" class="validate" step="0.01" required="required">
+                      <label for="property_value">Property Value</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="manufactured_home_land_property_interest" name="manufactured_home_land_property_interest" class="validate" required="required">
+                        <option value="1">Direct ownership</option>
+                        <option value="2">Indirect ownership</option>
+                        <option value="3">Paid leasehold</option>
+                        <option value="4">Unpaid leasehold</option>
+                        <option value="5">Not applicable</option>
+                      </select>
+                      <label for="manufactured_home_land_property_interest">Manufactured Home Land Property
+                        Interest</label>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col s6">
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="occupancy_type" name="occupancy_type" class="validate" required="required">
+                        <option value="0">Principal residence</option>
+                        <option value="1">Second residence</option>
+                        <option value="0.5">Investment property</option>
+                      </select>
+                      <label for="occupancy_type">Occupancy Type</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="manufactured_home_secured_property_type" name="manufactured_home_secured_property_type" required="required" class="validate">
+                        <option value="1">Manufactured home and land</option>
+                        <option value="2">Manufactured home and not land</option>
+                        <option value="3">Not applicable</option>
+                      </select>
+                      <label for="manufactured_home_secured_property_type">Manufactured Home Land Property
+                        Type</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Total Units" id="total_units" required="required" name="total_units" type="number" class="validate">
+                      <label for="total_units">Total Units</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Lien Status" id="lien_status" required="required" name="lien_status" type="text" class="validate">
+                      <label for="lien_status">Lien Status</label>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s12">
+                  <h4>Loan details</h4>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s6">
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="open_end_line_of_credit" name="open_end_line_of_credit" required="required" class="validate">
+                        <option value="" disabled selected>Choose a Race</option>
+                        <option value="1">Open-end line of credit</option>
+                        <option value="2">Not an open-end line of credit</option>
+                      </select>
+                      <label for="open_end_line_of_credit">Open end line of credit</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Loan Amount" id="loan_amount" required="required" name="loan_amount" type="text"
+                        class="validate">
+                      <label for="negative_amortization">Loan Amount</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                        <select id="origination_charges" name="origination_charges" required="required" class="validate">
+                            <option value="1">0-500</option>
+                            <option value="3">500-1000</option>
+                            <option value="2">1000-1500</option>
+                            <option value="4">1500-2000</option>
+                            <option value="5">2000-2500</option>
+                            <option value="6">2500-3000</option>
+                            <option value="7">3000-3500</option>
+                            <option value="8">3500-4000</option>
+                        </select>
+                        <label for="origination_charges">Origination Charges</label>
+                    </div>
+                </div>
+                
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="interest_rate" name="interest_rate"  class="validate" required="required" >
+                        <option value="" disabled selected>Choose an Interest Rate</option>
+                        <option value="1">0.0-1.0</option>
+                        <option value="2">1.0-2.0</option>
+                        <option value="3">2.0-3.0</option>
+                        <option value="4">3.0-3.5</option>
+                        <option value="5">3.5-4.0</option>
+                        <option value="6">4.0-4.5</option>
+                        <option value="7">4.5-5.0</option>
+                        <option value="8">5.0-6.0</option>
+                        <option value="9">6.0-7.0</option>
+                        <option value="10">7.0-8.0</option>
+                        <option value="11">8.0-9.0</option>
+                        <option value="5.182086">9.0-15.0</option>
+                      </select>
+                      <label for="interest_rate">Interest Rate</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                        <select id="loan_term" name="loan_term" class="validate" required="required">
+                            <option value="6">27-31 years</option>
+                            <option value="3">12-16 years</option>
+                            <option value="4">17-21 years</option>
+                            <option value="2">7-11 years</option>
+                            <option value="5">22-26 years</option>
+                            <option value="1">2-6 years</option>
+                            <option value="7">37-41 years</option>
+                        </select>
+                        <label for="loan_term">Loan Term</label>
+                    </div>
+                </div>
+                
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Negative Amortization" required="required" id="negative_amortization" name="negative_amortization" type="text"
+                        class="validate">
+                      <label for="negative_amortization">Negative Amortization</label>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col s6">
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                        <select id="total_loan_costs" name="total_loan_costs" class="validate" required="required">
+                            <option value="7">0-500</option>
+                            <option value="2">3000-3500</option>
+                            <option value="1">2500-3000</option>
+                            <option value="3">3500-4000</option>
+                            <option value="4">500-1000</option>
+                            <option value="5">2000-2500</option>
+                            <option value="6">4000-4500</option>
+                            <option value="8">4500-5000</option>
+                            <option value="10">5000-5500</option>
+                            <option value="9">1500-2000</option>
+                            <option value="12">5500-6000</option>
+                            <option value="11">1000-1500</option>
+                            <option value="13">6000-6500</option>
+                            <option value="14">6500-7000</option>
+                            <option value="15">7000-7500</option>
+                            <option value="16">7500-8000</option>
+                            <option value="17">8000-8500</option>
+                            <option value="18">8500-9000</option>
+                        </select>
+                        <label for="total_loan_costs">Total Loan Costs</label>
+                    </div>
+                </div>
+                
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Loan Type" id="loan_type" required="required" name="loan_type" type="text" class="validate">
+                      <label for="loan_type">Loan Type</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                        <select id="combined_loan_to_value_ratio" required="required" name="combined_loan_to_value_ratio" class="validate">
+                            <option value="1">75.0-80.0</option>
+                            <option value="2">70.0-75.0</option>
+                            <option value="3">95.0-100.0</option>
+                            <option value="4">65.0-70.0</option>
+                            <option value="5">90.0-95.0</option>
+                            <option value="6">85.0-90.0</option>
+                            <option value="7">55.0-60.0</option>
+                            <option value="8">60.0-65.0</option>
+                            <option value="9">80.0-85.0</option>
+                            <option value="10">50.0-55.0</option>
+                            <option value="11">45.0-50.0</option>
+                            <option value="12">40.0-45.0</option>
+                            <option value="13">35.0-40.0</option>
+                            <option value="14">30.0-35.0</option>
+                            <option value="15">25.0-30.0</option>
+                            <option value="16">100.0-120.0</option>
+                            <option value="17">0.0-25.0</option>
+                        </select>
+                        <label for="combined_loan_to_value_ratio">Combined loan to value ratio</label>
+                    </div>
+                </div>
+                
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Interest-Only Payment" required="required" id="interest_only_payment" name="interest_only_payment" type="text"
+                        class="validate">
+                      <label for="interest_only_payment">Interest-Only Payment</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Balloon Payment" required="required" id="balloon_payment" name="balloon_payment" type="text" class="validate">
+                      <label for="balloon_payment">Balloon Payment</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Other Nonamortizing Features" required="required" id="other_nonamortizing_features" name="other_nonamortizing_features" type="text"
+                        class="validate">
+                      <label for="other_nonamortizing_features">Other Nonamortizing Features</label>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col s3">
+            <h2>Prediction:</h2>
+            <p id="prediction">
+              {{ prediction_text }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Import Materialize JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <!-- Filling the dummy dropdown -->
+  <script>
+    let jsonData; 
+
+  // Load JSON data
+  fetch('./static/testdata.json')
+    .then(response => response.json())
+    .then(data => {
+      jsonData = parseDataToFloat(data); // Parse data to floats
+      console.log('JSON data loaded:', jsonData);
+      //printDataTypes(jsonData); // Print data types
+      populateDropdown();
+    })
+    .catch(error => console.error('Error loading JSON data:', error));
+
+  // Function to parse data to floats
+  function parseDataToFloat(data) {
+    return data.map(obj => {
+      const parsedObj = {};
+      for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          // Ensure that the value is parsed to a float
+          parsedObj[key] = parseFloat(obj[key]);
+        }
+      }
+      return parsedObj;
+    });
+  }
+
+    // Function to print data types
+    function printDataTypes(dataList) {
+    dataList.forEach((obj, index) => {
+      console.log(`Object ${index} data types:`);
+      for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          const valueType = typeof obj[key];
+          console.log(`${key}: ${valueType}`);
+        }
+      }
+    });
+  }
+
+  // Function to fill form with dummy data
+  function populateDropdown() {
+    const dropdown = document.getElementById('dummyDataDropdown');
+    jsonData.forEach((obj, index) => {
+      const option = document.createElement('option');
+      option.value = index;
+      option.textContent = `Object ${index}`;
+      dropdown.appendChild(option);
+    });
+
+    // Initialize Materialize select elements
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
+
+    console.log('Dropdown populated with options:', dropdown.innerHTML);
+  }
+
+
+
+    // ----------------------------------------------------------------//
+
+    function populateFormFieldFromDummyData() {
+      const dropdown = document.getElementById('dummyDataDropdown');
+      const selectedDummyIndex = dropdown.selectedIndex; // Get the selected index
+
+      if (jsonData && jsonData[selectedDummyIndex]) {
+        const data = jsonData[selectedDummyIndex];
+
+        for (const key in data) {
+          if (data.hasOwnProperty(key)) {
+            const value = data[key];
+            populateFormField(key, value);
+          }
+        }
+
+        // Initialize all select fields after setting their values
+        const selectFields = document.querySelectorAll('select');
+        M.FormSelect.init(selectFields);
+      } else {
+        console.error('Data not found for the selected dummy index:', selectedDummyIndex);
+      }
+    }
+
+    function populateFormField(name, value) {
+      const element = document.querySelector(`[name="${name}"]`);
+      if (element) {
+        element.value = value.toString();
+        console.log(`Set ${name} to ${value}`);
+      } else {
+        console.error(`Element with name ${name} not found.`);
+      }
+    }
+
+  </script>
+
+  <!-- Handle Form Submission -->
+  <script>
+
+
+    // Event Listeners
+    document.addEventListener('DOMContentLoaded', function () {
+      // Materialize select elements
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems);
+
+    });
+  </script>
+
+<script>
+  function predictLoan() {
+      const form = document.getElementById('loanForm');
+      const formData = new FormData(form);
+  
+      fetch("{{ url_for('predict') }}", {
+          method: "POST",
+          body: formData
+      })
+      .then(response => response.json())
+    .then(data => {
+        // Access the prediction_text from the JSON response
+        const predictionText = data.prediction_text;
+
+        // Display the prediction text in the HTML
+        document.getElementById('prediction').textContent = predictionText;
+    })
+    .catch(error => console.error('Error:', error));
+  }
+  
+  </script>
+</body>
+</html>

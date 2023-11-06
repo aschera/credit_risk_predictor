@@ -1,0 +1,133 @@
+{
+"dummyData1": {
+        "applicantData": {
+            "applicant_age": 35,
+            "applicant_race_1": "White",
+            "applicant_sex": 1,
+            "applicant_ethnicity_1": "Latino",
+            "income": 60000,
+            "debt_to_income_ratio": 25,
+            "applicant_credit_score_type": 720,
+            "lenderCredits": 0
+        },
+        "coApplicantData": {
+            "co_applicant_age": 30,
+            "applicantRace": "Latino",
+            "co_applicant_sex": 1,
+            "applicantEthnicity": "White"
+        },
+        "propertyInfo": {
+            "property_value": 200000,
+            "lienStatus": "First Lien",
+            "manufactured_home_land_property_interest": "N/A",
+            "multifamilyAffordableUnits": 0,
+            "occupancy_type": "Primary Residence",
+            "manufactured_home_secured_property_type": "Site-Built",
+            "total_units": 1
+        },
+        "loanDetails": {
+            "loan_amount": 150000,
+            "interest_rate": 4.5,
+            "totalpointsandfees": 2000,
+            "loan_term": "30 years",
+            "discountPoints": 0,
+            "prepaymentPenaltyTerm": 0,
+            "negative_amortization": "No",
+            "total_loan_costs": 3000,
+            "loan_type": "Conventional",
+            "loanpurpose": "Purchase",
+            "originationCharges": 1500,
+            "interest_only_payment": "No",
+            "balloon_payment": "No",
+            "other_nonamortizing_features": "No"
+        }
+    },
+
+    "dummyData2": {
+      "applicantData": {
+        "applicant_age": 40,
+        "applicant_race_1": "Black",
+        "applicant_sex": "Female",
+        "applicant_ethnicity_1": "Non-Latino",
+        "income": 55000,
+        "debt_to_income_ratio": 30,
+        "applicant_credit_score_type": 680,
+        "lenderCredits": 0
+      },
+      "coApplicantData": {
+        "co_applicant_age": 35,
+        "applicantRace": "Non-Latino",
+        "co_applicant_sex": 2,
+        "applicantEthnicity": "Black"
+      },
+      "propertyInfo": {
+        "property_value": 150000,
+        "lienStatus": "Second Lien",
+        "manufactured_home_land_property_interest": "N/A",
+        "multifamilyAffordableUnits": 0,
+        "occupancy_type": "Primary Residence",
+        "manufactured_home_secured_property_type": "Site-Built",
+        "total_units": 1
+      },
+      "loanDetails": {
+        "loan_amount": 120000,
+        "interest_rate": 4.2,
+        "totalpointsandfees": 1800,
+        "loan_term": "15 years",
+        "discountPoints": 0,
+        "prepaymentPenaltyTerm": 0,
+        "negative_amortization": "No",
+        "total_loan_costs": 2500,
+        "loan_type": "FHA",
+        "loanpurpose": "Refinance",
+        "originationCharges": 1200,
+        "interest_only_payment": "No",
+        "balloon_payment": "No",
+        "other_nonamortizing_features": "No"
+      }
+    },
+    "dummyData3": {
+      "applicantData": {
+        "applicant_age": 45,
+        "applicant_race_1": "Joint",
+        "applicant_sex": 6,
+        "applicant_ethnicity_1": "Joint",
+        "income": 70000,
+        "debt_to_income_ratio": 20,
+        "applicant_credit_score_type": 700,
+        "lenderCredits": 0
+      },
+      "coApplicantData": {
+        "co_applicant_age": 40,
+        "applicantRace": "Joint",
+        "co_applicant_sex": 6,
+        "applicantEthnicity": "Joint"
+      },
+      "propertyInfo": {
+        "property_value": 180000,
+        "lienStatus": "First Lien",
+        "manufactured_home_land_property_interest": "N/A",
+        "multifamilyAffordableUnits": 0,
+        "occupancy_type": "Primary Residence",
+        "manufactured_home_secured_property_type": "Site-Built",
+        "total_units": 1
+      },
+      "loanDetails": {
+        "loan_amount": 100000,
+        "interest_rate": 4.8,
+        "totalpointsandfees": 1900,
+        "loan_term": "20 years",
+        "discountPoints": 0,
+        "prepaymentPenaltyTerm": 0,
+        "negative_amortization": "No",
+        "total_loan_costs": 2800,
+        "loan_type": "VA",
+        "loanpurpose": "Home Improvement",
+        "originationCharges": 1300,
+        "interest_only_payment": "No",
+        "balloon_payment": "No",
+        "other_nonamortizing_features": "No"
+      }
+    }
+  }
+  
