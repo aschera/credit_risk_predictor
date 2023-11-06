@@ -1,0 +1,23 @@
+streamlit==1.5.0
+pandas
+plost
+import streamlit as st
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import plost
+from PIL import Image
+import joblib
+import plotly.express as px
+import pickle
+import seaborn as sns
+from xgboost import XGBClassifier
+from sklearn.metrics import classification_report
+import shap
+import warnings
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix, precision_score, recall_score, accuracy_score, f1_score
+from sklearn.metrics import roc_auc_score
+from sklearn.metrics import precision_recall_curve
+from sklearn.metrics import auc
+from sklearn.metrics import roc_curve
