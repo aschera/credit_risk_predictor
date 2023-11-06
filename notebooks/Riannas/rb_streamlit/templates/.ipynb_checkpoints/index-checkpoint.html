@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit Risk Predictor App</title>
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Import local CSS file -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+</head>
+
+<body>
+  <div class="container">
+
+    
+    <div class="row" style="background-color: yellow;">
+    <div class="input-field col s12 browser-default">
+      <select id="dummyDataDropdown" onchange="fillFormWithDummyData()">
+        <option value="" disabled selected>Choose your option</option>
+      </select>
+      <label>Select Dummy Data:</label>
+    </div>
+  </div>
+
+    <h1 class="blue-text text-darken-2">Credit Risk Predictor App</h1>
+    <div class="row">
+
+      <div class="col s12">
+
+        <div class="row">
+          <div class="col s8">
+            <form id="loanForm">
+
+              <div class="row">
+                <div class="col s12">
+                  <h4>Applicant data</h4>
+                </div>
+              </div>
+
+              <div class="row">
+
+                <div class="col s6">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="applicant_age" class="validate">
+                        <option value="" disabled selected>Choose an Age Category</option>
+                        <option value="2">45-54</option>
+                        <option value="1">35-44</option>
+                        <option value="3">55-64</option>
+                        <option value="0">25-34</option>
+                        <option value="4">65-74</option>
+                        <option value="7">&gt;74</option>
+                        <option value="6">&lt;25</option>
+                      </select>
+                      <label for="applicant_age">Age Category</label>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Race" id="applicant_race_1" type="text" class="validate">
+                      <label for="applicant_race_1">Race</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="100000" id="income" type="number" class="validate">
+                      <label for="income">Income</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="0.25" id="debt_to_income_ratio" type="number" class="validate">
+                      <label for="debt_to_income_ratio">Debt-to-Income Ratio</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col s6">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Sex" id="applicant_sex" type="text" class="validate">
+                      <label for="applicant_sex">Sex</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Ethnicity" id="applicant_ethnicity_1" type="text" class="validate">
+                      <label for="applicant_ethnicity_1">Ethnicity</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="750" id="applicant_credit_score_type" type="number" class="validate">
+                      <label for="applicant_credit_score_type">Credit Score</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Lender Credits" id="lenderCredits" type="number" class="validate">
+                      <label for="lenderCredits">Lender Credits</label>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col s12">
+                  <h4>Co-applicant</h4>
+                </div>
+              </div>
+
+              <div class="row">
+
+                <div class="col s6">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id="co_applicant_age" class="validate">
+                        <option value="" disabled selected>Choose an Age Category</option>
+                        <option value="2">45-54</option>
+                        <option value="1">35-44</option>
+                        <option value="3">55-64</option>
+                        <option value="0">25-34</option>
+                        <option value="4">65-74</option>
+                        <option value="7">&gt;74</option>
+                        <option value="6">&lt;25</option>
+                      </select>
+                      <label for="co_applicant_age">Age Category</label>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Co-Applicant Race" id="applicantRace" type="text" class="validate">
+                      <label for="applicantRace">Co-Applicant Race</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col s6">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Co-Applicant Ethnicity" id="applicantEthnicity" type="text" class="validate">
+                      <label for="applicantEthnicity">Co-Applicant Ethnicity</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Co-Applicant Sex" id="co_applicant_sex" type="text" class="validate">
+                      <label for="co_applicant_sex">Co-Applicant Sex</label>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col s12">
+                  <h4>Property info</h4>
+                </div>
+              </div>
+
+              <div class="row">
+
+                <div class="col s6">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Property Value" id="property_value" type="number" class="validate">
+                      <label for="property_value">Property Value</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Lien Status" id="lienstatus" type="text" class="validate">
+                      <label for="lienstatus">Lien Status</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Manufactured Home Land Property Interest"
+                        id="manufactured_home_land_property_interest" type="text" class="validate">
+                      <label for="manufactured_home_land_property_interest">Manufactured Home Land Property Interest</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Multifamily Affordable Units" id="multifamilyAffordableUnits" type="number"
+                        class="validate">
+                      <label for="multifamilyAffordableUnits">Multifamily Affordable Units</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col s6">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Occupancy Type" id="occupancy_type" type="text" class="validate">
+                      <label for="occupancy_type">Occupancy Type</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Manufactured Home Secured Property Type"
+                        id="manufactured_home_secured_property_type" type="text" class="validate">
+                      <label for="manufactured_home_secured_property_type">Manufactured Home Secured Property Type</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Total Units" id="total_units" type="number" class="validate">
+                      <label for="total_units">Total Units</label>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col s12">
+                  <h4>Loan details</h4>
+                </div>
+              </div>
+
+              <div class="row">
+
+                <div class="col s6">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="loan_amount" type="number" class="validate">
+                      <label for="loan_amount">Loan Amount</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Interest Rate" id="interest_rate" type="text" step="0.01" class="validate">
+                      <label for="interest_rate">Interest Rate</label>
+                    </div>
+                  </div>
+                  
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Total Points and Fees" id="totalpointsandfees" type="text" class="validate">
+                      <label for="totalpointsandfees">Total Points and Fees</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Loan Term" id="loan_term" type="text" class="validate">
+                      <label for="loan_term">Loan Term</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Discount Points" id="discountPoints" type="number" class="validate">
+                      <label for="discountPoints">Discount Points</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Prepayment Penalty Term" id="prepaymentPenaltyTerm" type="number"
+                        class="validate">
+                      <label for="prepaymentPenaltyTerm">Prepayment Penalty Term</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Negative Amortization" id="negative_amortization" type="text" class="validate">
+                      <label for="negative_amortization">Negative Amortization</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col s6">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Total Loan Costs" id="total_loan_costs" type="text" class="validate">
+                      <label for="total_loan_costs">Total Loan Costs</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Loan Type" id="loan_type" type="text" class="validate">
+                      <label for="loan_type">Loan Type</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Loan Purpose" id="loanpurpose" type="text" class="validate">
+                      <label for="loanpurpose">Loan Purpose</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Origination Charges" id="originationCharges" type="number" class="validate">
+                      <label for="originationCharges">Origination Charges</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Interest-Only Payment" id="interest_only_payment" type="text" class="validate">
+                      <label for="interest_only_payment">Interest-Only Payment</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Balloon Payment" id="balloon_payment" type="text" class="validate">
+                      <label for="balloon_payment">Balloon Payment</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Other Nonamortizing Features" id="other_nonamortizing_features" type="text"
+                        class="validate">
+                      <label for="other_nonamortizing_features">Other Nonamortizing Features</label>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+
+            </form>
+          </div>
+          <div class="col s3">
+            <h2>Prediction:</h2>
+            <p id="prediction">Result: </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+  </div>
+
+  <!-- Import Materialize JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+
+  <script>
+    let dummyData;
+
+    // Load dummy data from JSON
+    fetch('./static/testdata.json')
+      .then(response => response.json())
+      .then(data => {
+        dummyData = data;
+        console.log('Dummy data loaded:', dummyData);
+        populateDropdown();
+      })
+      .catch(error => console.error('Error loading dummy data:', error));
+
+    function populateDropdown() {
+      const dropdown = document.getElementById('dummyDataDropdown');
+      for (const key in dummyData) {
+        if (dummyData.hasOwnProperty(key)) {
+          const option = document.createElement('option');
+          option.value = key;
+          option.textContent = key;
+          dropdown.appendChild(option);
+        }
+      }
+
+      // Initialize Materialize select elements
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems);
+
+      console.log('Dropdown populated with options:', dropdown.innerHTML);
+    }
+      
+      
+      
+      function fillFormWithDummyData() {
+  const selectedOption = document.getElementById('dummyDataDropdown').value;
+  const data = dummyData[selectedOption];
+
+  if (data) {
+ // Fill the form fields with dummy data
+    document.getElementById('applicant_age').value = data.applicantData.applicant_age;
+    document.getElementById('applicant_race_1').value = data.applicantData.applicant_race_1;
+    document.getElementById('applicant_sex').value = data.applicantData.applicant_sex;
+    document.getElementById('applicant_ethnicity_1').value = data.applicantData.applicant_ethnicity_1;
+    document.getElementById('income').value = data.applicantData.income;
+    document.getElementById('debt_to_income_ratio').value = data.applicantData.debt_to_income_ratio;
+    document.getElementById('applicant_credit_score_type').value = data.applicantData.applicant_credit_score_type;
+    document.getElementById('lenderCredits').value = data.applicantData.lenderCredits;
+
+    document.getElementById('co_applicant_age').value = data.coApplicantData.co_applicant_age;
+    document.getElementById('applicantRace').value = data.coApplicantData.applicantRace;
+    document.getElementById('co_applicant_sex).value = data.coApplicantData.co_applicant_sex;
+    document.getElementById('applicantEthnicity').value = data.coApplicantData.applicantEthnicity;
+
+    document.getElementById('property_value').value = data.propertyInfo.property_value;
+    document.getElementById('lienstatus').value = data.propertyInfo.lienStatus;
+    document.getElementById('manufactured_home_land_property_interest').value = data.propertyInfo.manufactured_home_land_property_interest;
+    document.getElementById('multifamilyAffordableUnits').value = data.propertyInfo.multifamilyAffordableUnits;
+    document.getElementById('occupancy_type').value = data.propertyInfo.occupancy_type;
+    document.getElementById('manufactured_home_secured_property_type').value = data.propertyInfo.manufactured_home_secured_property_type;
+    document.getElementById('total_units').value = data.propertyInfo.total_units;
+
+    document.getElementById('loan_amount').value = data.loanDetails.loan_amount;
+    document.getElementById('interest_rate').value = data.loanDetails.interest_rate;
+    document.getElementById('totalpointsandfees').value = data.loanDetails.totalpointsandfees;
+    document.getElementById('loan_term').value = data.loanDetails.loan_term;
+    document.getElementById('discountPoints').value = data.loanDetails.discountPoints;
+    document.getElementById('prepaymentPenaltyTerm').value = data.loanDetails.prepaymentPenaltyTerm;
+    document.getElementById('negative_amortization').value = data.loanDetails.negative_amortization;
+    document.getElementById('total_loan_costs').value = data.loanDetails.total_loan_costs;
+    document.getElementById('loan_type').value = data.loanDetails.loan_type;
+    document.getElementById('loanpurpose').value = data.loanDetails.loanpurpose;
+    document.getElementById('originationCharges').value = data.loanDetails.originationCharges;
+    document.getElementById('interest_only_payment').value = data.loanDetails.interest_only_payment;
+    document.getElementById('balloon_payment').value = data.loanDetails.balloon_payment;
+    document.getElementById('other_nonamortizing_features').value = data.loanDetails.other_nonamortizing_features;
+  } else {
+    console.error('No data found for the selected option.');
+  }
+
+    // Prepare the data to send to the Flask app
+    const formData = new FormData(document.getElementById('yourFormId'));  // Replace 'yourFormId' with the actual form ID
+    const jsonData = {};
+
+    formData.forEach((value, key) => {
+      jsonData[key] = value;
+    });
+
+    // Send the data to the Flask app for prediction
+    fetch('/predict', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(jsonData)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Prediction:', data);
+      // Update your UI with the prediction
+      document.getElementById('prediction').innerText = `Predicted class: ${data.prediction}`;
+    })
+    .catch(error => console.error('Error predicting:', error));
+  }
+
+
+
+    // Initialize Materialize select elements
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems);
+    });
+  </script>
+
+
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Gather all the form values
+        const applicant_age = document.getElementById('applicant_age').value;
+        const income = document.getElementById('income').value;
+        const applicant_race_1 = document.getElementById('applicant_race_1').value;
+        const applicant_sex = document.getElementById('applicant_sex').value;
+        const applicant_ethnicity_1 = document.getElementById('applicant_ethnicity_1').value;
+        const lenderCredits = document.getElementById('lenderCredits').value;
+        const debt_to_income_ratio = document.getElementById('debt_to_income_ratio').value;
+        const applicant_credit_score_type = document.getElementById('applicant_credit_score_type').value;
+
+        const loan_amount = document.getElementById('loan_amount').value;
+        const interest_rate = document.getElementById('interest_rate').value;
+        const totalpointsandfees = document.getElementById('totalpointsandfees').value;
+        const loan_term = document.getElementById('loan_term').value;
+        const discountPoints = document.getElementById('discountPoints').value;
+        const prepaymentPenaltyTerm = document.getElementById('prepaymentPenaltyTerm').value;
+        const negative_amortization= document.getElementById('negative_amortization').value;
+        const total_loan_costs = document.getElementById('total_loan_costs').value;
+        const loan_type = document.getElementById('loan_type').value;
+        const loanpurpose = document.getElementById('loanpurpose').value;
+        const originationCharges = document.getElementById('originationCharges').value;
+        const interest_only_payment = document.getElementById('interest_only_payment').value;
+        const balloon_payment = document.getElementById('balloon_payment').value;
+        const other_nonamortizing_features = document.getElementById('other_nonamortizing_features').value;
+
+        fetch('/predict', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                'applicant_age': applicant_age,
+                'income': income,
+                'applicant_race_1': applicant_race_1,
+                'applicant_sex': applicant_sex,
+                'applicant_ethnicity_1': applicant_ethnicity_1,
+                'lenderCredits': lenderCredits,
+                'debt_to_income_ratio': debt_to_income_ratio,
+                'applicant_credit_score_type': applicant_credit_score_type,
+
+                'loan_amount': loan_amount,
+                'interest_rate': interest_rate,
+                'totalpointsandfees': totalpointsandfees,
+                'loan_term': loan_term,
+                'discountPoints':discountPoints, 
+                'prepaymentPenaltyTerm': prepaymentPenaltyTerm,
+                'negative_amortization': negative_amortization,
+                'total_loan_costs': total_loan_costs,
+                'loan_type': loan_type,
+                'loanpurpose': loanpurpose,
+                'originationCharges': originationCharges,
+                'interest_only_payment': interest_only_payment,
+                'balloon_payment': balloon_payment,
+                'other_nonamortizing_features': other_nonamortizing_features,
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            const predictionElement = document.getElementById('prediction');
+            predictionElement.innerText = `Predicted class: ${data.prediction}`;
+        });
+    });
+</script>
+
+
+
+
+
+</body>
+
+</html>
