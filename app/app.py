@@ -115,14 +115,8 @@ logger = logging.getLogger(__name__)
 
 @app.route('/')
 def index():
-    # Get the detected theme from the query parameter
-    detected_theme = request.args.get('theme')
-    
-    # Use the detected theme to load the corresponding CSS file
-    if detected_theme == 'dark':
-        return render_template('index.html', theme='dark')
-    else:
-        return render_template('index.html', theme='light')
+    return render_template('index.html')
+
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -164,8 +158,6 @@ def predict():
     return jsonify({"prediction_text": prediction_text, "image_name": image_name})
 
 
-
-    
     # Initialize an empty list for input features
     init_features = []
 

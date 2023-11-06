@@ -1,0 +1,291 @@
+/* ONLY colors: */
+@media (prefers-color-scheme: light) {
+  body.app {
+    color: rgb(14, 17, 23);
+    background-color: rgb(250, 250, 250);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+  
+  .prediction-result-wrapper {
+    background-color: rgba(172, 177, 195, 0.15);
+  }
+  
+  .main form {
+    background: #f0f2f6;
+    color: #262730;
+  }
+  
+  .input-field [type=text],
+  input[type=number] {
+    color: rgb(0, 0, 0);
+  }
+  
+  .main .input-field.col label,
+  .main label,
+  .main label.active,
+  .main .input-field.col label,
+  .main ul,
+  input[type=text].active,
+  label {
+    color: #ff6e55 !important;
+  }
+  
+  .main .select-wrapper .caret {
+    fill: rgb(0, 0, 0);
+  }
+  
+  .main h4 {
+    color: #ff6e55;
+  }
+  
+  .main [type=button]:not(:disabled),
+  [type=reset]:not(:disabled),
+  [type=submit]:not(:disabled),
+  button:not(:disabled),
+  .main .btn:focus,
+  .main .btn:hover {
+    background-color: #ff6e55;
+    color: #262730;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body.app {
+    color: rgb(250, 250, 250);
+    background-color: rgb(14, 17, 23);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+  
+  .prediction-result-wrapper {
+    background-color: rgba(172, 177, 195, 0.15);
+  }
+  
+  .main form {
+    background: #262730;
+    color: rgb(250, 250, 250);
+  }
+  
+  .input-field [type=text],
+  input[type=number] {
+    color: rgb(250, 250, 250);
+  }
+  
+  .main .input-field.col label,
+  .main label,
+  .main label.active,
+  .main .input-field.col label,
+  .main ul,
+  input[type=text].active,
+  label {
+    color: #fff87f !important;
+  }
+  
+  .main .select-wrapper .caret {
+    fill: rgb(250, 250, 250);
+  }
+  
+  .main h4 {
+    color: #fff87f;
+  }
+  
+  .main [type=button]:not(:disabled),
+  [type=reset]:not(:disabled),
+  [type=submit]:not(:disabled),
+  button:not(:disabled),
+  .main .btn:focus,
+  .main .btn:hover {
+    background-color: #fff87f;
+    color: #262730;
+  }
+}
+  
+  /* ---------------------------------------------------------------------------------------- */
+  body.app {
+    margin: 0px;
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: auto;
+  }
+  
+  .prediction-result-wrapper {
+    text-decoration: none;
+    font-weight: 600;
+    gap: 0.5rem;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin: 0.125rem 1rem;
+    line-height: 2;
+    width: 50vw;
+    height: 20vh;
+  }
+  
+  #prediction {
+    font-size: calc(2.275rem + .3vw)
+  }
+  
+  .prediction-result-wrapper div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+  }
+  
+  .container.main {
+    max-width: 1200px;
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .main .row.form-wrapper {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-pack: start;
+    place-content: flex-start;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    position: absolute;
+    inset: 0px;
+    overflow-y: scroll;
+  }
+  
+  .main form {
+    padding: 1rem 1rem 10rem;
+  }
+  
+  .main .form-start {
+    margin-top: 4rem;
+  }
+  
+  .main .form-wrapper .form-column {
+    padding: 0;
+    position: relative;
+    user-select: auto;
+    width: 500px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin: 0.125rem 1rem;
+  }
+  
+  .main .form-wrapper .result-box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: auto;
+    -webkit-box-align: center;
+    align-items: center;
+  }
+  
+  .main .row.dummy-wrapper {
+    margin: 3em 0 6em 0;
+  }
+  
+  /* Rest of the CSS styles */
+  /* ... */
+  
+  .main p,
+  .main ol,
+  .main dl,
+  .input-field [type=text],
+  input[type=number] {
+    font-family: "Source Sans Pro", sans-serif;
+    word-break: break-word;
+    margin: 0px 0px 1rem;
+    padding: 0px;
+    font-weight: 400;
+  }
+  
+  .input-field [type=text],
+  input[type=number] {
+    font-size: 1.5rem;
+  }
+  
+  .main .input-field.col label,
+  .main label,
+  .main label.active,
+  .main .input-field.col label,
+  .main ul,
+  input[type=text].active,
+  label {
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+  
+  .main h1 {
+    font-size: calc(1.4rem + 1.8vw)
+  }
+  
+  @media(min-width: 1200px) {
+    .main h1 {
+      font-size: 2.75rem
+    }
+  }
+  
+  .main h2 {
+    font-size: calc(1.20rem + 1.2vw)
+  }
+  
+  @media(min-width: 1200px) {
+    .main h2 {
+      font-size: 2.15rem
+    }
+  }
+  
+  .main h3,
+  .main .h3 {
+    font-size: calc(1.3rem + .6vw)
+  }
+  
+  @media(min-width: 1200px) {
+    .main h3 {
+      font-size: 1.75rem
+    }
+  }
+  
+  .main h4 {
+    font-size: calc(1.275rem + .3vw)
+  }
+  
+  @media(min-width: 1200px) {
+    .main h4 {
+      font-size: 1.5rem
+    }
+  }
+  
+  .main h5 {
+    font-size: 1.25rem
+  }
+  
+  .main h6 {
+    font-size: 1rem
+  }
+  
+  .main button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    font-size: inherit
+  }
+  
+  .main [type=button]:not(:disabled),
+  [type=reset]:not(:disabled),
+  [type=submit]:not(:disabled),
+  button:not(:disabled) {
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: "Source Sans Pro", sans-serif;
+    margin: 0 auto;
+  }
+  
+  .main legend {
+    font-size: 1rem
+  }
