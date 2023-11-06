@@ -717,7 +717,8 @@
         .then(data => {
           // Access the prediction_text and image_url from the JSON response
           const predictionText = data.prediction_text;
-          const imageText = data.image_name;
+          const imageText1 = data.image_name;
+          const imageText2 = data.image_filename1; 
 
           // Get the HTML element
           const predictionTextElement = document.getElementById('prediction');
@@ -736,11 +737,15 @@
           }
 
           // Construct the full image URL
-          const imageUrl = "/static/" + imageText;
+          const imageUrl1 = "/static/" + imageText1;
+          const imageUrl2 = "/static/" + imageText2 
 
           // Display the image with a link to open it in a new window
           const imageElement = document.getElementById('image');
-          imageElement.innerHTML = `<span> Force graph - click to see bigger:</span><a href="${imageUrl}" target="_blank" title="Click to show larger"><img width="800px" src="${imageUrl}" /></a>`;
+          imageElement.innerHTML = `<p> Force graph - click to see bigger:</p>
+          <a href="${imageUrl1}" target="_blank" title="Click to show larger"><img width="300px" src="${imageUrl1}" /></a>
+          <a href="${imageUrl2}" target="_blank" title="Click to show larger"><img width="300px" src="${imageUrl2}" /></a>
+          `;
         })
         .catch(error => console.error('Error:', error));
     }
