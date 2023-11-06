@@ -10,29 +10,45 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
   <!-- Import local CSS file -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  {% if theme == 'dark' %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='dark_styles.css') }}">
+  {% else %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='light_styles.css') }}">
+  {% endif %}
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
+  <script>
+    // Check if the user's browser has set the theme
+    if (!window.location.search.includes('theme=')) {
+      // If the theme is not set, detect the system's preferred color scheme
+      const preferredColorScheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      
+      // Redirect to the Flask app with the detected color scheme as a query parameter
+      window.location.href = `/?theme=${preferredColorScheme}`;
+    }
+  </script>
 </head>
 
-<body>
+<body class="app">
   <div class="container main">
-    <div class="row" style="background-color: yellow;">
-      <div class="input-field col s12 browser-default">
-        <select id="dummyDataDropdown" onchange="populateFormFieldFromDummyData()">
-          <option value="" disabled selected>Choose your option</option>
-        </select>
-        <label>Select Dummy Data:</label>
-      </div>
-    </div>
-    <h1 class="blue-text text-darken-2">Credit Risk Predictor App</h1>
+
     <div class="row">
       <div class="col s12">
-        <div class="row">
-          <div class="col s8">
+        <div class="row form-wrapper">
+          <div class="form-column">
+
             <form id="loanForm" method="post" action="{{ url_for('predict')}}" onsubmit="return false;">
+              <h2 class="h3">Fill in the form or choose test data.</h2>
+              <div class="row dummy-wrapper">
+                <div class="input-field col s12 browser-default">
+                  <select id="dummyDataDropdown" onchange="populateFormFieldFromDummyData()">
+                    <option value="" disabled selected>Choose your option</option>
+                  </select>
+                  <label>Select Dummy Data:</label>
+                </div>
+              </div>
               <button class="btn waves-effect waves-light" type="submit" onclick="predictLoan()">
                 Predict
               </button>
@@ -520,18 +536,28 @@
                 </div>
               </div>
             </form>
-          </div>
-          <div class="col s3">
-            <h3>Result:</h3>
-            <p id="prediction">
-              Prediction:
-              {{ prediction_text }}
-            </p>
-            <div id="image">
 
+          </div>
+
+          <div class="result-box">
+
+            <h1>Credit Risk Predictor App</h1>
+            <h3>Result:</h3>
+
+            <div id="prediction">
+ 
+              {% if prediction_text == '1' %}
+                Prediction: Approved
+              {% elif prediction_text == '0' %}
+                Prediction: Denied
+              {% endif %}
+            </div>
+            
+            <div id="image">
             </div>
 
           </div>
+
         </div>
       </div>
     </div>

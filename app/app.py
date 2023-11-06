@@ -115,7 +115,14 @@ logger = logging.getLogger(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    # Get the detected theme from the query parameter
+    detected_theme = request.args.get('theme')
+    
+    # Use the detected theme to load the corresponding CSS file
+    if detected_theme == 'dark':
+        return render_template('index.html', theme='dark')
+    else:
+        return render_template('index.html', theme='light')
 
 @app.route('/predict', methods=['POST'])
 def predict():
