@@ -16,6 +16,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
+
+  <!-- Load d3.js -->
+  <script src="https://d3js.org/d3.v4.js"></script>
+  
+
   <script>
     // Check if the user's browser has set the theme
     if (!window.location.search.includes('theme=')) {
@@ -579,6 +584,10 @@
 
             <p id="explanation">
 
+              <div id="bar-plot"> </div>
+
+              <div id="my_dataviz"></div>
+
             </p>
 
             <div id="image">
@@ -687,7 +696,7 @@
       const element = document.querySelector(`[name="${name}"]`);
       if (element) {
         element.value = value.toString();
-        console.log(`Set ${name} to ${value}`);
+        //console.log(`Set ${name} to ${value}`);
       } else {
         console.error(`Element with name ${name} not found.`);
       }
@@ -697,8 +706,6 @@
 
   <!-- Handle Form Submission -->
   <script>
-
-
     // Event Listeners
     document.addEventListener('DOMContentLoaded', function () {
       // Materialize select elements
@@ -721,20 +728,14 @@
         .then(data => {
           // Access the prediction_text and image_url from the JSON response
           const predictionText = data.prediction_text;
-
-          const predictionNumbers = data.prediction_shap_values;
-
-          const imageText1 = data.image_name;
-          const imageText2 = data.image_filename1; 
+          const explanation = data.explanation;
+          const featureNames = data.features; 
 
           // Get the HTML element
           const predictionTextElement = document.getElementById('prediction');
           const explanationTextElement = document.getElementById('explanation'); 
 
-          explanationTextElement.innerHTML = `<p>
-            predictionNumbers
-            </p>
-          `;
+          makeBarPlot(explanation, featureNames);
 
           // Extract the numeric value from the predictionText
           const predictionValue = parseInt(predictionText.match(/\d+/)[0], 10);
@@ -749,19 +750,86 @@
             predictionTextElement.innerHTML = "Prediction not available.";
           }
 
-          // Construct the full image URL
-          const imageUrl1 = "/static/" + imageText1;
-          const imageUrl2 = "/static/" + imageText2 
-
-          // Display the image with a link to open it in a new window
-          const imageElement = document.getElementById('image');
-          imageElement.innerHTML = `<p> Force graph - click to see bigger:</p>
-          <a href="${imageUrl1}" target="_blank" title="Click to show larger"><img width="300px" src="${imageUrl1}" /></a>
-          <a href="${imageUrl2}" target="_blank" title="Click to show larger"><img width="300px" src="${imageUrl2}" /></a>
-          `;
         })
         .catch(error => console.error('Error:', error));
     }
+
+  </script>
+
+  <script>
+
+function makeBarPlot(explanation, featureNames) {
+    // Clear the previous plot by removing all child elements
+    d3.select("#bar-plot").selectAll("*").remove();
+
+    // Extract feature names and their contributions from the explanation data
+    const featureContributions = explanation[0];  // Assuming it's a single array inside the outer array
+
+    // Create a combined array of feature names and contributions
+    const combinedData = featureNames.map((featureName, i) => ({ featureName, contribution: featureContributions[i] }));
+
+    // Filter out entries with contributions not in the range (-0.1, 0.1)
+    const nonZeroData = combinedData.filter((entry) => entry.contribution < -0.1 || entry.contribution > 0.1);
+
+    // Sort the filtered data array by absolute contribution values in descending order
+    nonZeroData.sort((a, b) => Math.abs(b.contribution) - Math.abs(a.contribution));
+
+
+    // Sort the nonZeroData array by absolute contribution values in descending order
+    nonZeroData.sort((a, b) => Math.abs(b.contribution) - Math.abs(a.contribution));
+
+    // Set the dimensions and margins of the graph
+    const margin = { top: 10, right: 50, bottom: 10, left: 50 };
+    const width = 360 - margin.left - margin.right;
+    const height = 30 * nonZeroData.length; // Adjust the height based on the number of non-zero features
+
+    // Append the SVG object to the specified HTML element
+    const svg = d3.select("#bar-plot")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // X-axis scale
+    const maxAbsValue = Math.max(Math.abs(nonZeroData[0].contribution), Math.abs(nonZeroData[nonZeroData.length - 1].contribution));
+
+    const x = d3.scaleLinear()
+        .domain([-maxAbsValue, maxAbsValue])
+        .range([0, width]);
+
+    // Create bars
+    svg.selectAll("rect")
+        .data(nonZeroData)
+        .enter()
+        .append("rect")
+        .attr("x", (d) => (d.contribution < 0) ? x(d.contribution) : x(0))
+        .attr("width", (d) => Math.abs(x(0) - x(d.contribution)))
+        .attr("height", 20)
+        .attr("y", (d, i) => i * 30)
+        .attr("fill", (d) => (d.contribution < 0) ? "pink" : "lightblue");
+
+// Define the font size and maximum text length for feature names
+const fontSize = 11;
+const maxTextLength = 15;
+
+// Create labels for the bars with tooltips
+svg.selectAll("text.featureName")
+    .data(nonZeroData)
+    .enter()
+    .append("text")
+    .text((d) => d.featureName)
+    .attr("x", (d) => x(d.contribution) - 50) // Adjust the x position for feature names
+    .attr("y", (d, i) => i * 30 + 15)
+    .attr("fill", "black")
+    .style("text-anchor", "start") // Always align to the start
+    .attr("lengthAdjust", "spacingAndGlyphs")
+    .attr("dy", "0.3em")
+    .append("title")
+    .text((d) => d.featureName + ": " + d.contribution.toFixed(2)); // Add tooltip
+
+
+}
 
   </script>
 
