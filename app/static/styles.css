@@ -19,6 +19,19 @@
   input[type=number] {
     color: rgb(0, 0, 0);
   }
+
+  rect {
+    stroke-width:1;
+    stroke:#cb7080;;
+  }
+
+  .pink {
+    background-color: pink;
+  }
+  
+  .lightblue {
+    background-color: lightblue;
+  }
   
   .main .input-field.col label,
   .main label,
@@ -30,8 +43,10 @@
     color: #ff6e55 !important;
   }
   
-  .main .select-wrapper .caret {
+ 
+  .main .select-wrapper .caret, text {
     fill: rgb(0, 0, 0);
+    font-weight:200;
   }
   
   .main h4 {
@@ -56,10 +71,10 @@
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
   
-  .prediction-result-wrapper {
+  .prediction-result-wrapper, #bar-plot, #bar-plot-legend {
     background-color: rgba(172, 177, 195, 0.15);
   }
-  
+
   .main form {
     background: #262730;
     color: rgb(250, 250, 250);
@@ -79,9 +94,22 @@
   label {
     color: #fff87f !important;
   }
+
+  rect {
+    stroke-width:1;
+    stroke:lightseagreen;;
+  }
+  .pink {
+    background-color: pink;
+  }
   
-  .main .select-wrapper .caret {
+  .lightblue {
+    background-color: blue;
+  }
+  
+  .main .select-wrapper .caret, text {
     fill: rgb(250, 250, 250);
+    font-weight:200;
   }
   
   .main h4 {
@@ -170,15 +198,7 @@
     margin-right: 5px; /* Adjust the margin as needed */
   }
   
-  .pink {
-    background-color: pink;
-  }
-  
-  .lightblue {
-    background-color: lightblue;
-  }
-  
-  
+ 
   .prediction-result-wrapper div {
     display: flex;
     justify-content: space-between;

@@ -822,7 +822,7 @@
         .attr("width", (d) => Math.abs(x(0) - x(d.contribution)))
         .attr("height", 20)
         .attr("y", (d, i) => i * 30)
-        .attr("fill", (d) => (d.contribution < 0) ? "pink" : "lightblue");
+        .attr("fill", (d) => (d.contribution < 0) ? "pink" : "#4b95ad");
 
       // Define the font size and maximum text length for feature names
       const fontSize = 11;
