@@ -577,6 +577,10 @@
               </div>
             </div>
 
+            <p id="explanation">
+
+            </p>
+
             <div id="image">
             </div>
 
@@ -717,11 +721,20 @@
         .then(data => {
           // Access the prediction_text and image_url from the JSON response
           const predictionText = data.prediction_text;
+
+          const predictionNumbers = data.prediction_shap_values;
+
           const imageText1 = data.image_name;
           const imageText2 = data.image_filename1; 
 
           // Get the HTML element
           const predictionTextElement = document.getElementById('prediction');
+          const explanationTextElement = document.getElementById('explanation'); 
+
+          explanationTextElement.innerHTML = `<p>
+            predictionNumbers
+            </p>
+          `;
 
           // Extract the numeric value from the predictionText
           const predictionValue = parseInt(predictionText.match(/\d+/)[0], 10);

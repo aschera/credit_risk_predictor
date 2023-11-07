@@ -138,7 +138,7 @@ def predict():
 
     # compute SHAP values
     explainer = shap.Explainer(model, init_features_2d)
-    shap_values = explainer(init_features_2d)
+    prediction_shap_values = explainer(init_features_2d)
 
     # make a plot
     image_name = shap_force_plot(init_features_2d, 'shap-force', column_order)  # Provide a filename (e.g., 'force') as the argument
@@ -156,10 +156,27 @@ def predict():
     plt.savefig(image_path2)
 
  
-    # app.logger.info("image " : image_name)
+    app.logger.info(prediction_shap_values )
+
+        # Extract the required information from the Explanation object
+    shap_values = exp.shap_values
+    base_values = exp.base_values
+    data = exp.data
+    feature_names = exp.feature_names
+
+    # Convert the data to a dictionary
+    serializable_data = {
+        "shap_values": shap_values,
+        "base_values": base_values,
+        "data": data.tolist(),  # Convert the data array to a list
+        "feature_names": feature_names,
+    }
+
+    # Now you can return the serializable data
+    return jsonify(serializable_data)
 
     # Return a JSON response with both prediction_text and explanation
-    return jsonify({"prediction_text": prediction_text, "image_name": image_name, "image_filename1": image_filename1 })
+    return jsonify({"prediction_text": prediction_text, "image_name": image_name, "image_filename1": image_filename1, "prediction_shap_values": prediction_shap_values[0] })
 
 if __name__ == '__main__':
     app.run(debug=True)
