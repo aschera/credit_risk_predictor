@@ -1,15 +1,10 @@
 import logging
 import flask
 from flask import Flask, render_template, request
-import matplotlib.pyplot as plt
 import pickle
 from flask import jsonify
 import numpy as np
 import shap
-import time
-import matplotlib
-matplotlib.use('Agg')
-import os
 
 app = Flask(__name__)
 
@@ -37,7 +32,6 @@ column_order = [
     'applicant_sex', 'co_applicant_sex', 'applicant_age', 'co_applicant_age'
 ]
 
-
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -61,8 +55,6 @@ def predict():
     # Convert to a 2D array
     init_features_2d = np.array([init_features])  
 
-    print(request.form.values)
-
     # Perform the prediction
     prediction = model.predict([init_features])
     
@@ -78,7 +70,7 @@ def predict():
     # Convert the explanation to a regular Python list
     explanation = explanation.tolist()
 
-    # Return a JSON response with both prediction_text and explanation
+    # Return a JSON response with both prediction_text and explanation and column names.
     return jsonify({"prediction_text": prediction_text, "explanation": explanation, "features": column_order })
 
 if __name__ == '__main__':
