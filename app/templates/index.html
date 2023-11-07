@@ -19,7 +19,7 @@
 
   <!-- Load d3.js -->
   <script src="https://d3js.org/d3.v4.js"></script>
-  
+
 
   <script>
     // Check if the user's browser has set the theme
@@ -575,24 +575,44 @@
                 </p>
                 <h4 id="prediction">
                 </h4>
-                <p>
-                  * This is a preliminary assessment based on the information you have provided. 
+                <small>
+                  * This is a preliminary assessment based on the information you have provided.
                   Please contact your bank.
-                </p>
+                </small>
               </div>
             </div>
 
-            <p id="explanation">
-
-              <div id="bar-plot"> </div>
-
-              <div id="my_dataviz"></div>
-
-            </p>
-
-            <div id="image">
+            
+            <div id="bar-plot-legend">
+              <div>
+                <div class="legend-item">
+                  <div class="legend-circle pink"></div>
+                  <small>Negative Contribution</small>
+                </div>
+                <div class="legend-item">
+                  <div class="legend-circle lightblue"></div>
+                  <small>Positive Contribution</small>
+                </div>
+              </div>
+              <p>
+                A negative (pink) value means that the feature is 
+                pushing the prediction towards the declined class. 
+                <br>
+                A positive (blue) value means that the feature is 
+                pushing the prediction towards the accepted class. 
+                <br>
+                The higher value ( +/-) the more the feature contributes to the prediction.
+                <br>
+                <span> Hover over the text on the plot to see the values.</span>
+              </p>
             </div>
+            <div id="bar-plot"> 
+              <p>Press predict and see how your data contributes to the result.</p>
+            </div>
+            <div id="top-features">
 
+            </div>
+           
           </div>
 
         </div>
@@ -616,7 +636,7 @@
       .then(response => response.json())
       .then(data => {
         jsonData = parseDataToFloat(data); // Parse data to floats
-        console.log('JSON data loaded:', jsonData);
+        //console.log('JSON data loaded:', jsonData);
         //printDataTypes(jsonData); // Print data types
         populateDropdown();
       })
@@ -639,11 +659,11 @@
     // Function to print data types
     function printDataTypes(dataList) {
       dataList.forEach((obj, index) => {
-        console.log(`Object ${index} data types:`);
+        //console.log(`Object ${index} data types:`);
         for (const key in obj) {
           if (obj.hasOwnProperty(key)) {
             const valueType = typeof obj[key];
-            console.log(`${key}: ${valueType}`);
+            //console.log(`${key}: ${valueType}`);
           }
         }
       });
@@ -663,7 +683,7 @@
       var elems = document.querySelectorAll('select');
       var instances = M.FormSelect.init(elems);
 
-      console.log('Dropdown populated with options:', dropdown.innerHTML);
+      //console.log('Dropdown populated with options:', dropdown.innerHTML);
     }
 
 
@@ -729,22 +749,22 @@
           // Access the prediction_text and image_url from the JSON response
           const predictionText = data.prediction_text;
           const explanation = data.explanation;
-          const featureNames = data.features; 
+          const featureNames = data.features;
 
           // Get the HTML element
           const predictionTextElement = document.getElementById('prediction');
-          const explanationTextElement = document.getElementById('explanation'); 
+          const explanationTextElement = document.getElementById('explanation');
 
           makeBarPlot(explanation, featureNames);
 
           // Extract the numeric value from the predictionText
           const predictionValue = parseInt(predictionText.match(/\d+/)[0], 10);
-          console.log(predictionValue )
+          //console.log(predictionValue)
 
           // Update the HTML content based on the JavaScript variable
-          if (predictionValue  === 1) {
+          if (predictionValue === 1) {
             predictionTextElement.innerHTML = "Approved.";
-          } else if (predictionValue  === 0) {
+          } else if (predictionValue === 0) {
             predictionTextElement.innerHTML = "Declined.";
           } else {
             predictionTextElement.innerHTML = "Prediction not available.";
@@ -757,49 +777,44 @@
   </script>
 
   <script>
+    function makeBarPlot(explanation, featureNames) {
+      // Clear the previous plot by removing all child elements
+      d3.select("#bar-plot").selectAll("*").remove();
 
-function makeBarPlot(explanation, featureNames) {
-    // Clear the previous plot by removing all child elements
-    d3.select("#bar-plot").selectAll("*").remove();
+      // Extract feature names and their contributions from the explanation data
+      const featureContributions = explanation[0];  // Assuming it's a single array inside the outer array
 
-    // Extract feature names and their contributions from the explanation data
-    const featureContributions = explanation[0];  // Assuming it's a single array inside the outer array
+      // Create a combined array of feature names and contributions
+      const combinedData = featureNames.map((featureName, i) => ({ featureName, contribution: featureContributions[i] }));
 
-    // Create a combined array of feature names and contributions
-    const combinedData = featureNames.map((featureName, i) => ({ featureName, contribution: featureContributions[i] }));
+      // Filter out entries with contributions not in the range (-0.1, 0.1)
+      const nonZeroData = combinedData.filter((entry) => entry.contribution < -0.1 || entry.contribution > 0.1);
 
-    // Filter out entries with contributions not in the range (-0.1, 0.1)
-    const nonZeroData = combinedData.filter((entry) => entry.contribution < -0.1 || entry.contribution > 0.1);
+      // Sort the filtered data array by absolute contribution values in descending order
+      nonZeroData.sort((a, b) => Math.abs(b.contribution) - Math.abs(a.contribution));
 
-    // Sort the filtered data array by absolute contribution values in descending order
-    nonZeroData.sort((a, b) => Math.abs(b.contribution) - Math.abs(a.contribution));
+      // Set the dimensions and margins of the graph
+      const margin = { top: 0, right: 50, bottom: 10, left: 50 };
+      const width = 360 - margin.left - margin.right;
+      const height = 100 * nonZeroData.length;
 
-
-    // Sort the nonZeroData array by absolute contribution values in descending order
-    nonZeroData.sort((a, b) => Math.abs(b.contribution) - Math.abs(a.contribution));
-
-    // Set the dimensions and margins of the graph
-    const margin = { top: 10, right: 50, bottom: 10, left: 50 };
-    const width = 360 - margin.left - margin.right;
-    const height = 30 * nonZeroData.length; // Adjust the height based on the number of non-zero features
-
-    // Append the SVG object to the specified HTML element
-    const svg = d3.select("#bar-plot")
+      // Append the SVG object to the specified HTML element
+      const svg = d3.select("#bar-plot")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    // X-axis scale
-    const maxAbsValue = Math.max(Math.abs(nonZeroData[0].contribution), Math.abs(nonZeroData[nonZeroData.length - 1].contribution));
+      // X-axis scale
+      const maxAbsValue = Math.max(Math.abs(nonZeroData[0].contribution), Math.abs(nonZeroData[nonZeroData.length - 1].contribution));
 
-    const x = d3.scaleLinear()
+      const x = d3.scaleLinear()
         .domain([-maxAbsValue, maxAbsValue])
         .range([0, width]);
 
-    // Create bars
-    svg.selectAll("rect")
+      // Create bars
+      svg.selectAll("rect")
         .data(nonZeroData)
         .enter()
         .append("rect")
@@ -809,30 +824,26 @@ function makeBarPlot(explanation, featureNames) {
         .attr("y", (d, i) => i * 30)
         .attr("fill", (d) => (d.contribution < 0) ? "pink" : "lightblue");
 
-// Define the font size and maximum text length for feature names
-const fontSize = 11;
-const maxTextLength = 15;
+      // Define the font size and maximum text length for feature names
+      const fontSize = 11;
+      const maxTextLength = 15;
 
-// Create labels for the bars with tooltips
-svg.selectAll("text.featureName")
-    .data(nonZeroData)
-    .enter()
-    .append("text")
-    .text((d) => d.featureName)
-    .attr("x", (d) => x(d.contribution) - 50) // Adjust the x position for feature names
-    .attr("y", (d, i) => i * 30 + 15)
-    .attr("fill", "black")
-    .style("text-anchor", "start") // Always align to the start
-    .attr("lengthAdjust", "spacingAndGlyphs")
-    .attr("dy", "0.3em")
-    .append("title")
-    .text((d) => d.featureName + ": " + d.contribution.toFixed(2)); // Add tooltip
-
-
-}
-
+      // Create labels for the bars with tooltips
+      svg.selectAll("text.featureName")
+        .data(nonZeroData)
+        .enter()
+        .append("text")
+        .text((d) => d.featureName)
+        .attr("x", (d) => x(d.contribution) - 50) // Adjust the x position for feature names
+        .attr("y", (d, i) => i * 30 + 15)
+        .attr("fill", "black")
+        .style("text-anchor", "start") // Always align to the start
+        .attr("lengthAdjust", "spacingAndGlyphs")
+        .attr("dy", "0.3em")
+        .append("title")
+        .text((d) => d.featureName + ": " + d.contribution.toFixed(2)); // Add tooltip
+    }
   </script>
 
 </body>
-
 </html>

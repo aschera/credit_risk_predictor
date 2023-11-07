@@ -6,7 +6,7 @@
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
   
-  .prediction-result-wrapper {
+  .prediction-result-wrapper, #bar-plot, #bar-plot-legend{
     background-color: rgba(172, 177, 195, 0.15);
   }
   
@@ -122,17 +122,70 @@
     width: 50vw;
     height: 20vh;
   }
-  
-  #prediction {
-    font-size: calc(2.275rem + .3vw)
-  }
-  
-  .prediction-result-wrapper div {
+
+  #bar-plot{
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     align-content: center;
+    text-decoration: none;
+    font-weight: 600;
+    gap: 0.5rem;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin: 0.125rem 1rem;
+    line-height: 2;
+    width: 50vw;
+    height: 35vh;
+  }
+
+  #bar-plot-legend {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  #bar-plot-legend div{
+    padding: .5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Adjust the margin between items as needed */
+  }
+  
+  .legend-circle {
+    width: 10x;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px; /* Adjust the margin as needed */
+  }
+  
+  .pink {
+    background-color: pink;
+  }
+  
+  .lightblue {
+    background-color: lightblue;
+  }
+  
+  
+  .prediction-result-wrapper div {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    height: 100%;
   }
   
   .container.main {
