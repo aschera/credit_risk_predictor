@@ -6,7 +6,7 @@ st.header("Place for Interactive data page")
 
 @st.cache_data()
 def load_data():
-    df = pd.read_csv("C:/Users/marku/Documents/Programmering/Credit_Risk_Predictor/credit_risk_predictor/notebooks/Christinas/EDA_stepwise/final_dataset.csv")
+    df = pd.read_csv("../../../notebooks/Christinas/EDA_stepwise/final_dataset.csv")
     return df
 
 df = load_data()
