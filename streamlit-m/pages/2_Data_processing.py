@@ -11,3 +11,5 @@ st.write("""
     -  The next step taken was encoding any categorical data (ie. debt to income ratio, applicant and co-applicant age, interest rates, combined loan to value ratio, total loan costs, origination charges, loan_term, and total_units)
 
     """)
+
+# ADD Smote and scaling.
