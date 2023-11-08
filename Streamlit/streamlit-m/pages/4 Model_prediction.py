@@ -24,16 +24,20 @@ from imblearn.over_sampling import SMOTE
 import warnings
 warnings.filterwarnings("ignore")
 
-#-----------import files-------------------------------------------#
+# ----------------------------------------------------------------#
 # Christinas paths.
-dataset = pd.read_csv('C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/final_dataset.csv')
-model_comparison = pd.read_csv('C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/model_comparison.csv')
+dataset = pd.read_csv('C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/final_dataset.csv');
+model = 'C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/xgboost_model_not_scaled.pkl';
+gridsearch_model = 'C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/grid_search_xgboost.pkl';
+model_comparison = pd.read_csv('C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/model_comparison.csv');
+# ---------------------------------------------------------------#
 
-with open('C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/xgboost_model_not_scaled.pkl', 'rb') as model_file:
+#-----------import files-------------------------------------------#
+with open(model, 'rb') as model_file:
     xgb_model = pickle.load(model_file)
 
 # Load the grid search object
-grid_search = joblib.load('C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/grid_search_xgboost.pkl')
+grid_search = joblib.load(gridsearch_model)
 
 # Access the results
 grid_results = pd.DataFrame(grid_search.cv_results_)

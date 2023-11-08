@@ -2,12 +2,20 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+# ----------------------------------------------------------------#
+# Christinas paths.
+c_final_dataset= 'C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/final_dataset.csv';
+# Markus paths.
+# m_final_dataset= 'C:/Users/marku/Documents/Programmering/Credit_Risk_Predictor/credit_risk_predictor/Streamlit/streamlit-m/static/final_dataset.csv';
+# ----------------------------------------------------------------#
+
+
 
 st.header("Place for Interactive data page")
 
 @st.cache_data()
 def load_data():
-    df = pd.read_csv("C:/Users/marku/Documents/Programmering/Credit_Risk_Predictor/credit_risk_predictor/notebooks/Christinas/EDA_stepwise/final_dataset.csv")
+    df = pd.read_csv(c_final_dataset)
     return df
 
 df = load_data()
