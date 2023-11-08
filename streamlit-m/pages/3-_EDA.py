@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import plotly.express as px
 
 
 st.header("Place for Interactive data page")
@@ -434,5 +435,6 @@ st.dataframe(df_selection, hide_index=True)
 
 column_to_inspect = 'action_taken'
 value_counts = df_selection[column_to_inspect].value_counts()
+
 st.write(f"Value Counts for {column_to_inspect}: ")
-st.dataframe(value_counts)
+st.bar_chart(value_counts)
