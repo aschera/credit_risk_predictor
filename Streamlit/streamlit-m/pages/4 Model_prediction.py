@@ -115,9 +115,9 @@ def highlight_top_two(s):
     styles = []
     for i, (max_val, second_max_val) in enumerate(zip(is_max, is_second_max)):
         if max_val:
-            styles.append("background-color: red")
+            styles.append("background-color: #ff6e55")
         elif second_max_val:
-            styles.append("background-color: orange")
+            styles.append("background-color: #fff87f")
         else:
             styles.append("")
     return styles
@@ -174,14 +174,14 @@ xgb.plot_importance(best_estimator, ax=ax, max_num_features=10)  # Plot the top 
 st.pyplot(fig)
 # ----------------------------------------------------------------------------#
 
-
+# ----------------------------------------------------------------------------#
 val_accuracies = grid_results['mean_test_score']
 # Create a range of x-values to represent the time (e.g., iterations)
 x_values = range(len(val_accuracies))
 
 # Plot the validation accuracies over time
 plt.figure(figsize=(10, 6))
-plt.plot(x_values, val_accuracies, marker='o', linestyle='-', color='b')
+plt.plot(x_values, val_accuracies, marker='o', linestyle='-', color='#ff6e55')
 plt.title('Validation Accuracy Over Time')
 plt.xlabel('Iteration')
 plt.ylabel('Validation Accuracy')
@@ -194,17 +194,15 @@ st.pyplot(plt)
 
 st.subheader('3.4 Hyperparameter Tuning Results', divider='rainbow')
 
-
 # ----------------------------------------------------------------------------#
 # Classification Report
 st.subheader("3.5 Classification Report")
 
-# Replace with your actual test data and predictions
-Y_test = [0, 1, 0, 1, 0]
-Y_pred_test = [0, 1, 1, 0, 0]
+# Make predictions on the test set
+y_predict = (xgb_model.predict(X_test) >= 0.59)
 
 # Calculate classification report
-clf = classification_report(Y_test, Y_pred_test, labels=[0, 1], output_dict=True)
+clf = classification_report(y_test, y_predict, labels=[0, 1], output_dict=True)
 
 st.write("### For Class 0 (declined):")
 st.write(f"Precision: {clf['0']['precision']:.2f}")
@@ -217,8 +215,6 @@ st.write(f"Recall: {clf['1']['recall']:.3f}")
 st.write(f"F1-score: {clf['1']['f1-score']:.3f}")
 
 
-# Make predictions on the test set
-y_predict = (xgb_model.predict(X_test) >= 0.59)
 
 # Calculate precision and recall on the test set
 precision = precision_score(y_test, y_predict)
