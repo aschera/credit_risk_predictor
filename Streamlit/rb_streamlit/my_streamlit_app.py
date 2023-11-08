@@ -19,7 +19,13 @@ from sklearn.metrics import precision_recall_curve
 from sklearn.metrics import auc
 from sklearn.metrics import roc_curve
 
+# ----------------------------------------------------------------#
+# Riannas paths.
+dataset1 = pd.read_csv('/Users/riannaaalto/Documents/GitHub/Streamlit/static/10_all_numerical_32bit.csv');
+dataset2 = pd.read_csv('/Users/riannaaalto/Documents/GitHub/Streamlit/static/final_dataset.csv')
+model = '/Users/riannaaalto/Documents/GitHub/Streamlit/static/xgboost_model_not_scaled.pkl';
 
+# ---------------------------------------------------------------#
 
 
 # Set the page configuration first
@@ -88,11 +94,11 @@ if nav == "Data & Modelling":
     # =============================================================================
 
     # Load the model
-    with open('xgboost_model_not_scaled.pkl', 'rb') as model_file:
+    with open(model, 'rb') as model_file:
         model = pickle.load(model_file)
 
     # Load your data (example using a pandas DataFrame)
-    data = pd.read_csv('final_dataset.csv')
+    data = pd.read_csv(dataset2)
 
     # Suppress FutureWarnings
     warnings.filterwarnings("ignore", category=FutureWarning)
