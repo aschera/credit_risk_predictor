@@ -1,21 +1,22 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import os
 
-# ----------------------------------------------------------------#
-# Christinas paths.
-c_final_dataset= 'C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/final_dataset.csv';
-# Markus paths.
-# m_final_dataset= 'C:/Users/marku/Documents/Programmering/Credit_Risk_Predictor/credit_risk_predictor/Streamlit/streamlit-m/static/final_dataset.csv';
-# ----------------------------------------------------------------#
+current_directory = os.path.dirname(os.path.abspath(__file__))
 
-
+relative_path = os.path.join(
+    current_directory,
+    "..",  # Go up one level to the streamlit-m directory
+    "static",
+    "final_dataset.csv"
+)
 
 st.header("Place for Interactive data page")
 
 @st.cache_data()
 def load_data():
-    df = pd.read_csv(c_final_dataset)
+    df = pd.read_csv(relative_path)
     return df
 
 df = load_data()
