@@ -166,29 +166,51 @@ import xgboost as xgb
 # Access the best estimator
 best_estimator = grid_search.best_estimator_
 
-# Plot feature importances
-fig, ax = plt.subplots()
-xgb.plot_importance(best_estimator, ax=ax, max_num_features=10)  # Plot the top 10 features
-
-# Display the feature importances plot in your Streamlit app
-st.pyplot(fig)
-# ----------------------------------------------------------------------------#
 
 # ----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
+
+# Extract hyperparameters and their unique combinations
+hyperparameters = list(grid_results.columns[:-1])  # Exclude 'mean_test_score'
+
+# Convert dictionaries to tuples for hashing
+grid_results_tuples = grid_results[hyperparameters].apply(tuple, axis=1)
+
+# Extract AUC scores and other relevant information
 val_accuracies = grid_results['mean_test_score']
+val_std = grid_results['std_test_score']
 # Create a range of x-values to represent the time (e.g., iterations)
 x_values = range(len(val_accuracies))
 
-# Plot the validation accuracies over time
-plt.figure(figsize=(10, 6))
-plt.plot(x_values, val_accuracies, marker='o', linestyle='-', color='#ff6e55')
+# Plot the mean validation accuracies over time
+acc = plt.figure(figsize=(10, 6))
+plt.plot(x_values, val_accuracies, marker='o', linestyle='-', color='#ff6e55', label='Validation Accuracy')
 plt.title('Validation Accuracy Over Time')
 plt.xlabel('Iteration')
 plt.ylabel('Validation Accuracy')
+plt.legend()
 plt.grid(True)
+plt.show()
 
-# Display the feature importances plot in your Streamlit app
-st.pyplot(plt)
+
+# Plot the error bars
+err = plt.figure(figsize=(10, 6))
+plt.errorbar(x_values, val_accuracies, yerr=val_std, fmt='none', ecolor='#4e79a7', label='Error Bars')
+plt.title('Validation Error Over Time')
+plt.xlabel('Iteration')
+plt.ylabel('Validation Error')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+col1, col2= st.columns(2)
+with col1:
+    st.markdown("__Validation accuracies plot:__ ")
+    st.pyplot(acc)
+with col2:
+    st.markdown("__Validation errors plot:__ ")
+    st.pyplot(err)
+
 
 # ----------------------------------------------------------------------------#
 
@@ -204,18 +226,6 @@ y_predict = (xgb_model.predict(X_test) >= 0.59)
 # Calculate classification report
 clf = classification_report(y_test, y_predict, labels=[0, 1], output_dict=True)
 
-st.write("### For Class 0 (declined):")
-st.write(f"Precision: {clf['0']['precision']:.2f}")
-st.write(f"Recall: {clf['0']['recall']:.2f}")
-st.write(f"F1-score: {clf['0']['f1-score']:.2f}")
-
-st.write("### For Class 1 (accepted):")
-st.write(f"Precision: {clf['1']['precision']:.3f}")
-st.write(f"Recall: {clf['1']['recall']:.3f}")
-st.write(f"F1-score: {clf['1']['f1-score']:.3f}")
-
-
-
 # Calculate precision and recall on the test set
 precision = precision_score(y_test, y_predict)
 recall = recall_score(y_test, y_predict)
@@ -227,21 +237,34 @@ f1 = f1_score(y_test, y_predict)
 # Calculate the confusion matrix
 cm = confusion_matrix(y_test, y_predict)
 
-st.subheader("Test Set Results:")
-
-# Display Precision, Recall, Accuracy, and F1 Score
-st.write(f"Precision: {precision:.4f}")
-st.write(f"Recall: {recall:.4f}")
-st.write(f"Accuracy: {accuracy:.4f}")
-st.write(f"F1 Score: {f1:.4f}")
-
-# Plot the confusion matrix using ConfusionMatrixDisplay
+# confusion matrix using ConfusionMatrixDisplay
 disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=['decline', 'accept'])
 fig, ax = plt.subplots()  # Create a Matplotlib figure and axis
 disp.plot(ax=ax)  # Plot the confusion matrix on the provided axis
 
-# Display the Matplotlib figure using st.pyplot
-st.pyplot(fig)
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.markdown("__Validation Set Results:__")
+
+    st.markdown("**For Class 0 (declined):**")
+    st.write(f"Precision: {clf['0']['precision']:.2f}")
+    st.write(f"Recall: {clf['0']['recall']:.2f}")
+    st.write(f"F1-score: {clf['0']['f1-score']:.2f}")
+
+    st.markdown("**For Class 1 (accepted):**")
+    st.write(f"Precision: {clf['1']['precision']:.3f}")
+    st.write(f"Recall: {clf['1']['recall']:.3f}")
+    st.write(f"F1-score: {clf['1']['f1-score']:.3f}")
+with col2:
+    st.markdown("__Test Set Results:__")
+    # Display Precision, Recall, Accuracy, and F1 Score
+    st.write(f"Precision: {precision:.4f}")
+    st.write(f"Recall: {recall:.4f}")
+    st.write(f"Accuracy: {accuracy:.4f}")
+    st.write(f"F1 Score: {f1:.4f}")
+with col3:
+    st.markdown("__Confusion matrix:__")
+    st.pyplot(fig)
 
 # ---------------------------------------------------------------------------#
 #---------------------------Prediction Testing-----------------------------------#
@@ -250,16 +273,58 @@ st.header('7 Prediction Testing', divider='rainbow')
 st.write("Describe the results of testing the XGBoost model on the test data.Highlight any insights gained from these predictions.")
 
 
+# Assuming X_test is your test set
+y_probabilities = xgb_model.predict_proba(X_test)[:, 1]
+from sklearn.metrics import roc_curve, auc
+import matplotlib.pyplot as plt
+
+# Assuming y_test is your true labels (ground truth)
+fpr, tpr, thresholds = roc_curve(y_test, y_probabilities)
+roc_auc = auc(fpr, tpr)
+
+# Plotting the ROC curve
+roc =plt.figure(figsize=(10, 8))
+plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'AUC = {roc_auc:.2f}')
+plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Receiver Operating Characteristic (ROC) Curve')
+plt.legend(loc='lower right')
+plt.show()
+
+# Assuming xgb_model is your trained XGBoost model
+feature_importance = xgb_model.feature_importances_
+
+# Create a DataFrame to store feature names and their importances
+feature_importance_df = pd.DataFrame({
+    'Feature': X.columns,  # Assuming X is your feature matrix
+    'Importance': feature_importance
+})
+
+# Sort the features based on importance in descending order
+feature_importance_df = feature_importance_df.sort_values(by='Importance', ascending=False)
+
+# Display the top N important features
+top_n = 10  # You can adjust this based on how many top features you want to display
+top_features = feature_importance_df.head(top_n)
+
+# Plot feature importances
+fig, ax = plt.subplots()
+xgb.plot_importance(best_estimator, ax=ax, max_num_features=10)  # Plot the top 10 features
+
 col1, col2, col3 = st.columns(3)
 with col1:
-   st.header("A cat")
-   st.image("https://static.streamlit.io/examples/cat.jpg")
+    st.markdown("__Top 10 Important Features::__")
+    top_features
+
 with col2:
-   st.header("A dog")
-   st.image("https://static.streamlit.io/examples/dog.jpg")
+    st.markdown("__Feature importances plot:__")
+    # Display the feature importances plot in your Streamlit app
+    st.pyplot(fig)
+
 with col3:
-   st.header("An owl")
-   st.image("https://static.streamlit.io/examples/owl.jpg")
+    st.markdown("__ROC curve:__")
+    st.pyplot(roc)
 # -------------------------------------------------------------------------------#
 #---------------------------Model evaluation-------------------------------------#
 st.header('8 Model evaluation', divider='rainbow')
