@@ -1,9 +1,8 @@
 #console command: streamlit run Home.py
 
 import streamlit as st
-import subprocess
-import time
 import os
+
 
 
 st.title("Loan Status Predictor")
