@@ -16,7 +16,7 @@ with col1:
     
     - Debt-to-income ration is the most significant influence.
     """)
-    
+
     # Results
     # % predictability
     # kolla notebook 15
