@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import plost
 from PIL import Image
 import joblib
 import plotly.express as px

@@ -23,13 +23,45 @@ from imblearn.under_sampling import RandomUnderSampler, EditedNearestNeighbours
 from imblearn.over_sampling import SMOTE
 import warnings
 warnings.filterwarnings("ignore")
+import os
+
+current_directory = os.path.dirname(os.path.abspath(__file__))
+
+dataset_path = os.path.join(
+    current_directory,
+    "..",
+    "static",
+    "final_dataset.csv"
+)
+
+model_comparison_path = os.path.join(
+    current_directory,
+    "..",
+    "static",
+    "final_dataset.csv"
+)
+
+model_path = os.path.join(
+    current_directory,
+    "..",
+    "static",
+    "xgboost_model_not_scaled.pkl"
+)
+
+gridsearch_model_path = os.path.join(
+    current_directory,
+    "..",
+    "static",
+    "grid_search_xgboost.pkl"
+
+)
 
 # ----------------------------------------------------------------#
-# Christinas paths.
-dataset = pd.read_csv('C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/final_dataset.csv');
-model = 'C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/xgboost_model_not_scaled.pkl';
-gridsearch_model = 'C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/grid_search_xgboost.pkl';
-model_comparison = pd.read_csv('C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/model_comparison.csv');
+# paths.
+dataset = pd.read_csv(dataset_path)
+model = model_path
+gridsearch_model = gridsearch_model_path
+model_comparison = pd.read_csv(model_comparison_path)
 # ---------------------------------------------------------------#
 
 #-----------import files-------------------------------------------#
@@ -124,10 +156,10 @@ def highlight_top_two(s):
 
 # Apply the style function to numeric columns
 numeric_columns = model_comparison.select_dtypes(include=['float64']).columns
-styled_df = model_comparison.style.apply(lambda x: highlight_top_two(x), subset=numeric_columns, axis=0)
+# styled_df = model_comparison.style.apply(lambda x: highlight_top_two(x), subset=numeric_columns, axis=0)
 
-# Display the styled DataFrame
-st.dataframe(styled_df)
+# # Display the styled DataFrame
+# st.dataframe(styled_df)
 
 st.write("We chose XGBoost ('xgb_model1' in the table) as our preferred model due to its exceptional performance and a set of impressive metrics, including high accuracy (`0.982788`), perfect precision (`1.000`), high recall (`0.969421`), and a balanced F1 Score (`0.984473`). Beyond its standout scores, XGBoost's utilization of gradient boosting, built-in L1 and L2 regularization, and optimization for speed make it a versatile and high-performing choice for diverse machine learning applications. While Decision Tree exhibits similar metrics, XGBoost's ensemble approach with multiple decision trees enhances overall performance and generalization, making it a more reliable choice for predictive modeling.")
 

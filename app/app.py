@@ -5,6 +5,7 @@ import pickle
 from flask import jsonify
 import numpy as np
 import shap
+import os
 
 app = Flask(__name__)
 
@@ -13,7 +14,17 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Load the pre-trained model
-model = pickle.load(open('../model/xgboost_model_not_scaled.pkl', 'rb'))
+current_directory = os.path.dirname(os.path.abspath(__file__))
+relative_model_path = os.path.join(
+    current_directory,
+    "..",
+    "Streamlit",
+    "streamlit-m",
+    "static",
+    "xgboost_model_not_scaled.pkl"
+)
+
+model = pickle.load(open(relative_model_path, 'rb'))
 
 # Load the SHAP explainer
 explainer = shap.TreeExplainer(model)

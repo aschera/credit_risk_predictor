@@ -3,28 +3,29 @@
 import streamlit as st
 import subprocess
 import time
-subprocess.Popen(["python", "../app/app.py"])
+import os
 
-st.title("Credit Risk Predictor")
+current_directory = os.path.dirname(os.path.abspath(__file__))
 
-st.header("Project Description")
-st.write(""" Machine learning models are increasingly being applied across various domains, 
-         potentially impacting people's lives significantly. Our project aims to develop a 
-         predictive machine learning model to assess an individual's likelihood of obtaining a 
-         home mortgage loan. We leverage the publicly available dataset from the Home Mortgage 
-         Disclosure Act (HMDA), which serves as a valuable resource containing data on the 
-         approval and denial of home mortgage loans in the United States, including more than 
-         21 different factors such as gender, race, and ethnicity.""")
+app_path = os.path.abspath(os.path.join(current_directory, "..", "..", "app", "app.py"))
 
-st.write(""" We built a user-friendly application where individuals can input their 
-         information and receive a preliminary assessment of their loan application. 
-         The primary goal is to ensure that the model is fair and free from biases, which is 
-         especially crucial when users engage with financial institutions like banks to uphold 
-         transparency and equity.""")
+try:
+    subprocess.run(["python", app_path], check=True)
+except subprocess.CalledProcessError as e:
+    print(f"An error occurred: {e}")
 
-st.write(""" Furthermore, we enhance our application by providing valuable recommendations to 
-         borrowers. These recommendations are designed to help borrowers take actions to improve 
-         their chances of securing a home mortgage loan. Our overarching objective is to promote 
-         fairness and transparency throughout the process and empower individuals to make 
-         well-informed financial decisions.""")
+st.title("Loan Status Predictor")
 
+st.header("Project Aims")
+st.write(""" 
+        Our project aims to:
+        
+         - Develop a predictive machine learning model to assess an individual's likelihood of obtaining a 
+         home mortgage loan.  
+    
+        - Determine which features from the Home Mortgage Disclosure Act dataset are most likely to increase or decrease said likelihood.
+        
+        - Build an application where individuals can input their own information and redeive a preliminary assessment of their loan application.
+
+        
+        """)
