@@ -7,7 +7,7 @@ current_directory = os.path.dirname(os.path.abspath(__file__))
 
 relative_path = os.path.join(
     current_directory,
-    "..",  # Go up one level to the streamlit-m directory
+    "..",
     "static",
     "final_dataset.csv"
 )

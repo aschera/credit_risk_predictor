@@ -23,13 +23,45 @@ from imblearn.under_sampling import RandomUnderSampler, EditedNearestNeighbours
 from imblearn.over_sampling import SMOTE
 import warnings
 warnings.filterwarnings("ignore")
+import os
+
+current_directory = os.path.dirname(os.path.abspath(__file__))
+
+dataset_path = os.path.join(
+    current_directory,
+    "..",
+    "static",
+    "final_dataset.csv"
+)
+
+model_comparison_path = os.path.join(
+    current_directory,
+    "..",
+    "static",
+    "model_comparison.csv"
+)
+
+model_path = os.path.join(
+    current_directory,
+    "..",
+    "static",
+    "xgboost_model_not_scaled.pkl"
+)
+
+gridsearch_model_path = os.path.join(
+    current_directory,
+    "..",
+    "static",
+    "grid_search_xgboost.pkl"
+
+)
 
 # ----------------------------------------------------------------#
-# Christinas paths.
-dataset = pd.read_csv('C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/final_dataset.csv');
-model = 'C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/xgboost_model_not_scaled.pkl';
-gridsearch_model = 'C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/grid_search_xgboost.pkl';
-model_comparison = pd.read_csv('C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/model_comparison.csv');
+# paths.
+dataset = pd.read_csv(dataset_path)
+model = model_path
+gridsearch_model = gridsearch_model_path
+model_comparison = pd.read_csv(model_comparison_path)
 # ---------------------------------------------------------------#
 
 #-----------import files-------------------------------------------#
@@ -44,49 +76,10 @@ grid_results = pd.DataFrame(grid_search.cv_results_)
 
 # ------------------------------DATA preparation-------------------------------------------#
 
-# SMOTE:
-# ................................................................#
-
-# Define the minority classes for each column
-minority_classes = {
-    'applicant_sex': [2.0, 3.0, 6.0],
-    'co_applicant_sex': [6.0, 1.0],
-    'applicant_race_1': [3.0],
-    'co_applicant_race_1': [3.0],
-    'applicant_ethnicity_1': [1.0],
-    'co_applicant_ethnicity_1': [1.0],
-}
-
-# Create a dictionary to store resampled datasets for each column
-resampled_datasets = {}
-
-# Create a new DataFrame to store the resampled data
-resampled_df = dataset.copy()
-
-# Iterate through the columns and apply SMOTE to each
-for column, minority_class in minority_classes.items():
-    # Select the specific column
-    selected_column = dataset[column].values.reshape(-1, 1)
-
-    # Define y_min based on the minority class for this column
-    y_min = [1 if value in minority_class else 0 for value in dataset[column]]
-
-    # Apply SMOTE to the selected column
-    smote = SMOTE(sampling_strategy='auto', random_state=42)
-    X_resampled2, y_resampled2 = smote.fit_resample(selected_column, y_min)
-
-    # Ensure that the resampled data has the same number of rows as the original DataFrame
-    if len(X_resampled2) > len(dataset):
-        X_resampled2 = X_resampled2[:len(dataset)]
-        y_resampled2 = y_resampled2[:len(dataset)]
-
-    # Update the resampled data in the new DataFrame
-    resampled_df[column] = X_resampled2.flatten()
-
 # train, val, test:
 # ................................................................#
-X = resampled_df.drop('action_taken', axis=1)
-y = resampled_df['action_taken']
+X = dataset.drop('action_taken', axis=1)
+y = dataset['action_taken']
 
 # Transform the labels
 y = (y == 1).astype(int)
@@ -108,6 +101,7 @@ st.write("The XGBoost model is a powerful ensemble learning algorithm widely use
 #---------------------------Model selection-------------------------------------#
 st.header('2 Model selection', divider='rainbow')
 
+
 # Create a style function to highlight the top two values in each numeric column
 def highlight_top_two(s):
     is_max = s == s.max()
@@ -122,12 +116,14 @@ def highlight_top_two(s):
             styles.append("")
     return styles
 
-# Apply the style function to numeric columns
-numeric_columns = model_comparison.select_dtypes(include=['float64']).columns
+# Apply the style function to selected numeric columns
+numeric_columns = ['Accuracy', 'Precision', 'Recall', 'F1 Score']
 styled_df = model_comparison.style.apply(lambda x: highlight_top_two(x), subset=numeric_columns, axis=0)
 
 # Display the styled DataFrame
 st.dataframe(styled_df)
+
+
 
 st.write("We chose XGBoost ('xgb_model1' in the table) as our preferred model due to its exceptional performance and a set of impressive metrics, including high accuracy (`0.982788`), perfect precision (`1.000`), high recall (`0.969421`), and a balanced F1 Score (`0.984473`). Beyond its standout scores, XGBoost's utilization of gradient boosting, built-in L1 and L2 regularization, and optimization for speed make it a versatile and high-performing choice for diverse machine learning applications. While Decision Tree exhibits similar metrics, XGBoost's ensemble approach with multiple decision trees enhances overall performance and generalization, making it a more reliable choice for predictive modeling.")
 
@@ -141,7 +137,19 @@ st.write("We employed GridSearchCV to discover the optimal hyperparameters for o
 st.subheader('3.3 Gridsearch results', divider='rainbow')
 # ----------------------------------------------------------------------------#
 st.write("Grisdearch Results:")
-st.dataframe(grid_results)
+# Identify the rows with the best rank
+best_rank_indices = grid_results[grid_results['rank_test_score'] == 1].index
+
+# Create a style function to color the cells with the best rank in red
+def highlight_best_rank(s):
+    styles = ['background-color: #ff6e55' if i in best_rank_indices else '' for i in range(len(s))]
+    return styles
+
+# Apply the style function to the entire DataFrame
+styled_df = grid_results.style.apply(highlight_best_rank, axis=0)
+
+# Display the styled DataFrame
+st.dataframe(styled_df)
 # ----------------------------------------------------------------------------#
 
 # Extract information from the best estimator
@@ -329,25 +337,30 @@ with col3:
 #---------------------------Model evaluation-------------------------------------#
 st.header('8 Model evaluation', divider='rainbow')
 
-st.write("Enable users to input data and obtain predictions using the XGBoost model. Display whether a loan application is approved or denied based on user inputs.")
+st.subheader('8.1 User-Centric Testing: Flask App Integration')
+st.write("To enhance the user experience and simulate real-world scenarios, we deployed the XGBoost model within a Flask web application. Users can interact with the model by filling in a form or selecting dummy data. This approach provides a user-friendly way to test the model's predictions and gain insights into the loan approval or decline decision process.")
 
-st.write("Test: Web app testing the predictions.")
+import webbrowser
 
-st.write("Howto: make sure the app runs before clicking the link.")
+# Define the web app link
+web_app_link = "http://127.0.0.1:5000"
 
-web_app_link = '<a href="http://127.0.0.1:5000" target="_blank">link</a>'
-st.markdown(web_app_link, unsafe_allow_html=True)
+# Create a button to open the link
+if st.button("Open Web App"):
+    webbrowser.open_new_tab(web_app_link)
+
+st.subheader('8.2 SHAP Values Analysis')
+
+col1, col2 = st.columns(2)
+with col1:
+    st.markdown("To enhance the interpretability of the XGBoost model, we utilized <span style='color: orange;'>SHAP (SHapley Additive exPlanations) </span>  values. These values quantify the contribution of each feature to the model's prediction for a specific instance. The SHAP values are calculated and analyzed to understand the impact of individual features on the prediction.", unsafe_allow_html=True)
+with col2:
+    st.markdown("The SHAP values are visualized using barplots, providing an <span style='color: orange;'> intuitive representation of the features that influence </span> the model's decision  to approve or decline a loan. Users can easily interpret the relative importance of each feature and gain insights into the decision-making process of the XGBoost model.", unsafe_allow_html=True)
 
 
 
 # -------------------------------------------------------------------------------#
 #---------------------------Improvements-------------------------------------#
 
-
-
-
-
 st.header('Improvements', divider='rainbow')
 st.write("The numbers suggest that your model is performing well, especially for Class 1 (accepted), where it has perfect precision. However, there might be an issue with the classification threshold or data imbalance that leads to lower precision, recall, and F1-score for Class 0 (declined).")
-
-st.write("You may want to adjust the classification threshold or explore ways to handle class imbalance in your data if improving performance for Class 0 is important.")
