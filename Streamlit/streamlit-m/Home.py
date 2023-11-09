@@ -5,14 +5,6 @@ import subprocess
 import time
 import os
 
-current_directory = os.path.dirname(os.path.abspath(__file__))
-
-app_path = os.path.abspath(os.path.join(current_directory, "..", "..", "app", "app.py"))
-
-try:
-    subprocess.run(["python", app_path], check=True)
-except subprocess.CalledProcessError as e:
-    print(f"An error occurred: {e}")
 
 st.title("Loan Status Predictor")
 
