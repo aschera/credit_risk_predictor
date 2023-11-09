@@ -25,6 +25,7 @@ import warnings
 warnings.filterwarnings("ignore")
 import os
 
+
 current_directory = os.path.dirname(os.path.abspath(__file__))
 
 dataset_path = os.path.join(
@@ -99,7 +100,7 @@ st.write("The XGBoost model is a powerful ensemble learning algorithm widely use
 
 # ------------------------------------------------------------------------------#
 #---------------------------Model selection-------------------------------------#
-st.header('2 Model selection', divider='rainbow')
+st.header('2 Model selection')
 
 
 # Create a style function to highlight the top two values in each numeric column
@@ -129,12 +130,12 @@ st.write("We chose XGBoost ('xgb_model1' in the table) as our preferred model du
 
 # ----------------------------------------------------------------------------#
 #---------------------------Hyperparameter Tuning ----------------------------#
-st.header('3 Hyperparameter Tuning', divider='rainbow')
+st.header('3 Hyperparameter Tuning')
 
 st.write("We employed GridSearchCV to discover the optimal hyperparameters for our XGBoost model. After a thorough evaluation, the best combination of hyperparameters was identified. It included a moderate learning rate of `0.2`, a maximum tree depth of `5`, a minimum child weight of `1`,  `8,000` boosting rounds, a `90%` subsample of data, and other settings to enhance the model's performance in binary classification. These hyperparameters were found to minimize the negative log loss and provide the most effective model configuration.")
 
 # ----------------------------------------------------------------------------#
-st.subheader('3.3 Gridsearch results', divider='rainbow')
+st.subheader('3.3 Gridsearch results')
 # ----------------------------------------------------------------------------#
 st.write("Grisdearch Results:")
 # Identify the rows with the best rank
@@ -222,7 +223,7 @@ with col2:
 
 # ----------------------------------------------------------------------------#
 
-st.subheader('3.4 Hyperparameter Tuning Results', divider='rainbow')
+st.subheader('3.4 Hyperparameter Tuning Results')
 
 # ----------------------------------------------------------------------------#
 # Classification Report
@@ -276,7 +277,7 @@ with col3:
 
 # ---------------------------------------------------------------------------#
 #---------------------------Prediction Testing-----------------------------------#
-st.header('7 Prediction Testing', divider='rainbow')
+st.header('7 Prediction Testing')
 
 st.write("Describe the results of testing the XGBoost model on the test data.Highlight any insights gained from these predictions.")
 
@@ -335,7 +336,7 @@ with col3:
     st.pyplot(roc)
 # -------------------------------------------------------------------------------#
 #---------------------------Model evaluation-------------------------------------#
-st.header('8 Model evaluation', divider='rainbow')
+st.header('8 Model evaluation')
 
 st.subheader('8.1 User-Centric Testing: Flask App Integration')
 st.write("To enhance the user experience and simulate real-world scenarios, we deployed the XGBoost model within a Flask web application. Users can interact with the model by filling in a form or selecting dummy data. This approach provides a user-friendly way to test the model's predictions and gain insights into the loan approval or decline decision process.")
@@ -356,11 +357,3 @@ with col1:
     st.markdown("To enhance the interpretability of the XGBoost model, we utilized <span style='color: orange;'>SHAP (SHapley Additive exPlanations) </span>  values. These values quantify the contribution of each feature to the model's prediction for a specific instance. The SHAP values are calculated and analyzed to understand the impact of individual features on the prediction.", unsafe_allow_html=True)
 with col2:
     st.markdown("The SHAP values are visualized using barplots, providing an <span style='color: orange;'> intuitive representation of the features that influence </span> the model's decision  to approve or decline a loan. Users can easily interpret the relative importance of each feature and gain insights into the decision-making process of the XGBoost model.", unsafe_allow_html=True)
-
-
-
-# -------------------------------------------------------------------------------#
-#---------------------------Improvements-------------------------------------#
-
-st.header('Improvements', divider='rainbow')
-st.write("The numbers suggest that your model is performing well, especially for Class 1 (accepted), where it has perfect precision. However, there might be an issue with the classification threshold or data imbalance that leads to lower precision, recall, and F1-score for Class 0 (declined).")
