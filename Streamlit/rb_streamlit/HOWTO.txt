@@ -1,8 +1,1 @@
-# folder
-make sure you are in the \credit_risk_predictor\app folder.
-you can in a terminal write cd app from the main directory.
-
-# run
-to run the flask app.
-open a terminal.
-type 'python app.py'
+run correlation_Analysis.py

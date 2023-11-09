@@ -26,8 +26,6 @@ from scipy.stats import chi2_contingency
 
 # Riannas paths.
 r_style = '/Users/riannaaalto/Documents/GitHub/Streamlit/static/style.css';
-#r_style = '/Users/riannaaalto/Documents/GitHub/Streamlit/streamlit-m/static/style.css';
-#r_dataset1 = '/Users/riannaaalto/Documents/GitHub/Streamlit/static/10_all_numerical_32bit.csv'
 r_dataset2 = '/Users/riannaaalto/Documents/GitHub/Streamlit/static/final_dataset.csv'
 r_dataset3 = '/Users/riannaaalto/Documents/GitHub/Streamlit/static/1_downloaded_data.csv'
 r_model = '/Users/riannaaalto/Documents/GitHub/Streamlit/static/xgboost_model_not_scaled.pkl';
@@ -225,7 +223,6 @@ shap.plots.beeswarm(shap_values)
 st.pyplot()
     #shap.plots.force(shap_values)
     #st.pyplot()
-
 
 st.title(" Conclusion:")
 st.write(""" - The action taken is notably influenced by financial factors, with a higher 
