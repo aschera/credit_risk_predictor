@@ -23,14 +23,10 @@ with col1:
 
 with col2:
     st.header("Improvements")
+    st.markdown(" 1- Improve the model's performance, particularly in the <span style='color: orange;'>'Rejected' class</span>.", unsafe_allow_html=True)
     st.write("""
-        Whilst the model performs well, particularly for the "Accepted" class, 
-        there appears to be some issues with the classification threshold or data 
-        imbalance leading to lower precision, recall and F1-score for the "Rejected" class.
-        
-        As such some of the improvements that can be made are:
-        
-        - Expanding the dataset or synthetically balancing the dataset with oversampling techniques (SMOTE) 
-        
-        - Our model only works if there is an applicant and a co-applicant. It could perhaps be expanded to include solo applicants as well. 
+             Despite its commendable performance with the "Accepted" class, we have identified issues related to the classification threshold or data imbalance. 
+             These challenges contribute to lower precision, recall, and F1-score for the "Rejected" class. 
         """)
+    st.markdown(" 2- Expanding the dataset or synthetically balancing the dataset with oversampling techniques <span style='color: orange;'>(SMOTE)</span>.", unsafe_allow_html=True)
+    st.markdown(" 3- Our model only works if there is an applicant and a co-applicant. It could perhaps be expanded to include  <span style='color: orange;'>solo applicants</span> as well.", unsafe_allow_html=True)
