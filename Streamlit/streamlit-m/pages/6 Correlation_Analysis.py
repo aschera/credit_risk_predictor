@@ -17,21 +17,32 @@ from sklearn.metrics import confusion_matrix, precision_score, recall_score, acc
 from scipy.stats import chi2_contingency
 
 
+# ----------------------------------------------------------------#
+# Christinas paths.
+c_style = 'C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/style.css';
+c_dataset1 = 'C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/10_all_numerical_32bit.csv'
+c_dataset2 = 'C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/final_dataset.csv'
+c_model = 'C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/xgboost_model_not_scaled.pkl';
 
+# Riannas paths.
+r_style = '/Users/riannaaalto/Documents/GitHub/Streamlit/streamlit-m/static/style.css';
+r_dataset1 = '/Users/riannaaalto/Documents/GitHub/Streamlit/static/10_all_numerical_32bit.csv'
+r_dataset2 = '/Users/riannaaalto/Documents/GitHub/Streamlit/static/final_dataset.csv'
+r_model = '/Users/riannaaalto/Documents/GitHub/Streamlit/static/xgboost_model_not_scaled.pkl';
+# ---------------------------------------------------------------#
+
+#map
+dataset1 = c_dataset1
+dataset2 = c_dataset2 
+model = c_model
+
+# ---------------------------------------------------------------#
 
 # Set the page configuration first
 st.set_page_config(layout="wide")
 
-with open('/Users/riannaaalto/Documents/GitHub/Streamlit/rb_streamlit/style.css') as f:
+with open(c_style) as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-
-
-
-# ------------------------------------------------------------------------#
-# Riannas paths.
-dataset1 = '/Users/riannaaalto/Documents/GitHub/Streamlit/static/10_all_numerical_32bit.csv'
-dataset2 = '/Users/riannaaalto/Documents/GitHub/Streamlit/static/final_dataset.csv'
-model = '/Users/riannaaalto/Documents/GitHub/Streamlit/static/xgboost_model_not_scaled.pkl';
 
 # ------------------------------------------------------------------------#
 #-----------Correlation Heatmap-------------------------------------------#
