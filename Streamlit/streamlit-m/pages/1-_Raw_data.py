@@ -1,12 +1,14 @@
 import streamlit as st
 import pandas as pd
+import os
 
-# ----------------------------------------------------------------#
-# Christinas paths.
-c_downloaded_data1= 'C:/Users/asche/OneDrive/Dokumenter/repos/Streamlit/streamlit-m/static/1_downloaded_data.csv';
-# Markus paths.
-# m_downloaded_data1= 'C:/Users/marku/Documents/Programmering/Credit_Risk_Predictor/credit_risk_predictor/Streamlit/streamlit-m/static/1_downloaded_data.csv';
-# ----------------------------------------------------------------#
+current_directory = os.path.dirname(os.path.abspath(__file__))
+relative_path = os.path.join(
+    current_directory,
+    "..",  # Go up one level to the streamlit-m directory
+    "static",
+    "1_downloaded_data.csv"
+)
 
 st.header("1 Raw Data")
 st.write("""
@@ -16,7 +18,7 @@ st.write("""
 
 @st.cache_data()
 def load_data():
-    df = pd.read_csv(c_downloaded_data1, low_memory=False)
+    df = pd.read_csv(relative_path, low_memory=False)
     return df
 
 df=load_data()
