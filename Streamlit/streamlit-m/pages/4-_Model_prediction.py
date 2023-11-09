@@ -337,14 +337,27 @@ with col3:
 #---------------------------Model evaluation-------------------------------------#
 st.header('8 Model evaluation', divider='rainbow')
 
-st.write("Enable users to input data and obtain predictions using the XGBoost model. Display whether a loan application is approved or denied based on user inputs.")
+st.subheader('8.1 User-Centric Testing: Flask App Integration')
+st.write("To enhance the user experience and simulate real-world scenarios, we deployed the XGBoost model within a Flask web application. Users can interact with the model by filling in a form or selecting dummy data. This approach provides a user-friendly way to test the model's predictions and gain insights into the loan approval or decline decision process.")
 
-st.write("Test: Web app testing the predictions.")
+import webbrowser
 
-st.write("Howto: make sure the app runs before clicking the link.")
+# Define the web app link
+web_app_link = "http://127.0.0.1:5000"
 
-web_app_link = '<a href="http://127.0.0.1:5000" target="_blank">link</a>'
-st.markdown(web_app_link, unsafe_allow_html=True)
+# Create a button to open the link
+if st.button("Open Web App"):
+    webbrowser.open_new_tab(web_app_link)
+
+st.subheader('8.2 SHAP Values Analysis')
+
+col1, col2 = st.columns(2)
+with col1:
+    st.markdown("To enhance the interpretability of the XGBoost model, we utilized <span style='color: orange;'>SHAP (SHapley Additive exPlanations) </span>  values. These values quantify the contribution of each feature to the model's prediction for a specific instance. The SHAP values are calculated and analyzed to understand the impact of individual features on the prediction.", unsafe_allow_html=True)
+with col2:
+    st.markdown("The SHAP values are visualized using barplots, providing an <span style='color: orange;'> intuitive representation of the features that influence </span> the model's decision  to approve or decline a loan. Users can easily interpret the relative importance of each feature and gain insights into the decision-making process of the XGBoost model.", unsafe_allow_html=True)
+
+
 
 # -------------------------------------------------------------------------------#
 #---------------------------Improvements-------------------------------------#
