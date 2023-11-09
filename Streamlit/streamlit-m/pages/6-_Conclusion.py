@@ -3,7 +3,7 @@ import streamlit as st
 col1, col2 = st.columns(2, gap= "large")
 
 with col1:
-    st.header("Conclussion")
+    st.header("Conclusion")
     st.write(""" 
     - Loan predictions are a multivariate problem where different features can have a different impact on the
     outcome.
