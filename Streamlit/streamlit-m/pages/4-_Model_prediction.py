@@ -293,7 +293,7 @@ roc_auc = auc(fpr, tpr)
 
 # Plotting the ROC curve
 roc =plt.figure(figsize=(10, 8))
-plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'AUC = {roc_auc:.2f}')
+plt.plot(fpr, tpr, color='#ff6e55', lw=2, label=f'AUC = {roc_auc:.2f}')
 plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
 plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
@@ -354,6 +354,6 @@ st.subheader('8.2 SHAP Values Analysis')
 
 col1, col2 = st.columns(2)
 with col1:
-    st.markdown("To enhance the interpretability of the XGBoost model, we utilized <span style='color: orange;'>SHAP (SHapley Additive exPlanations) </span>  values. These values quantify the contribution of each feature to the model's prediction for a specific instance. The SHAP values are calculated and analyzed to understand the impact of individual features on the prediction.", unsafe_allow_html=True)
+    st.markdown("To enhance the interpretability of the XGBoost model, we utilized <span style='color: #ff6e55;'>SHAP (SHapley Additive exPlanations) </span>  values. These values quantify the contribution of each feature to the model's prediction for a specific instance. The SHAP values are calculated and analyzed to understand the impact of individual features on the prediction.", unsafe_allow_html=True)
 with col2:
-    st.markdown("The SHAP values are visualized using barplots, providing an <span style='color: orange;'> intuitive representation of the features that influence </span> the model's decision  to approve or decline a loan. Users can easily interpret the relative importance of each feature and gain insights into the decision-making process of the XGBoost model.", unsafe_allow_html=True)
+    st.markdown("The SHAP values are visualized using barplots, providing an <span style='color: #ff6e55;'> intuitive representation of the features that influence </span> the model's decision  to approve or decline a loan. Users can easily interpret the relative importance of each feature and gain insights into the decision-making process of the XGBoost model.", unsafe_allow_html=True)
