@@ -125,8 +125,11 @@ styled_df = model_comparison.style.apply(lambda x: highlight_top_two(x), subset=
 st.dataframe(styled_df)
 
 
+st.markdown("We chose <span style='color: #ff6e55;'> XGBoost </span> as our preferred model due to its exceptional performance and a set of impressive metrics, including high accuracy (`0.982788`), perfect precision (`1.000`), high recall (`0.969421`), and a balanced F1 Score (`0.984473`). ", unsafe_allow_html=True)
 
-st.write("We chose XGBoost ('xgb_model1' in the table) as our preferred model due to its exceptional performance and a set of impressive metrics, including high accuracy (`0.982788`), perfect precision (`1.000`), high recall (`0.969421`), and a balanced F1 Score (`0.984473`). Beyond its standout scores, XGBoost's utilization of gradient boosting, built-in L1 and L2 regularization, and optimization for speed make it a versatile and high-performing choice for diverse machine learning applications. While Decision Tree exhibits similar metrics, XGBoost's ensemble approach with multiple decision trees enhances overall performance and generalization, making it a more reliable choice for predictive modeling.")
+st.markdown("Beyond its standout scores, XGBoost's utilization of <span style='color: #ff6e55;'> gradient boosting, built-in L1 and L2 regularization, and optimization for speed</span> make it a versatile and high-performing choice for diverse machine learning applications. ", unsafe_allow_html=True)
+
+st.markdown(" While Decision Tree exhibits similar metrics, XGBoost's <span style='color: #ff6e55;'>ensemble approach with multiple decision trees  </span>  enhances overall performance and generalization, making it a more <span style='color: #ff6e55;'>reliable choice for predictive modeling </span>,", unsafe_allow_html=True)
 
 # ----------------------------------------------------------------------------#
 #---------------------------Hyperparameter Tuning ----------------------------#
