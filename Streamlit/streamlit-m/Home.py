@@ -1,9 +1,8 @@
 #console command: streamlit run Home.py
 
 import streamlit as st
+import subprocess
 import os
-
-
 
 st.title("Loan Status Predictor")
 
@@ -20,3 +19,16 @@ st.write("""
 
         
         """)
+
+
+current_directory = os.path.dirname(os.path.abspath(__file__))
+
+relative_path = os.path.join(
+    current_directory,
+    "..",
+    "..",
+    "app",
+    "app.py"
+)
+
+subprocess.run(["python", relative_path])

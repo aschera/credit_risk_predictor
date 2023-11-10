@@ -26,6 +26,8 @@ st.markdown("""
         .stMultiSelect [data-baseweb=select] span{
             max-width: 250px;
             font-size: 0.75rem;
+            color: #ff6e55;
+            background-color: #fff87f;
         }
     </style>
     """, unsafe_allow_html=True)
