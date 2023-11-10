@@ -25,8 +25,8 @@ st.markdown("""
     <style>
         .stMultiSelect [data-baseweb=select] span{
             max-width: 250px;
-            font-size: 0.75rem;
-            color: #ff6e55;
+            font-size: 1rem;
+            color: black; 
             background-color: #fff87f;
         }
     </style>
@@ -448,4 +448,5 @@ column_to_inspect = 'action_taken'
 value_counts = df_selection[column_to_inspect].value_counts()
 
 st.write(f"Value Counts for {column_to_inspect}: ")
-st.bar_chart(value_counts)
+
+st.bar_chart(value_counts, color=["#ff6e55"] )
